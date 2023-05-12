@@ -1,5 +1,4 @@
 # GAES-2-FOS
-<p> <img width="200px" src= "[https://github.com/senauti/project-gaes-2-fos/tree/main/LOGO](https://github.com/senauti/project-gaes-2-fos/blob/main/LOGO/logo%20claro.jpeg)" ></p>
 ## PLANTAMIENTO PROBLEMA 😶‍🌫️
 ### La empresa “Piñatería Latinos” ubicada en el barrio de san Victorino de la ciudad de Bogotá, dedicada a la venta de todo tipo de elementos para fiestas, ocasiones y temáticas. Tiene el problema de la pérdida de datos e información relacionada con sus procesos por el registro en kardex físico, teniendo poco planeamiento referente al inventario como proveedores, productos que se necesitan, referencias que más salen y otros problemas como el espacio que requiere almacenar los archivos, el envío de productos y también el tiempo que toma buscar una información o dato. 
 ## OBJETIVO GENERAL 😏
