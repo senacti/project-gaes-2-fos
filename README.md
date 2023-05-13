@@ -3,7 +3,7 @@
 
 # Repositorio proyecto ADSO
 
-<p aling="Center"><img width="300" src="https://github.com/senauti/project-gaes-2-fos/blob/main/LOGO/logo%20claro.jpeg?raw=true"><p/>
+<p style ="transform: translate(x 250px);"><img width="300" src="https://github.com/senauti/project-gaes-2-fos/blob/main/LOGO/logo%20claro.jpeg?raw=true"><p/>
 
 ## Objetivo general 😏
 Desarrollar un software  (FOS) para la piñateria latino tendrá la capacidad de brindar información completa y precisa, con la facultad de registrar y consultar sobre los procesos que se llevan en la empresa como, las referencias con mayor demanda, clientes más frecuentes, proveedores, salidas por novedad, el envío de los productos y organización de eventos como innovación .
