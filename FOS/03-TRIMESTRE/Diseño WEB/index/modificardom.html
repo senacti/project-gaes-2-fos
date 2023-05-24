@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stylemenu.css">
+    <link rel="stylesheet" href="css/domiciliosprinci.css">
+    <link rel="stylesheet" href="css/modificardom.css">
+    <script src="https://kit.fontawesome.com/37a7d1d6c8.js" crossorigin="anonymous"></script>
+
+    <title>FOS</title>
+</head>
+<body>
+    <header class="header"> 
+        <div class="logo">
+                    <input type="checkbox" id="btn-menu" style="appearance: none;"  class="fa-solid fa-lines-leaning">
+        <span></span>
+        <div class="container-menu">
+            <div class="cont-menu">
+                <nav>
+                    <a href="#">Graficas</a>
+                    <a href="#">Ventas</a>
+                    <a href="#">Inventario</a>
+                    <a href="domiciliosprinci.html">Domicilios</a>
+                    <a href="#">Youtube</a>
+                    <a href="#">Instagram</a>
+                </nav>
+                <label for="btn-menu" id="equis">✖️</label>
+            </div>
+        </div>
+        </div>
+        <label for="toggle"><img src="menu.png" alt="" width="50px"></label>
+        <input type="checkbox" id="toggle">
+        <nav class="navigation">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Contactanos</a>
+                    <ul>
+                        <li><a href="#">Whatsapp</a></li>
+                        <li><a href="#">Telegram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Llamanos</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Nuestros Servicios</a>
+                </li>
+                <li><a href="#">Usuario</a>
+                    <ul>
+                        <li><a href="lading.html">Cuenta</a></li>
+                        <li><a href="lading.html">Configuracion</a></li>
+                        <li><a href="seción.html">Cerrar sesion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+</header>
+<main>
+    <h1 class="admTi">Modificar domicilios</h1>
+
+    <!--Grupo: Numero de factura-->
+    <form action="lading.html" class="formulario" id="formulario">
+        <div class="formulario__grupo formulario__grupo-correcto" id="grupo__usuario">
+    
+
+            <label for="usuario" class="formulario__label">Numero factura</label>
+            <div class="formulario__grupo-input">
+                <input type="number" class="formulario__input" name="usuario" id="usuario" placeholder="Numero factura" required style="appearance: none;">
+                <i class="formulario__validacion-estado fa-solid fa-circle-xmark" style="color: #ae1e1e; "></i>
+            </div>
+            <p class="formulario__input-error">El numero de factura debe ser con numeros menor a 4 numeros mayor a 12       </p>
+        </div>
+        <!--Grupo: Fecha Domicilio-->
+        <div class="formulario__grupo" id="grupo__fechadomicilio">
+            <label for="grupo__fechadomicilio" class="formulario__label">Fecha Domicilio</label>
+            <div class="formulario__grupo-input">
+                <input type="date" class="formulario__input" name="grupo__fechadomicilio" id="grupo__fechadomicilio"
+                    placeholder="Hora Domicilio" required>
+                <i class="formulario__validacion-estado fa-solid fa-circle-xmark" style="color: #ae1e1e;"></i>
+            </div>
+            <p class="formulario__input-error">Por favor ingresa una fecha</p>
+        </div>
+        <!--Grupo: Hora Domicilio-->
+        <div class="formulario__grupo" id="grupo__horadomicilio">
+            <label for="grupo__horadomicilio" class="formulario__label">Hora Domicilio</label>
+            <div class="formulario__grupo-input">
+                <input type="time" class="formulario__input" name="grupo__horadomicilio" id="grupo__horadomicilio"
+                    placeholder="Hora Domicilio" required>
+                <i class="formulario__validacion-estado fa-solid fa-circle-xmark" style="color: #ae1e1e;"></i>
+            </div>
+            <p class="formulario__input-error">Ingresa una hora</p>
+        </div>
+        
+                <i class="formulario__validacion-estado fa-solid fa-circle-xmark" style="color: #ae1e1e;"></i>
+            </div>
+        <!--Grupo: Hora estado-->
+
+            <div class="formulario__grupo" id="grupo__estado">
+                <label for="grupo__estado" class="formulario__label">Estado</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="grupo__estado" id="grupo__estado"
+                        placeholder="Estado" required>
+                    <i class="formulario__validacion-estado fa-solid fa-circle-xmark" style="color: #ae1e1e;"></i>
+                </div>
+                <p class="formulario__input-error">Por favor ingresa un estado valido</p>
+            </div>
+        <!--Grupo: producto-->
+
+            <div class="formulario__grupo" id="grupo__producto">
+                <label for="grupo__producto" class="formulario__label">Producto</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="grupo__producto" id="grupo__producto"
+                        placeholder="producto" required>
+                    <i class="formulario__validacion-estado fa-solid fa-circle-xmark" style="color: #ae1e1e;"></i>
+                </div>
+                <p class="formulario__input-error">Por favor ingresa un producto valido</p>
+            </div>
+        <!--Grupo: nombre-->
+
+            <div class="formulario__grupo" id="grupo__nombre">
+                <label for="grupo__nombre" class="formulario__label">Nombre</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="grupo__nombre" id="grupo__nombre"
+                        placeholder="Nombre" required>
+                    <i class="formulario__validacion-estado fa-solid fa-circle-xmark" style="color: #ae1e1e;"></i>
+                </div>
+                <p class="formulario__input-error">Por favor ingresa un nombre</p>
+            </div>
+        <!--Grupo: apellido-->
+
+            <div class="formulario__grupo" id="grupo__apellido">
+                <label for="grupo__apellido" class="formulario__label">Apellido</label>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="grupo__apellido" id="grupo__apellido"
+                        placeholder="Apellido" required>
+                    <i class="formulario__validacion-estado fa-solid fa-circle-xmark" style="color: #ae1e1e;"></i>
+                </div>
+                <p class="formulario__input-error">Por favor ingresa un apellido valido</p>
+            </div>
+        <!--Grupo: tipo identificacion-->
+
+            <div class="formulario__grupo" id="grupo__fechadomicilio">
+                <label for="grupo__fechadomicilio" class="formulario__label">Fecha Domicilio</label>
+                <div class="formulario__grupo-input">
+                    <input type="date" class="formulario__input" name="grupo__fechadomicilio" id="grupo__fechadomicilio"
+                        placeholder="Hora Domicilio" required>
+                    <i class="formulario__validacion-estado fa-solid fa-circle-xmark" style="color: #ae1e1e;"></i>
+                </div>
+                <p class="formulario__input-error">Por favor ingresa una fecha</p>
+            </div>
+        <!--Grupo: telefono-->
+
+            <div class="formulario__grupo" id="grupo__fechadomicilio">
+                <label for="grupo__fechadomicilio" class="formulario__label">Fecha Domicilio</label>
+                <div class="formulario__grupo-input">
+                    <input type="date" class="formulario__input" name="grupo__fechadomicilio" id="grupo__fechadomicilio"
+                        placeholder="Hora Domicilio" required>
+                    <i class="formulario__validacion-estado fa-solid fa-circle-xmark" style="color: #ae1e1e;"></i>
+                </div>
+                <p class="formulario__input-error">Por favor ingresa una fecha</p>
+            </div>
+        </div>
+        
+        <div class="formulario__mensaje" id="formulario__mensaje"> 
+            <p><i class="fa-solid fa-triangle-exclamation" style="color: #ff0000;"> <b>Error</b> Por favor revisa la informacion.</i></p>
+        </div>
+        <div>
+            <div class="formular__grupo formulario__grupo-btn-enviar">
+                <button type="submit" class="formulario__btn">Modificar domicilio</button>
+                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Agendado de manera exitosa</p>
+            </div>
+            
+        </div>
+        
+        
+    </form>
+    <div >
+        <a href="verdomicilios.html">
+        <button type="submit" class="formulario__btn2 ">Volver</button>
+
+        </a>
+    </div>
+
+</main>
+<script src="js/modificar.js"></script>
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+</body>
+</html>

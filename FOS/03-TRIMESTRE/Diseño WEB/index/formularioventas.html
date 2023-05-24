@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/formventas.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <title>FOS</title>
+</head>
+<body>
+    <div class="contenedor">
+        <header>Tu Pedido</header>
+
+        <form action="error404.html">
+            <div class="primera forma">
+                <div class="personales datos">
+                    <span class="titulo">IDENTIFICACION</span>
+
+                    <div class="campos">
+                        <div class="campoentrada">
+                            <label>Nombre</label>
+                            <input type="text" placeholder="Ingresa tu Nombre" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Apellidos</label>
+                            <input type="text" placeholder="Ingresa tu Apellido" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Tipo de documento</label>
+                            <input type="text" placeholder="Cedula de Ciudadania" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Cedula de ciudadania</label>
+                            <input type="number" placeholder="999999999" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Correo electronico</label>
+                            <input type="email" placeholder="ejemplo@gmail.com" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Telefono/Movil</label>
+                            <input type="tel" placeholder="999 999 99 99" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="envio datos">
+                    <span class="titulo">ENVIO</span>
+
+                    <div class="campos">
+                        <div class="campoentrada">
+                            <label>Departamento</label>
+                            <input type="text" placeholder="Departamento" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Cuidad/Municipio</label>
+                            <input type="text" placeholder="Bogota" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Barrio</label>
+                            <input type="text" placeholder="Barrio" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Calle</label>
+                            <input type="text" placeholder="Direccion" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Informacion adicional</label>
+                            <input type="text" placeholder="ejemplo apto. 201" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Destinatario</label>
+                            <input type="text" placeholder="Persona que recibe" required>
+                        </div>
+                    </div>
+
+                    <button class="siguiente">
+                        <span class="btntext">IR A PAGO</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="segunda forma">
+                <div class="pago">
+                    <span class="titulo">PAGO</span>
+
+                    <div class="campos">
+                        <div class="campoentrada">
+                            <label>Numero de targeta</label>
+                            <input type="number" placeholder="9999 9999 9999 9999" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Numero de cuotas </label>
+                            <input type="number" placeholder="#" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>Titular de la tarjeta</label>
+                            <input type="text" placeholder="Igrese nombre" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>fecha de vencimiento MM</label>
+                            <input type="number" placeholder="MM" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>fecha de vencimiento AA</label>
+                            <input type="number" placeholder="AA" required>
+                        </div>
+
+                        <div class="campoentrada">
+                            <label>codigo de seguridad</label>
+                            <input type="number" placeholder="999" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="envio datos">
+                    <div class="botones">
+                        <div class="anterior">
+                            <i class="fa-solid fa-arrow-right"></i>
+                            <span class="btntext">VOLVER</span>
+                        </div>
+    
+                        <button class="ENVIAR">
+                            <span class="ENVIAR">ENVIAR</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
