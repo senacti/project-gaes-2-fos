@@ -1,0 +1,45 @@
+body{
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    margin-top: 30vh;
+    font-family: 'Open Sans', sans-serif;
+}
+img{
+    width: 50%;
+}
+.container500{
+    height: 15vh;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    color: rgb(228, 219, 219);
+    font-size: 20px;
+}
+button{
+    padding: 13px 30px;
+    border-radius: 15px;
+    border: none;
+    background: #486f99;
+    color: white;
+    pointer-events: none;
+}
+
+button :hover{
+    background: linear-gradient(#b9d6f3, rgb(226, 221, 221));
+    padding: 13px 30px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+}
+
+@media screen and (max-width: 950px){
+    h1{
+        
+        font-size: 15px;}
+}
