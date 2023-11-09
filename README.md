@@ -32,7 +32,8 @@ El sistema de información “FOS” tiene como fin mejor varios aspectos como o
 - Jeisson David Guabave Vargas
 - Osman Enrique Cañon Gonzales
 - Daniel Javier Marin
-- Felipe Mantinez 
+
+<p align="center"> &copy; 2023 Project FOS <p/>
   
 
 
