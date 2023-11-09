@@ -3,6 +3,7 @@ from django.db import models
 ##Sin foraneas 
 
 # cliente
+"""""
 class Client(models.Model):
     id = models.PositiveIntegerField(verbose_name="Id Cliente", primary_key=True)
 
@@ -14,7 +15,7 @@ class Client(models.Model):
         verbose_name_plural = "Clientes"
         db_table = "cliente"
         ordering = ['id']
-
+"""""
 #Ciudad
 class City(models.Model):
     cod_city = models.PositiveIntegerField(verbose_name="Cod Ciudad")
@@ -195,7 +196,7 @@ class Sale(models.Model):
     subtotal = models.PositiveIntegerField(verbose_name="Subtotal" )
     total = models.PositiveIntegerField(verbose_name="Total")
     id_product = models.ForeignKey(Product, on_delete= models.CASCADE)
-    id_cliente = models.ForeignKey(Client, on_delete= models.CASCADE)
+    #id_cliente = models.ForeignKey(Client, on_delete= models.CASCADE)
 
     def __str__(self):
         return f"{self.id_sale} - {self.sale_date} - {self.sale_amount} - {self.sale_send} - {self.unit_value} - {self.discount} - {self.vat} - {self.subtotal} - {self.total} - {self.id_product} - {self.id_cliente}"
@@ -251,7 +252,7 @@ class Domicile(models.Model):
     direction = models.CharField(max_length=50, verbose_name="Dirección")
     cod_status_domicile = models.ForeignKey(Domicile_Status, on_delete= models.CASCADE)
     id_sale = models.ForeignKey(Sale, on_delete= models.CASCADE)
-    id_client = models.ForeignKey(Client, on_delete= models.CASCADE)
+    #id_client = models.ForeignKey(Client, on_delete= models.CASCADE)
 
     def __str__(self):
         return f"{self.id_domicile} - {self.guide_number} - {self.date} - {self.direction} - {self.cod_status_domicile} - {self.id_sale} - {self.id_client}"
@@ -334,7 +335,7 @@ class Suplier(models.Model):
 class Client_Type(models.Model):
     cod_client_type = models.PositiveIntegerField(verbose_name="Cod Tipo Cliente")
     client_type = models.CharField(max_length=50, verbose_name="Tipo Cliente")
-    id_client = models.ForeignKey(Client, on_delete= models.CASCADE)
+    #id_client = models.ForeignKey(Client, on_delete= models.CASCADE)
 
     def __str__(self):
         return f"{self.cod_client_type} - {self.client_type} - {self.id_client}"

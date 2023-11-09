@@ -19,12 +19,13 @@ conn = mysql.connector.connect(
     database='fosdef'
 )
 
-MySQL =  {
+MYSQL = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'fosdef',
         'USER': 'root',
         'PASSWORD': '',
-        'NAME': 'fosdef',
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }

@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from . models import Client, City, Supplier_Status, Entry, Request_Status, Domicile_Status, Product_Status, Employee, Employee_Type, Product_Category, Work_Time, Product, Sale, Output, Inventory, Domicile, Company_Transportation, Activities, Product_Request, Suplier, Client_Type
+from . models import  City, Supplier_Status, Entry, Request_Status, Domicile_Status, Product_Status, Employee, Employee_Type, Product_Category, Work_Time, Product, Sale, Output, Inventory, Domicile, Company_Transportation, Activities, Product_Request, Suplier, Client_Type
 
-admin.site.register(Client)
+#admin.site.register(Client)
 admin.site.register(City)
 admin.site.register(Supplier_Status)
 admin.site.register(Entry)
