@@ -1,5 +1,6 @@
 import os
-import mysql.connector
+import pymysql
+pymysql.install_as_MySQLdb()
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -12,20 +13,15 @@ SQLITE = {
 }
 
 
-conn = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    password='',
-    database='fosdef'
-)
 
-MYSQL = {
+
+PYMYSQL = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'fosdef',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '3306'
+        'HOST': 'localhost',  
+        'PORT': '3306',  
     }
 }
