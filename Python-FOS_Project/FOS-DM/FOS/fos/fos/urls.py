@@ -21,8 +21,22 @@ from . import views
 
 
 urlpatterns = [
+    #Todo principal
     path('admin/', admin.site.urls, name= 'admin:index'),
     path('', views.inicio, name='inicio'),
     path('login/',  views.login_view, name='login'),   
-    path('salir/', views.salir, name='salir')
+    path('salir/', views.salir, name='salir'),
+    path('contactanos/', views.contactanos, name='contactanos'),
+    path('servicios/', views.servicios, name='servicios'),
+    path('regsitro', views.registro, name='registro'),
+    #Cierre todo principal
+
+    #Domicilios
+    #Cierre domicilios
+
+    #Ventas
+    #Cierre ventas
+
+    #Inventario
+    #Cierre inventario
 ]

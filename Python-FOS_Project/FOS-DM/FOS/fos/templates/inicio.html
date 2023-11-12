@@ -19,9 +19,9 @@
             </label>
             <nav class="navbar">
                 <ul>
-                    <li><a style="text-decoration: none; " href="#">Inicio</a></li>
-                    <li><a style="text-decoration: none;" href="#">Contactanos</a></li>
-                    <li><a style="text-decoration: none;" href="#">Nuestros Servicios</a></li>
+                    <li><a style="text-decoration: none; " href="{% url 'inicio' %}">Inicio</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'contactanos' %}">Contactanos</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'servicios' %}">Nuestros Servicios</a></li>
                 </ul>
 
             </nav>
@@ -97,13 +97,13 @@
                     crear una.
                 </p>
 
-                <a style="color: white; text-decoration: none;" href="#">
+                <a style="color: white; text-decoration: none;" href="{% url 'login' %}">
                     <button class="btn-exp"
                         style="background-color:  #3da9fc; border-radius: 10px; height: 30px; width: 30%; border: none; align-items: center; text-align: center; color: white;"
                         type="submit">Inicia sesión</button>
                 </a>
 
-                <a href="">
+                <a href="{% url 'registro' %}">
                     <button class="btn-exp"
                         style="background-color:  #3da9fc; border-radius: 10px; height: 30px; width: 30%; border: none; align-items: center; text-align: center; color: white; transform: translateX(5vh);"
                         type="submit">Registrate</button>
