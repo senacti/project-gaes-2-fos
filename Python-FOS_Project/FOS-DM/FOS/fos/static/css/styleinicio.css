@@ -75,6 +75,7 @@ img{
 .menu .navbar ul li{
     position: relative;
     float: left;
+
     
 }
 
@@ -83,6 +84,7 @@ img{
     padding: 20px;
     color: #3da9fc;
     display: block;
+    transition: all .3s ease;
 }
 
 .navbar ul li a:hover{
@@ -318,4 +320,6 @@ h2{
     float: left;
     position: relative;
 }
+
+
 

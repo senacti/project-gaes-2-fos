@@ -5,6 +5,8 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib import messages
+from .forms import CustomUserCreationForm
+
 #Cierre importaciones
 
 #Todo principal
@@ -23,7 +25,7 @@ def login_view(request):
         if user:
             login(request, user)
             messages.success(request, 'Bienvenido {}'.format(user.username))
-            return redirect('admin:index')
+            return redirect('inicio')
         else: 
             messages.error(request, 'Usuario o contraseña incorrectos')
     return render(request, 'login.html',{
@@ -34,7 +36,7 @@ def login_view(request):
 def salir(request):
     logout(request)
     messages.success(request, 'Sesión finalizada')
-    return redirect('inicio.html')
+    return redirect('inicio')
 
 def contactanos(request):
     return render(request,'contactanos.html',{
@@ -46,10 +48,25 @@ def servicios(request):
         #contexto
     })
 
-def registro(request):
-    return render(request,'registro.html',{
-        #contexto
-    })
+def register(request):
+
+    data = {
+        'form': CustomUserCreationForm()
+    }
+
+    if request.method == 'POST':
+        user_creation_form = CustomUserCreationForm(data=request.POST)
+
+        if user_creation_form.is_valid():
+            user_creation_form.save()
+            
+            user = authenticate(user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password'])
+            login(request, user)
+            return redirect('inicio')
+        
+    return render(request,'registro.html', data)
+
+
 #Cierre todo principal
 
 #Todo domicilios

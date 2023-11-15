@@ -30,18 +30,17 @@ urlpatterns = [
     path('salir/', views.salir, name='salir'),
     path('contactanos/', views.contactanos, name='contactanos'),
     path('servicios/', views.servicios, name='servicios'),
-    path('regsitro', views.registro, name='registro'),
+    path('register/', views.register, name='register'),
+    
     #Cierre todo principal
 
     #Domicilios
-
+    
     #Cierre domicilios
 
     #Ventas
-
     #Cierre ventas
 
     #Inventario
-    
     #Cierre inventario
 ]
