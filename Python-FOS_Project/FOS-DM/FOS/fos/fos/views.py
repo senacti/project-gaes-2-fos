@@ -24,7 +24,7 @@ def login_view(request):
         user = authenticate(username=username, password=password)
         if user:
             login(request, user)
-            messages.success(request, 'Bienvenido {}'.format(user.username))
+            messages.success(request, 'Bienvenido')
             return redirect('inicio')
         else: 
             messages.error(request, 'Usuario o contraseña incorrectos')

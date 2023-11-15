@@ -40,7 +40,7 @@
                         <ul>
                             {% if request.user.is_authenticated  %}
                             <li class="custom-dropdown" style="display: inline-block;">
-                                <a style="text-decoration: none;"  class="custom-dropbtn">{{user.username}}</a>
+                                <a style="text-decoration: none;"  class="custom-dropbtn">{{user.username|capfirst}}</a>
                                 <div class="custom-dropdown-content">
                                     <a href="#" class="custom-menu-item">Configuración</a>
                                     <a href="{% url 'admin:index'%}"  class="custom-menu-item">Administrador</a>
