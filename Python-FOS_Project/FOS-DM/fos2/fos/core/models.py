@@ -2,20 +2,6 @@ from django.db import models
 
 ##Sin foraneas 
 
-# cliente
-"""""
-class Client(models.Model):
-    id = models.PositiveIntegerField(verbose_name="Id Cliente", primary_key=True)
-
-    def __str__(self):
-        return (self.id)
-    
-    class Meta:
-        verbose_name = "Cliente"
-        verbose_name_plural = "Clientes"
-        db_table = "cliente"
-        ordering = ['id']
-"""""
 #Ciudad
 class City(models.Model):
     cod_city = models.PositiveIntegerField(verbose_name="Cod Ciudad")

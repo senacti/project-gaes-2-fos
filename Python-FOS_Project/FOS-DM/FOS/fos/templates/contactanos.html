@@ -5,8 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contactanos</title>
+    <link rel="stylesheet" href="{% static 'css/styleinicio.css'%}">
+    <link rel="stylesheet" href="{% static 'css/contactanos.css'%}">
 </head>
 <body>
-    
+    <header class="header">
+        <div class="menu container">
+            <img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" ">
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src="{% static 'img/menu.png' %}" class="menu-icono" alt=" ">
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a style="text-decoration: none; " href="{% url 'inicio' %}">Inicio</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'contactanos' %}">Contactanos</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'servicios' %}">Nuestros Servicios</a></li>
+                </ul>
+
+            </nav>
+            <div>
+                <ul>
+                    <nav class="navbar">
+                        <ul>
+                            {% if request.user.is_authenticated  %}
+                            <li class="custom-dropdown" style="display: inline-block;">
+                                <a style="text-decoration: none;"  class="custom-dropbtn">{{user.username|capfirst}}</a>
+                                <div class="custom-dropdown-content">
+                                    <a href="#" class="custom-menu-item">Configuración</a>
+                                    <a href="{% url 'admin:index'%}"  class="custom-menu-item">Administrador</a>
+                                    <a href="{% url 'salir' %}" class="custom-menu-item">Salir</a>
+                                </div>
+                            </li>
+                            
+                                
+                            {% else %}
+                                <li><a style="text-decoration: none;" href="{% url 'login'%}">Iniciar sesión</a></li>
+                            {% endif %}
+                        </ul>
+
+
+                    </nav>
+
+
+                </ul>
+            </div>
+    </header>
+    <div class="container-form">
+        <div class="info-form">
+            <h2>Contáctanos</h2>
+            <p>Puedes contactarnos directamente o dejarnos un mensaje</p>
+            <a href="#"><i class="fa fa-phone"></i> 57 350 595 2493</a>
+            <a href="#"><i class="fa fa-envelope"></i> mlbbdaniel30@gmail.com</a>
+            <a href="#"><i class="fa fa-map-marked"></i> Bogota, Colombia</a>
+        </div>
+        <form  action="#" id="form">
+            <div class="campo">
+                <input type="text" name="" id="user" placeholder="Tu nombre" >
+                <label for=""></label>
+
+            </div>
+            <div class="campo">
+                <input type="email" name="" id="email" placeholder="Tu correo" >
+                <label for=""></label>
+
+            </div>
+            
+            <textarea name="mensaje" placeholder="Tu Mensaje..."></textarea>
+            <input type="submit" name="enviar" value="Enviar Mensaje" class="btn-enviar">
+        </form>
+    </div>
+
 </body>
 </html>
