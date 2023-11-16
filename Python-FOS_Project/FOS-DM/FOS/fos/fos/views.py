@@ -66,7 +66,11 @@ def register(request):
         
     return render(request,'registro.html', data)
 
+def loading(request):
+    return render(request,'loadings/loading.html')
 
+def loadingcontac(request):
+    return render(request,'loadings/loadingcontac.html')
 #Cierre todo principal
 
 #Todo domicilios

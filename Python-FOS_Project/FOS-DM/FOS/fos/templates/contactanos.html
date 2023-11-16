@@ -4,10 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactanos</title>
+    <title>FOS | Contactanos</title>
+    <link rel="icon" href="{% static 'img/logo1.ico'%}">
     <link rel="stylesheet" href="{% static 'css/styleinicio.css'%}">
-    <link rel="stylesheet" href="{% static 'css/contactanos.css'%}">
+    <link rel="stylesheet" href="{% static 'css/stylemenulogoutlogin.css'%}">
+    <link rel="stylesheet" href="{% static 'css/contacto.css' %}">
 </head>
+
 <body>
     <header class="header">
         <div class="menu container">
@@ -40,7 +43,7 @@
                             
                                 
                             {% else %}
-                                <li><a style="text-decoration: none;" href="{% url 'login'%}">Iniciar sesión</a></li>
+                                <li><a style="text-decoration: none;" href="{% url 'loading'%}">Iniciar sesión</a></li>
                             {% endif %}
                         </ul>
 
@@ -59,22 +62,57 @@
             <a href="#"><i class="fa fa-envelope"></i> mlbbdaniel30@gmail.com</a>
             <a href="#"><i class="fa fa-map-marked"></i> Bogota, Colombia</a>
         </div>
-        <form  action="#" id="form">
-            <div class="campo">
-                <input type="text" name="" id="user" placeholder="Tu nombre" >
-                <label for=""></label>
-
+        <form  action="{% url 'loadingcontac'%}" id="form" >
+            <div class="input-contenedor">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" required  >
+                <label for="#">Tu Nombre</label>
             </div>
-            <div class="campo">
-                <input type="email" name="" id="email" placeholder="Tu correo" >
-                <label for=""></label>
 
+            <div class="input-contenedor">
+                <i class="fa-solid fa-lock"></i>
+                <input  type="Email" required >
+                <label for="#">Tu Correo</label>
             </div>
             
-            <textarea name="mensaje" placeholder="Tu Mensaje..."></textarea>
-            <input type="submit" name="enviar" value="Enviar Mensaje" class="btn-enviar">
+            <div class="input-contenedor">
+            <textarea name="mensaje" placeholder="..."></textarea>
+            <label style="color: white;" for="#">Tu mensaje</label>
+            </div>
+            <button type="submit">Enviar Mensaje</button>
         </form>
     </div>
+    <footer class="footer container" style="padding: 0; height: 25vh;">
+        <img class="logo-2" src="{% static 'img/logo1.png' %}" alt="">
 
+
+        <div class="links" style="display: flex;
+        flex-direction: row;
+        align-items: center;">
+
+            <div class="socials" style="display: flex;
+            flex-direction: row;
+            align-items: center; transform: translate(20vh, -10vh);">
+                <a href="#">
+                    <div class="social" style="margin: 0 10px;">
+                        <img src="{% static 'img/whatsapp.png' %}" alt="">
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="social" style="margin: 0 10px;">
+                        <img src="{% static 'img/facebook.png' %}" alt="">
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="social" style="margin: 0 10px;">
+                        <img src="{% static 'img/instagram.png' %}" alt="">
+                    </div>
+                </a>
+                <p style="color: white; transform: translateY(1.5vh);">&copy; 2023 FOS. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
 </body>
 </html>

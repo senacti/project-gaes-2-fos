@@ -4,9 +4,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios</title>
+    <title>FOS | Servicios</title>
+    <link rel="icon" href="{% static 'img/logo1.ico'%}">
+    <link rel="stylesheet" href="{% static 'css/styleinicio.css'%}">
+    <link rel="stylesheet" href="{% static 'css/stylemenulogoutlogin.css'%}">
+    <link rel="stylesheet" href="{% static 'css/servicios.css' %}">
+
 </head>
 <body>
-    
+    <header class="header">
+        <div class="menu container">
+            <img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" ">
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src="{% static 'img/menu.png' %}" class="menu-icono" alt=" ">
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a style="text-decoration: none; " href="{% url 'inicio' %}">Inicio</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'contactanos' %}">Contactanos</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'servicios' %}">Nuestros Servicios</a></li>
+                </ul>
+
+            </nav>
+            <div>
+                <ul>
+                    <nav class="navbar">
+                        <ul>
+                            {% if request.user.is_authenticated  %}
+                            <li class="custom-dropdown" style="display: inline-block;">
+                                <a style="text-decoration: none;"  class="custom-dropbtn">{{user.username|capfirst}}</a>
+                                <div class="custom-dropdown-content">
+                                    <a href="#" class="custom-menu-item">Configuración</a>
+                                    <a href="{% url 'admin:index'%}"  class="custom-menu-item">Administrador</a>
+                                    <a href="{% url 'salir' %}" class="custom-menu-item">Salir</a>
+                                </div>
+                            </li>
+                            
+                                
+                            {% else %}
+                                <li><a style="text-decoration: none;" href="{% url 'loading'%}">Iniciar sesión</a></li>
+                            {% endif %}
+                        </ul>
+
+
+                    </nav>
+
+
+                </ul>
+            </div>
+    </header>
+
+    <div class="containerser">
+        <h1 class="h1pri">Nuestros servicios</h1>
+        <div class="row">
+            <div class="service">
+                
+                <i class="fa-solid fa-warehouse"></i>
+                <h2>Inventario</h2>
+                <p >Permitir tener una planeación y visión más clara sobre el inventario en aspectos como proveedores, referencias que más salen, cantidades, anticipación a escasez también con el reemplazo del kardex físico se optimizará tiempo y espacio.</p>
+                <a href="{% url 'loading'%}">
+                    <button class="botonservi2">Saber mas</button>
+                </a>
+            </div>
+            <div class="service">
+                <i class="fa-solid fa-store"></i>
+                <h2>Ventas</h2>
+                <p>Acceder a los registros de ventas de manera más rápida evitando confusión e incertidumbre sobre datos que no están claros o se perdieron, para tener una información precisa y concisa.</p>
+                <br>
+                <a href="{% url 'loading'%}">
+                    <button class="botonservi2">Saber mas</button>
+                </a>
+            </div>
+            <div class="service">
+                <i class="fa-sharp fa-solid fa-truck"></i>
+                <h2>Domicilios</h2>
+                <p>Gestionar y mantener un registro, edición, supervisión y manejo completo de los domicilios realizados en la empresa, así manteniendo un control preciso de estos.</p>
+                <br>
+                <br>
+                <a href="{% url 'loading'%}">
+                    <button class="botonservi2">Saber mas</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer container" style="padding: 0; height: 25vh;">
+        <img class="logo-2" src="{% static 'img/logo1.png' %}" alt="">
+
+
+        <div class="links" style="display: flex;
+        flex-direction: row;
+        align-items: center;">
+
+            <div class="socials" style="display: flex;
+            flex-direction: row;
+            align-items: center; transform: translate(20vh, -10vh);">
+                <a href="#">
+                    <div class="social" style="margin: 0 10px;">
+                        <img src="{% static 'img/whatsapp.png' %}" alt="">
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="social" style="margin: 0 10px;">
+                        <img src="{% static 'img/facebook.png' %}" alt="">
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="social" style="margin: 0 10px;">
+                        <img src="{% static 'img/instagram.png' %}" alt="">
+                    </div>
+                </a>
+                <p style="color: white; transform: translateY(1.5vh);">&copy; 2023 FOS. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
