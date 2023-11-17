@@ -19,31 +19,39 @@ from django.urls import path, include
 from . import views
 
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 urlpatterns = [
 
 
-    #Todo principal
-    path('admin/', admin.site.urls, name= 'admin:index'),
+    # Todo principal
+    path('admin/', admin.site.urls, name='admin:index'),
     path('', views.inicio, name='inicio'),
-    path('login/',  views.login_view, name='login'),   
+    path('login/',  views.login_view, name='login'),
     path('salir/', views.salir, name='salir'),
     path('contactanos/', views.contactanos, name='contactanos'),
     path('servicios/', views.servicios, name='servicios'),
     path('register/', views.register, name='register'),
+<<<<<<< Updated upstream
     path('loading/', views.loading, name='loading'),
     path('loadingcontac', views.loadingcontac, name='loadingcontac'),
     
     #Cierre todo principal
+=======
+>>>>>>> Stashed changes
 
-    #Domicilios
-    
-    #Cierre domicilios
+    # Cierre todo principal
 
-    #Ventas
-    #Cierre ventas
+    # Domicilios
 
-    #Inventario
-    #Cierre inventario
+    # Cierre domicilios
+
+    # Ventas
+    # Cierre ventas
+
+    # Inventario
+    # Cierre inventario
 ]
