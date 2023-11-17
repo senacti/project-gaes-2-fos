@@ -2,7 +2,7 @@ from django.db import models
 
 #Ciudad
 class City(models.Model):
-    cod_city = models.PositiveIntegerField(verbose_name="Cod Ciudad")
+    cod_city = models.PositiveIntegerField(verbose_name="Codigo de Ciudad")
     city = models.CharField(max_length=50, verbose_name="Ciudad")
 
     def __str__(self):
@@ -16,11 +16,10 @@ class City(models.Model):
 
 # Estado domicilio
 class Domicile_Status(models.Model):
-    cod_status_d = models.PositiveIntegerField(verbose_name="Cod Estado D")
     statud_d = models.CharField(max_length=20, verbose_name="Estado D")
 
     def __str__(self):
-        return f"{self.cod_status_d} - {self.statud_d}"
+        return self.statud_d
     
     class Meta:
         verbose_name = "Estado Domicilio"
@@ -30,16 +29,15 @@ class Domicile_Status(models.Model):
 
 #Domicilio
 class Domicile(models.Model):
-    id_domicile = models.PositiveIntegerField(verbose_name="Id Domicilio")
     guide_number = models.PositiveIntegerField(verbose_name="Numero Guia")
     date = models.DateField(verbose_name="Fecha")
     direction = models.CharField(max_length=50, verbose_name="Dirección")
-    cod_status_domicile = models.ForeignKey(Domicile_Status, on_delete= models.CASCADE)
-    #id_client = models.ForeignKey(Client, on_delete= models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='domiciles')
+    cod_status_domicile = models.ForeignKey(Domicile_Status, on_delete=models.CASCADE, related_name='domiciles')
 
     def __str__(self):
-        return f"{self.id_domicile} - {self.guide_number} - {self.date} - {self.direction} - {self.cod_status_domicile} - {self.id_sale} - {self.id_client}"
-    
+        return f"{self.guide_number} - {self.date} - {self.direction} - {self.city} - {self.cod_status_domicile}" #- {self.id_sale} - {self.id_client}"
+
     class Meta:
         verbose_name = "Domicilio"
         verbose_name_plural = "Domicilios"
