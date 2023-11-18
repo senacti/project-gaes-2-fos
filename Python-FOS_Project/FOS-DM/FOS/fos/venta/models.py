@@ -3,7 +3,6 @@ from django.db import models
 #Venta
 class Sale(models.Model):
     
-    #Sale = models.PositiveIntegerField(verbose_name="Venta")
     sale_date = models.DateField(verbose_name="Fecha Venta")
     sale_amount = models.PositiveIntegerField(verbose_name="Cantidad Venta")
     sale_send = models.CharField(max_length=50, verbose_name="Envio Venta")
@@ -24,7 +23,7 @@ class Sale(models.Model):
 
 # Estado producto
 class Product_Status(models.Model):
-    status = models.CharField(max_length=20, verbose_name="Estado")
+    status = models.CharField(max_length=20, verbose_name="Estado producto")
 
     def __str__(self):
         return self.status
@@ -37,7 +36,7 @@ class Product_Status(models.Model):
 
 # Categoria producto
 class Product_Category(models.Model):
-    category = models.CharField(max_length=50, verbose_name="Categoria")
+    category = models.CharField(max_length=50, verbose_name="Categoria producto")
 
     def __str__(self):
         return self.category
@@ -57,11 +56,11 @@ class Product(models.Model):
     product_color = models.CharField(max_length=50, verbose_name="Color Producto")
     promotion = models.CharField(max_length=50, verbose_name="Promoción")
     discount= models.PositiveIntegerField(verbose_name="Descuento")
-    Status_p = models.ForeignKey(Product_Status, on_delete= models.CASCADE)
-    category_p = models.ForeignKey(Product_Category, on_delete= models.CASCADE)
+    Status_p = models.ForeignKey(Product_Status, on_delete= models.CASCADE, verbose_name="Estado producto")
+    category_p = models.ForeignKey(Product_Category, on_delete= models.CASCADE, verbose_name="Categoria producto")
 
     def __str__(self):
-        return f"{self.product_name} - {self.product_brand} - {self.product_amount} - {self.fabrication_date} - {self.product_color} - {self.promotion} - {self.discount} - {self.cod_Status_p} - {self.cod_category_p}"
+        return f"{self.product_name} - {self.product_brand} - {self.product_amount} - {self.fabrication_date} - {self.product_color} - {self.promotion} - {self.discount} - {self.Status_p} - {self.category_p}"
     
     class Meta:
         verbose_name = "Producto"
