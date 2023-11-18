@@ -1,23 +1,27 @@
-#Importaciones
-from django.shortcuts import render 
+# Importaciones
+from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from django.contrib import messages
-from .forms import CustomUserCreationForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django import forms
+# Cierre importaciones
 
-#Cierre importaciones
+# Todo principal
 
-#Todo principal
+
 def inicio(request):
-    return render(request,'inicio.html',{
-        #context
+    return render(request, 'inicio.html', {
+        # context
     })
 
 
 def login_view(request):
-    
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -26,58 +30,71 @@ def login_view(request):
             login(request, user)
             messages.success(request, 'Bienvenido')
             return redirect('inicio')
-        else: 
+        else:
             messages.error(request, 'Usuario o contraseña incorrectos')
-    return render(request, 'login.html',{
+    return render(request, 'login.html', {
 
-        
+
     })
+
 
 def salir(request):
     logout(request)
     messages.success(request, 'Sesión finalizada')
     return redirect('inicio')
 
+
 def contactanos(request):
-    return render(request,'contactanos.html',{
-        #contexto
+    return render(request, 'contactanos.html', {
+        # contexto
     })
+
 
 def servicios(request):
-    return render(request,'servicios.html',{
-        #contexto
+    return render(request, 'servicios.html', {
+        # contexto
     })
 
+
 def register(request):
+    if request.method == 'GET':
+        return render(request, 'registro.html', {
+            'form': UserCreationForm()
+        })
+    elif request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
 
-    data = {
-        'form': CustomUserCreationForm()
-    }
-
-    if request.method == 'POST':
-        user_creation_form = CustomUserCreationForm(data=request.POST)
-
-        if user_creation_form.is_valid():
-            user_creation_form.save()
-            
-            user = authenticate(user_creation_form.cleaned_data['username'], password=user_creation_form.cleaned_data['password'])
-            login(request, user)
-            return redirect('inicio')
-        
-    return render(request,'registro.html', data)
+            try:
+                user = User.objects.create_user(
+                    username=username, password=password)
+                user.save()
+                return HttpResponse('Usuario creado exitosamente')
+            except:
+                return HttpResponse('Error al crear el usuario')
+        else:
+            return HttpResponse('Los Password no coinciden')
+    else:
+        return HttpResponse('Método de solicitud no permitido')
 
 def loading(request):
     return render(request,'loadings/loading.html')
 
+<<<<<<< Updated upstream
 def loadingcontac(request):
     return render(request,'loadings/loadingcontac.html')
 #Cierre todo principal
+=======
+# Cierre todo principal
+>>>>>>> Stashed changes
 
-#Todo domicilios
-#Cierre todo domicilios
+# Todo domicilios
+# Cierre todo domicilios
 
-#Todo Ventas
-#Cierre todo ventas
+# Todo Ventas
+# Cierre todo ventas
 
-#Todo Inventario
-#Cierre todo Inventario
+# Todo Inventario
+# Cierre todo Inventario
