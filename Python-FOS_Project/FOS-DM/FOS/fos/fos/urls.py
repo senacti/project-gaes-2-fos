@@ -19,11 +19,7 @@ from django.urls import path, include
 from . import views
 
 
-<<<<<<< Updated upstream
 
-
-=======
->>>>>>> Stashed changes
 urlpatterns = [
 
 
@@ -35,13 +31,12 @@ urlpatterns = [
     path('contactanos/', views.contactanos, name='contactanos'),
     path('servicios/', views.servicios, name='servicios'),
     path('register/', views.register, name='register'),
-<<<<<<< Updated upstream
     path('loading/', views.loading, name='loading'),
     path('loadingcontac', views.loadingcontac, name='loadingcontac'),
     
     #Cierre todo principal
-=======
->>>>>>> Stashed changes
+
+
 
     # Cierre todo principal
 

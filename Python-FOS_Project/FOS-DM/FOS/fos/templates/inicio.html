@@ -24,8 +24,13 @@
                     <li><a style="text-decoration: none; " href="{% url 'inicio' %}">Inicio</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'contactanos' %}">Contactanos</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'servicios' %}">Nuestros Servicios</a></li>
+                    {% if request.user.is_authenticated %}
+                        {% if not request.user.is_staff %}
+                            <li><a style="text-decoration: none;" href="#">Comprar</a></li>
+                        {% endif %}
+                    {% endif %}
                 </ul>
-
+            
             </nav>
             <div>
                 <ul>
@@ -35,13 +40,15 @@
                             <li class="custom-dropdown" style="display: inline-block;">
                                 <a style="text-decoration: none;"  class="custom-dropbtn">{{user.username|capfirst}}</a>
                                 <div class="custom-dropdown-content">
-                                    <a href="#" class="custom-menu-item">Configuración</a>
-                                    <a href="{% url 'admin:index'%}"  class="custom-menu-item">Administrador</a>
                                     <a href="{% url 'salir' %}" class="custom-menu-item">Salir</a>
+                                    <a href="#" class="custom-menu-item">Configuración</a>
+                                        
+                                    {% if request.user.is_staff %}
+                                    <a href="{% url 'admin:index'%}"  class="custom-menu-item">Administrador</a>
+                                    {% else %}
                                 </div>
                             </li>
-                            
-                                
+                                    {% endif %}
                             {% else %}
                                 <li><a style="text-decoration: none;" href="{% url 'loading'%}">Iniciar sesión</a></li>
                             {% endif %}

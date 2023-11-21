@@ -82,13 +82,12 @@ def register(request):
 def loading(request):
     return render(request,'loadings/loading.html')
 
-<<<<<<< Updated upstream
 def loadingcontac(request):
     return render(request,'loadings/loadingcontac.html')
+
+
 #Cierre todo principal
-=======
 # Cierre todo principal
->>>>>>> Stashed changes
 
 # Todo domicilios
 # Cierre todo domicilios

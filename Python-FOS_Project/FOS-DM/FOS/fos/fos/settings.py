@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'fos.urls'
@@ -109,13 +110,18 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-us-es'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+USE_L10N = True
 
 USE_TZ = True
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 
 # Static files (CSS, JavaScript, Images)
@@ -138,3 +144,15 @@ APPEND_SLASH = False
 
 LOGIN_REDIRECT_URL = 'inicio'
 LOGOUT_REDIRECT_URL = 'inicio'
+
+""""
+# Configuración para el envío de correos electrónicos
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Cambia a 'django.core.mail.backends.smtp.EmailBackend' en producción
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 1025  # Cambia al puerto SMTP en producción
+
+# Configuración para la recuperación de contraseña
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+"""
