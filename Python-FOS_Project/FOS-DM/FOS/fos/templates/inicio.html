@@ -1,16 +1,22 @@
 {% load static %}
+
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOS</title>
     <link rel="icon" href="{% static 'img/logo1.ico'%}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styleinicio.css'%}">
     <link rel="stylesheet" href="{% static 'css/stylemenulogoutlogin.css'%}">
-    
+
 </head>
+
 <body>
     <header class="header">
         <div class="menu container">
@@ -25,33 +31,96 @@
                     <li><a style="text-decoration: none;" href="{% url 'contactanos' %}">Contactanos</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'servicios' %}">Nuestros Servicios</a></li>
                     {% if request.user.is_authenticated %}
-                        {% if not request.user.is_staff %}
-                            <li><a style="text-decoration: none;" href="#">Comprar</a></li>
-                        {% endif %}
+                    {% if not request.user.is_staff %}
+                    <li><a style="text-decoration: none;" href="#">Comprar</a></li>
+                    {% endif %}
                     {% endif %}
                 </ul>
-            
+
             </nav>
             <div>
                 <ul>
                     <nav class="navbar">
                         <ul>
-                            {% if request.user.is_authenticated  %}
+                            {% if user.is_authenticated %}
                             <li class="custom-dropdown" style="display: inline-block;">
-                                <a style="text-decoration: none;"  class="custom-dropbtn">{{user.username|capfirst}}</a>
+                                <a style="text-decoration: none;" class="custom-dropbtn">{{ user.username|capfirst}}</a>
                                 <div class="custom-dropdown-content">
-                                    <a href="{% url 'salir' %}" class="custom-menu-item">Salir</a>
-                                    <a href="#" class="custom-menu-item">Configuración</a>
-                                        
-                                    {% if request.user.is_staff %}
-                                    <a href="{% url 'admin:index'%}"  class="custom-menu-item">Administrador</a>
+                                    <a style="text-decoration: none;" href="{% url 'salir' %}" class="custom-menu-item">Salir</a>
+                                    <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                                        data-target="#configuracionModal">Configuración</a>
+
+                                    {% if user.is_staff %}
+                                    <a style="text-decoration: none;" href="#" class="custom-menu-item">Inventario</a>
+                                    <a style="text-decoration: none;" href="#" class="custom-menu-item">Domicilios</a>
+                                    <a style="text-decoration: none;" href="#" class="custom-menu-item">Venta</a>
+                                    <a style="text-decoration: none;" href="{% url 'admin:index' %}" class="custom-menu-item">Administrador</a>
                                     {% else %}
+                                    {% for group in user.groups.all %}
+                                    {% if group.name == 'Empleados' %}
+                                    <a style="text-decoration: none;" href="#" class="custom-menu-item">Inventario</a>
+                                    <a style="text-decoration: none;" href="#" class="custom-menu-item">Domicilios</a>
+                                    <a style="text-decoration: none;" href="#" class="custom-menu-item">Venta</a>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
                                 </div>
                             </li>
-                                    {% endif %}
                             {% else %}
-                                <li><a style="text-decoration: none;" href="{% url 'loading'%}">Iniciar sesión</a></li>
+                            <li><a style="text-decoration: none;" href="{% url 'loading' %}">Iniciar sesión</a></li>
                             {% endif %}
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="configuracionModal" tabindex="-1" role="dialog"
+                                aria-labelledby="configuracionModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="configuracionModalLabel">Configuración</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-body">
+                                                <h6>Cambiar Idioma:</h6>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="idiomaSelect">Selecciona un idioma:</label>
+                                                        <select class="form-control" id="idiomaSelect">
+                                                            <option value="es">Español</option>
+                                                            <option value="en">Inglés</option>
+                                                            <!-- Agrega más opciones según tus necesidades -->
+                                                        </select>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary">Guardar
+                                                        Cambios</button>
+                                                </form>
+
+                                                <hr>
+
+                                                <h6>Cambiar Color de Página:</h6>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="colorSelect">Selecciona un color:</label>
+                                                        <select class="form-control" id="colorSelect">
+                                                            <option value="blue">Azul</option>
+                                                            <option value="green">Verde</option>
+                                                            <!-- Agrega más opciones según tus necesidades -->
+                                                        </select>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary">Guardar
+                                                        Cambios</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </ul>
 
 
@@ -97,7 +166,8 @@
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"data-bs-slide="next">
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -140,7 +210,8 @@
     <section>
         <iframe class="map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31815.35461736233!2d-74.11056320427828!3d4.608462430735198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f996fc1731b19%3A0x67d539e568f514ca!2zTG9zIE3DoXJ0aXJlcywgQm9nb3TDoQ!5e0!3m2!1ses!2sco!4v1697998005245!5m2!1ses!2sco"
-            width="40%" height="400px" style="border:0; border-radius: 20px; transform: translate(100vh,-50vh); margin-left: 15vh;"
+            width="40%" height="400px"
+            style="border:0; border-radius: 20px; transform: translate(100vh,-50vh); margin-left: 15vh;"
             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </section>
 
@@ -175,7 +246,13 @@
             </div>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <script src="{% static 'js/main.js' %}"></script>
 </body>
+
 </html>

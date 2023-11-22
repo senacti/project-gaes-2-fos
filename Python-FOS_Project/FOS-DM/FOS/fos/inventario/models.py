@@ -1,6 +1,8 @@
+from django.contrib.auth.models import User
 from django.db import models
 from venta.models import Product
 from domicilios.models import City
+
 
 # Estado proveedor
 class Supplier_Status(models.Model):
@@ -45,7 +47,7 @@ class Request_Status(models.Model):
 
 # Empleado
 class Employee(models.Model):
-    employee = models.CharField(max_length=50, verbose_name="Empleado")
+    employee = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Empleado")
 
     def __str__(self):
         return self.employee
@@ -151,3 +153,6 @@ class Suplier(models.Model):
         db_table = "proveedor"
         ordering = ['id']
 # Create your models here.
+
+
+

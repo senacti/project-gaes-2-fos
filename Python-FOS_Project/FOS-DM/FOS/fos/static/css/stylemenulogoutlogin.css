@@ -5,7 +5,7 @@
     min-width: 160px;
     z-index: 1;
     transform: translateX(-5vh);
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(15px);
     box-shadow: 0px 5px 10px 5px #3da9fc;
     border-radius: 10px;
 }
@@ -26,3 +26,4 @@
 .custom-dropdown:hover .custom-dropdown-content {
     display: block;
 }
+

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'domicilios',
     'inventario',
     'venta',
+    'import_export',
 
 ]
 

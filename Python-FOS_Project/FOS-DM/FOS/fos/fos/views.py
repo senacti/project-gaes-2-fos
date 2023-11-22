@@ -9,6 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django import forms
+from django.contrib.auth.decorators import login_required
 # Cierre importaciones
 
 # Todo principal
@@ -85,6 +86,10 @@ def loading(request):
 def loadingcontac(request):
     return render(request,'loadings/loadingcontac.html')
 
+
+    
+        
+        
 
 #Cierre todo principal
 # Cierre todo principal
