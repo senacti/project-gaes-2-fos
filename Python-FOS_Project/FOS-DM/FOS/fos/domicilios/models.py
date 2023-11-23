@@ -16,10 +16,10 @@ class City(models.Model):
 
 # Estado domicilio
 class Domicile_Status(models.Model):
-    statud_d = models.CharField(max_length=20, verbose_name="Estado Domicilio")
+    status_d = models.CharField(max_length=20, verbose_name="Estado Domicilio")
 
     def __str__(self):
-        return self.statud_d
+        return self.status_d
     
     class Meta:
         verbose_name = "Estado Domicilio"
