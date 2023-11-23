@@ -48,6 +48,6 @@ class Product_CategoryAdmin(ImportExportModelAdmin):
 
 class Product_CategoryResource(resources.ModelResource):
     class Meta:
-        model = Product_
+        model = Product_Category
         fields = ('category',)
 # Register your models here.

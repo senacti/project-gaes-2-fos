@@ -3,6 +3,10 @@ from . models import Supplier_Status, Entry, Request_Status, Employee, Employee_
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
+admin.site.register(Request_Status)
+admin.site.register(Product_Request)
+admin.site.register(Employee) 
+
 @admin.site.register(Supplier_Status) 
 class Supplier_StatusAdmin(ImportExportModelAdmin):
     list_display=['status_s',]
@@ -31,21 +35,15 @@ class EntryResource(resources.ModelResource):
         fields = ('amount','detail','entry_date',)
 
 
-@admin.site.register(Request_Status)
-
-
-@admin.site.register(Employee) 
-
-
 @admin.site.register(Employee_Type)
-class EmployeeAdmin(ImportExportModelAdmin):
+class Employee_TypeAdmin(ImportExportModelAdmin):
     list_display=['employee_type',]
     list_editable = ('employee_type',)
     
     
     
 
-class EmployeeResource(resources.ModelResource):
+class Employee_TypeResource(resources.ModelResource):
     class Meta:
         model = Employee_Type
         fields = ('employee_type',)
@@ -96,7 +94,7 @@ class InventoryResource(resources.ModelResource):
         fields = ('stock','inventory_amount','cod_entry','id_employee','id_product',)
 
 
-@admin.site.register(Product_Request)
+
 
 @admin.site.register(Suplier)
 
