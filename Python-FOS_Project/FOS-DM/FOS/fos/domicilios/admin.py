@@ -23,7 +23,12 @@ class Domicile_StatusResource(resources.ModelResource):
         model = Domicile_Status
         fields = ('status_d',)
 
-@admin.site.register(Domicile)
+class DomicileResource(resources.ModelResource):
+    class Meta:
+        model = Domicile
+        fields = ('date','direction','city','cod_status_domicile',)
+
+@admin.register(Domicile)
 class DomicileAdmin(ImportExportModelAdmin):
     list_display=['date','direction','city','cod_status_domicile',]
     list_editable = ('date','direction','city','cod_status_domicile',)
@@ -31,12 +36,9 @@ class DomicileAdmin(ImportExportModelAdmin):
     search_fields = ('date','cod_status_domicile',)
     list_per_page = 20  
 
-class DomicileResource(resources.ModelResource):
-    class Meta:
-        model = Domicile
-        fields = ('date','direction','city','cod_status_domicile',)
 
-@admin.site.register(Company_Transportation)
+
+@admin.register(Company_Transportation)
 class Company_TransportationAdmin(ImportExportModelAdmin):
     list_display=['company_nit','date_domicile',]
     list_editable = ('date_domicile',)

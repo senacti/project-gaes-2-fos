@@ -7,7 +7,7 @@ admin.site.register(Request_Status)
 admin.site.register(Product_Request)
 admin.site.register(Employee) 
 
-@admin.site.register(Supplier_Status) 
+@admin.register(Supplier_Status) 
 class Supplier_StatusAdmin(ImportExportModelAdmin):
     list_display=['status_s',]
     list_editable = ('status_s',)
@@ -20,7 +20,7 @@ class Supplier_StatusResource(resources.ModelResource):
         fields = ('status_s',)
 
 
-@admin.site.register(Entry)
+@admin.register(Entry)
 
 class EntryAdmin(ImportExportModelAdmin):
     list_display=['amount','detail','entry_date',]
@@ -35,7 +35,7 @@ class EntryResource(resources.ModelResource):
         fields = ('amount','detail','entry_date',)
 
 
-@admin.site.register(Employee_Type)
+@admin.register(Employee_Type)
 class Employee_TypeAdmin(ImportExportModelAdmin):
     list_display=['employee_type',]
     list_editable = ('employee_type',)
@@ -49,7 +49,7 @@ class Employee_TypeResource(resources.ModelResource):
         fields = ('employee_type',)
 
 
-@admin.site.register(Work_Time)
+@admin.register(Work_Time)
 
 class Work_TimeAdmin(ImportExportModelAdmin):
     list_display=['timetable','days',]
@@ -64,7 +64,7 @@ class Work_TimeResource(resources.ModelResource):
         fields = ('timetable',)
 
 
-@admin.site.register(Output)
+@admin.register(Output)
 
 class OutputAdmin(ImportExportModelAdmin):
     list_display=['output_amount','detail','output_date',]
@@ -79,7 +79,7 @@ class OutputResource(resources.ModelResource):
         fields = ('output_amount','detail','output_date',)
 
 
-@admin.site.register(Inventory)
+@admin.register(Inventory)
 
 class InventoryAdmin(ImportExportModelAdmin):
     list_display=['stock','inventory_amount','minimum_amount','cod_entry','id_employee','id_product',]
@@ -96,7 +96,7 @@ class InventoryResource(resources.ModelResource):
 
 
 
-@admin.site.register(Suplier)
+@admin.register(Suplier)
 
 class SuplierAdmin(ImportExportModelAdmin):
     list_display=['nit','legal_representative_name','phone','cod_status','cod_city',]

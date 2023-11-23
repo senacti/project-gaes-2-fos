@@ -3,7 +3,7 @@ from . models import Sale, Product, Product_Status, Product_Category
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-@admin.site.register(Sale)
+@admin.register(Sale)
 class SaleAdmin(ImportExportModelAdmin):
     list_display=['vat','subtotal','total','sale_date',]
     list_editable = ('vat','subtotal','total','sale_date',)
@@ -18,7 +18,7 @@ class SaleResource(resources.ModelResource):
 
 
 
-@admin.site.register(Product)
+@admin.register(Product)
 class ProductAdmin(ImportExportModelAdmin):
     list_display=['Status_P','category_P','product_Color','product_name','fabrication_date',]
     list_editable = ('Status_P','category_P','product_Color','product_name','fabrication_date',)
@@ -31,7 +31,7 @@ class ProductResource(resources.ModelResource):
         model = Product
         fields = ('Status_P','category_P','product_Color','product_name','fabrication_date',)
 
-@admin.site.register(Product_Status)
+@admin.register(Product_Status)
 class Product_StatusAdmin(ImportExportModelAdmin):
     list_display=['status',]
     search_fields = ('status',)
@@ -41,7 +41,7 @@ class Product_StatusResource(resources.ModelResource):
         model = Product_Status
         fields = ('status',)
 
-@admin.site.register(Product_Category)
+@admin.register(Product_Category)
 class Product_CategoryAdmin(ImportExportModelAdmin):
     list_display=['category',]
     search_fields = ('category',)
