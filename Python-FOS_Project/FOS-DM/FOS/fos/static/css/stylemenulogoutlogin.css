@@ -21,9 +21,12 @@
     background-color: none;
     border-bottom: 1px solid #3da9fc;
     border-radius: 20px;
+    background-color: #3da9fc;
 }
 
 .custom-dropdown:hover .custom-dropdown-content {
     display: block;
+    background-color: #3da9fc;
+
 }
 
