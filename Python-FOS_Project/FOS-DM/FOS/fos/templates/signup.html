@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/37a7d1d6c8.js" crossorigin="anonymous"></script>
+    <title>FOS | Registro</title>
+    <link rel="icon" href="{% static 'img/logo1.ico'%}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-rNAB3FI5Qo11Ewm9N0/bb1aCVyIfxkGcHEfyhJQq0HnJwwSRbqU5yay0YNsZtNO6" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/log.css' %}">
+</head>
+<body>
+    <section  >
+        <h1></h1>
+        <h1 style="transform: translate(70vh,-31vh);">Registro</h1>
+        <img style="max-width: 30%; transform: translate(50%, 3%); border-radius: 20px;" class="img-logo-login"  src="{% static 'img/logo1.png' %}" alt="">
+
+        <div style="height: 600px;" class="contenedor">
+            <h1> <a href="#" onclick="goBack()">Regresar</a></h1>
+            <div class="formulario">
+
+                <form action="{% url 'signup' %}" id="formulario" class="form" method="POST">
+                    {% csrf_token %}
+                    <h1 style="color: white;" class="title">Registro</h1>
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" class="input" name="username" id="nombre" pattern="^[A-Za-z]+$" maxlength="35" 
+                            required>
+                        <label for="username" class="label"> Nombre </label>
+                    </div>
+                    
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" class="input" name="correo" id="correo"  name="email" required>
+                        <label for="" class="label">Correo</label>
+                    </div>
+                    
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" class="input"  name="username" required>
+                        <label for="" class="label">Usuario</label>
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" class="input" name="password1" required>
+                        <label for="" class="label">Contraseña</label>
+                    </div>
+
+                    <div class="input-contenedor">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" class="input"  name="password2" required>
+                        <label for="" class="label">Confirmar Contraseña</label>
+                    </div>
+
+                    
+                    
+
+                    <button  type="submit" class="submitBtn" value="Continuar">Continuar </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+        function goBack() {
+            window.history.back();
+            window.history.back();
+            window.history.back();
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

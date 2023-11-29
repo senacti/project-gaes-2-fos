@@ -30,10 +30,9 @@ urlpatterns = [
     path('salir/', views.salir, name='salir'),
     path('contactanos/', views.contactanos, name='contactanos'),
     path('servicios/', views.servicios, name='servicios'),
-    path('register/', views.register, name='register'),
     path('loading/', views.loading, name='loading'),
     path('loadingcontac', views.loadingcontac, name='loadingcontac'),
-    
+    path('signup', views.signup, name='signup'),
     #Cierre todo principal
 
 
