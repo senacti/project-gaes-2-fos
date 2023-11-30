@@ -84,6 +84,10 @@ def signup(request):
             return render(request, 'signup.html', {'form': UserCreationForm(), 'error': 'Las contraseñas no coinciden'})
 
     return render(request, 'signup.html', {'form': UserCreationForm()})
+
+class SaleInvoicePdf(view):
+    def get(self , request , *args , **kwargs):
+        return HttpResponse('Hello , word')
 #//
 
 #Cierre todo principal
