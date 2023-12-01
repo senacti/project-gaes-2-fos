@@ -85,15 +85,24 @@ def signup(request):
 
     return render(request, 'signup.html', {'form': UserCreationForm()})
 
-class SaleInvoicePdf(view):
-    def get(self , request , *args , **kwargs):
-        return HttpResponse('Hello , word')
+#class SaleInvoicePdf(view):
+
+ #   def get(self , request , *args , **kwargs):
+
+#      return HttpResponse('Hello , word')
 #//
 
 #Cierre todo principal
 # Cierre todo principal
 
 # Todo domicilios
+def domicilios(request):
+    return render(request, 'domicilios.html')
+
+#loading domicilios
+def domiciliosloa(request):
+    return render(request, 'loadings/domiciliosloa.html')
+#//
 # Cierre todo domicilios
 
 # Todo Ventas

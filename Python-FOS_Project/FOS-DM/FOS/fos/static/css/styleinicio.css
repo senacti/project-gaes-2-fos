@@ -85,11 +85,13 @@ img{
     color: #3da9fc;
     display: block;
     transition: all .3s ease;
+    border-radius: 20px;
 }
 
 .navbar ul li a:hover{
     color: #f9bc60;
-    background-color: #3da9fc;
+    border-bottom: 2px solid #3da9fc;
+    background-color: #123f60;
 }
 
 #menu{

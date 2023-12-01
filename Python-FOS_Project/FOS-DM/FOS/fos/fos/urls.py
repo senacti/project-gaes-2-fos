@@ -40,7 +40,8 @@ urlpatterns = [
     # Cierre todo principal
 
     # Domicilios
-
+    path('domicilios/', views.domicilios, name='domicilios' ),
+    path('domiciliosloa/', views.domiciliosloa, name='domiciliosloa'),
     # Cierre domicilios
 
     # Ventas
