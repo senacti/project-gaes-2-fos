@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.urls import path
+from .views import CustomSaleInvoicePdf
 
 
 
@@ -43,6 +45,10 @@ urlpatterns = [
     path('domicilios/', views.domicilios, name='domicilios' ),
     path('domiciliosloa/', views.domiciliosloa, name='domiciliosloa'),
     # Cierre domicilios
+
+    #PDF
+    path('custom_invoice/pdf', CustomSaleInvoicePdf.as_view(), name='custom_invoice'),
+    #Cierre PDF
 
     # Ventas
     # Cierre ventas

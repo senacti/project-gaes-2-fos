@@ -8,6 +8,18 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from django.http import HttpResponse
+from django.views import View
+#Importaciones PDF
+import os
+from django.conf import settings
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.contrib.staticfiles import finders
+
+#Fin importaciones PDF
+
 
 # Cierre importaciones
 
@@ -85,12 +97,27 @@ def signup(request):
 
     return render(request, 'signup.html', {'form': UserCreationForm()})
 
-#class SaleInvoicePdf(view):
 
- #   def get(self , request , *args , **kwargs):
+#INICIO PDF
+class CustomSaleInvoicePdf(View):
+    def get(self, request, *args, **kwargs):
+        try:  
+            template = get_template('PDF.html')
+            context = {'TITULO': '1° | PDF'}
+            html = template.render(context)
+            response = HttpResponse(content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename="FOS | Report.pdf"'
+            pisa_status = pisa.CreatePDF(
+            html, dest=response)
+            if pisa_status.err:
+                return HttpResponse('Error al generar PDF')
+            return response
+        except Exception as e:
+            return HttpResponse(f'Error: {str(e)}', status=500)
 
-#      return HttpResponse('Hello , word')
-#//
+#FIN PDF
+
+
 
 #Cierre todo principal
 # Cierre todo principal
