@@ -25,32 +25,31 @@
                     <h1 style="color: white;" class="title">Registro</h1>
                     <div class="input-contenedor">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" class="input" name="username" id="nombre" pattern="^[A-Za-z]+$" maxlength="35" 
-                            required>
+                        <input type="text" class="input" name="username" id="nombre" pattern="^[A-Za-z]+$" maxlength="35">
                         <label for="username" class="label"> Nombre </label>
                     </div>
                     
                     <div class="input-contenedor">
                         <i class="fa-solid fa-envelope"></i>
-                        <input type="email" class="input" name="correo" id="correo"  name="email" required>
+                        <input type="email" class="input" name="correo" id="correo"  name="email">
                         <label for="" class="label">Correo</label>
                     </div>
                     
                     <div class="input-contenedor">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" class="input"  name="username" required>
+                        <input type="text" class="input"  name="username">
                         <label for="" class="label">Usuario</label>
                     </div>
 
                     <div class="input-contenedor">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" class="input" name="password1" required>
+                        <input type="password" class="input" name="password1">
                         <label for="" class="label">Contraseña</label>
                     </div>
 
                     <div class="input-contenedor">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" class="input"  name="password2" required>
+                        <input type="password" class="input"  name="password2">
                         <label for="" class="label">Confirmar Contraseña</label>
                     </div>
 
@@ -70,5 +69,7 @@
             window.history.back();
         }
     </script>
+    <script src="{% static 'js/signup.js' %}"></script>
+
 </body>
 </html>
