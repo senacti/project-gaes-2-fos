@@ -35,7 +35,6 @@ urlpatterns = [
     path('loading/', views.loading, name='loading'),
     path('loadingcontac', views.loadingcontac, name='loadingcontac'),
     path('signup', views.signup, name='signup'),
-    #Cierre todo principal
 
 
 

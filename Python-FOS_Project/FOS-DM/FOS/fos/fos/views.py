@@ -17,14 +17,11 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
-
 #Fin importaciones PDF
-
-
 # Cierre importaciones
 
-# Todo principal
 
+# Todo principal
 # Principal
 def inicio(request):
     return render(request, 'inicio.html', {
@@ -116,11 +113,9 @@ class CustomSaleInvoicePdf(View):
             return HttpResponse(f'Error: {str(e)}', status=500)
 
 #FIN PDF
-
-
-
-#Cierre todo principal
 # Cierre todo principal
+
+
 
 # Todo domicilios
 def domicilios(request):
