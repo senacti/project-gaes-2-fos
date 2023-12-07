@@ -10,14 +10,14 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.views import View
-#Importaciones PDF
+# Importaciones PDF
 import os
 from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
-#Fin importaciones PDF
+# Fin importaciones PDF
 # Cierre importaciones
 
 
@@ -27,9 +27,11 @@ def inicio(request):
     return render(request, 'inicio.html', {
         # context
     })
-#//
+# //
 
 # Login
+
+
 def login_view(request):
 
     if request.method == 'POST':
@@ -44,44 +46,57 @@ def login_view(request):
             messages.error(request, 'Usuario o contraseña incorrectos')
     return render(request, 'login.html', {
     })
-#//
+# //
 
-#Logout
+# Logout
+
+
 def salir(request):
     logout(request)
     messages.success(request, 'Sesión finalizada')
     return redirect('inicio')
-#//
+# //
 
-#Contactanos
+# Contactanos
+
+
 def contactanos(request):
     return render(request, 'contactanos.html', {
         # contexto
     })
-#//
+# //
 
-#Servicios
+# Servicios
+
+
 def servicios(request):
     return render(request, 'servicios.html', {
         # contexto
     })
-#//
+# //
 
-#Loadings
+# Loadings
+
+
 def loading(request):
-    return render(request,'loadings/loading.html')
+    return render(request, 'loadings/loading.html')
+
 
 def loadingcontac(request):
-    return render(request,'loadings/loadingcontac.html')
-#//
+    return render(request, 'loadings/loadingcontac.html')
+# //
 
-#Register
+# Register
+
+
 def signup(request):
     if request.method == 'POST':
         if request.POST['password1'] == request.POST['password2']:
             try:
-                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
-                authenticated_user = authenticate(request, username=request.POST['username'], password=request.POST['password1'])
+                user = User.objects.create_user(
+                    username=request.POST['username'], password=request.POST['password1'])
+                authenticated_user = authenticate(
+                    request, username=request.POST['username'], password=request.POST['password1'])
                 if authenticated_user:
                     auth_login(request, user)
                     return redirect('inicio')
@@ -95,39 +110,44 @@ def signup(request):
     return render(request, 'signup.html', {'form': UserCreationForm()})
 
 
-#INICIO PDF
+# INICIO PDF
 class CustomSaleInvoicePdf(View):
     def get(self, request, *args, **kwargs):
-        try:  
+        try:
             template = get_template('PDF.html')
             context = {'TITULO': '1° | PDF'}
             html = template.render(context)
             response = HttpResponse(content_type='application/pdf')
             response['Content-Disposition'] = 'attachment; filename="FOS | Report.pdf"'
             pisa_status = pisa.CreatePDF(
-            html, dest=response)
+                html, dest=response)
             if pisa_status.err:
                 return HttpResponse('Error al generar PDF')
             return response
         except Exception as e:
             return HttpResponse(f'Error: {str(e)}', status=500)
 
-#FIN PDF
+# FIN PDF
 # Cierre todo principal
-
 
 
 # Todo domicilios
 def domicilios(request):
     return render(request, 'domicilios.html')
 
-#loading domicilios
+# loading domicilios
+
+
 def domiciliosloa(request):
     return render(request, 'loadings/domiciliosloa.html')
-#//
+# //
 # Cierre todo domicilios
 
 # Todo Ventas
+
+
+def ventas(request):
+    return render(request, 'ventas.html')
 # Cierre todo ventas
 
 # Todo Inventario

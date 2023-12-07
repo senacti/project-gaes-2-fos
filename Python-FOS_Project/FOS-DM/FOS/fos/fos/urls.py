@@ -21,7 +21,6 @@ from django.urls import path
 from .views import CustomSaleInvoicePdf
 
 
-
 urlpatterns = [
 
 
@@ -41,15 +40,16 @@ urlpatterns = [
     # Cierre todo principal
 
     # Domicilios
-    path('domicilios/', views.domicilios, name='domicilios' ),
+    path('domicilios/', views.domicilios, name='domicilios'),
     path('domiciliosloa/', views.domiciliosloa, name='domiciliosloa'),
     # Cierre domicilios
 
-    #PDF
+    # PDF
     path('custom_invoice/pdf', CustomSaleInvoicePdf.as_view(), name='custom_invoice'),
-    #Cierre PDF
+    # Cierre PDF
 
     # Ventas
+    path('ventas/', views.ventas, name='ventas'),
     # Cierre ventas
 
     # Inventario
