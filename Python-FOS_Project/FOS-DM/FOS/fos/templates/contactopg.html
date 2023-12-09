@@ -1,18 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOS | Contactanos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="icon" href="{% static 'img/logo1.ico'%}">
+    <script src="https://kit.fontawesome.com/37a7d1d6c8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{% static 'css/styleinicio.css'%}">
     <link rel="stylesheet" href="{% static 'css/stylemenulogoutlogin.css'%}">
     <link rel="stylesheet" href="{% static 'css/contacto.css' %}">
 </head>
 
 <body>
+    
     <header class="header">
         <div class="menu container">
             <img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" ">
@@ -23,7 +26,7 @@
             <nav class="navbar">
                 <ul>
                     <li><a style="text-decoration: none; " href="{% url 'inicio' %}">Inicio</a></li>
-                    <li><a style="text-decoration: none;" href="{% url 'contactanos' %}">Contactanos</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'contactopg' %}">Contactanos</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'servicios' %}">Nuestros Servicios</a></li>
                     {% if request.user.is_authenticated %}
                     {% if not request.user.is_staff %}
@@ -41,20 +44,24 @@
                             <li class="custom-dropdown" style="display: inline-block;">
                                 <a style="text-decoration: none;" class="custom-dropbtn">{{ user.username|capfirst}}</a>
                                 <div class="custom-dropdown-content">
-                                    <a style="text-decoration: none;" href="{% url 'salir' %}" class="custom-menu-item">Salir</a>
-                                    <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
-                                        data-target="#configuracionModal">Configuración</a>
+                                    <a style="text-decoration: none;" href="{% url 'salir' %}"
+                                        class="custom-menu-item">Salir</a>
+                                    <a style="text-decoration: none;" href="#" class="custom-menu-item"
+                                        data-toggle="modal" data-target="#configuracionModal">Configuración</a>
 
                                     {% if user.is_staff %}
                                     <a style="text-decoration: none;" href="#" class="custom-menu-item">Inventario</a>
-                                    <a style="text-decoration: none;" href="{% url 'domiciliosloa'%}" class="custom-menu-item">Domicilios</a>
+                                    <a style="text-decoration: none;" href="{% url 'domiciliosloa'%}"
+                                        class="custom-menu-item">Domicilios</a>
                                     <a style="text-decoration: none;" href="#" class="custom-menu-item">Venta</a>
-                                    <a style="text-decoration: none;" href="{% url 'admin:index' %}" class="custom-menu-item">Administrador</a>
+                                    <a style="text-decoration: none;" href="{% url 'admin:index' %}"
+                                        class="custom-menu-item">Administrador</a>
                                     {% else %}
                                     {% for group in user.groups.all %}
                                     {% if group.name == 'Empleados' %}
                                     <a style="text-decoration: none;" href="#" class="custom-menu-item">Inventario</a>
-                                    <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}" class="custom-menu-item">Domicilios</a>
+                                    <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}"
+                                        class="custom-menu-item">Domicilios</a>
                                     <a style="text-decoration: none;" href="#" class="custom-menu-item">Venta</a>
                                     {% endif %}
                                     {% endfor %}
@@ -123,6 +130,7 @@
                 </ul>
             </div>
     </header>
+    
     <div class="container-form">
         <div class="info-form">
             <h2>Contáctanos</h2>
@@ -131,22 +139,37 @@
             <a href="#"><i class="fa fa-envelope"></i> mlbbdaniel30@gmail.com</a>
             <a href="#"><i class="fa fa-map-marked"></i> Bogota, Colombia</a>
         </div>
-        <form  action="{% url 'loadingcontac'%}" id="form" >
+        <form method="post" action="{% url 'contactanos'%}">
+            {% csrf_token %}
+
+            {% if messages %}
+
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{message}}
+                </div>
+            {% endfor %}
+
+            {% endif %}
             <div class="input-contenedor">
-                <i class="fa-solid fa-envelope"></i>
-                <input type="text" required  >
-                <label for="#">Tu Nombre</label>
+                <input type="text" required name="name" >
+                <label for="name"><i class="fa-solid fa-user"></i> Tu Nombre </label>
             </div>
 
             <div class="input-contenedor">
-                <i class="fa-solid fa-lock"></i>
-                <input  type="Email" required >
-                <label for="#">Tu Correo</label>
+                
+                <input type="email" required name="email" >
+                <label for="email"><i class="fa-solid fa-envelope"></i> Tu Correo</label>
             </div>
-            
+
             <div class="input-contenedor">
-            <textarea name="mensaje" placeholder="..."></textarea>
-            <label style="color: white;" for="#">Tu mensaje</label>
+                <input type="text" name="subject" required >
+                <label style="color: white;" for="subject"> <i class="fa-solid fa-pen"></i> Asunto</label>
+            </div>
+
+            <div class="input-contenedor">
+                <input type="text" name="message" required >
+                <label style="color: white;" for="message"><i class="fa-regular fa-message"></i> Tu mensaje</label>
             </div>
             <button type="submit">Enviar Mensaje</button>
         </form>
@@ -186,4 +209,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

@@ -29,11 +29,12 @@ urlpatterns = [
     path('', views.inicio, name='inicio'),
     path('login/',  views.login_view, name='login'),
     path('salir/', views.salir, name='salir'),
-    path('contactanos/', views.contactanos, name='contactanos'),
+    path('contactopg/', views.contactopg, name='contactopg'),
     path('servicios/', views.servicios, name='servicios'),
     path('loading/', views.loading, name='loading'),
     path('loadingcontac', views.loadingcontac, name='loadingcontac'),
     path('signup', views.signup, name='signup'),
+    path('contactanos', views.contactanos, name='contactanos'),
 
 
 

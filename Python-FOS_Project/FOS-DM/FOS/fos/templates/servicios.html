@@ -25,7 +25,7 @@
             <nav class="navbar">
                 <ul>
                     <li><a style="text-decoration: none; " href="{% url 'inicio' %}">Inicio</a></li>
-                    <li><a style="text-decoration: none;" href="{% url 'contactanos' %}">Contactanos</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'contactopg' %}">Contactanos</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'servicios' %}">Nuestros Servicios</a></li>
                     {% if request.user.is_authenticated %}
                     {% if not request.user.is_staff %}

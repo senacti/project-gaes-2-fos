@@ -17,12 +17,19 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
+# Fin importaciones PDF
+
 #Importaciones domicilios
 from .forms import DomicileForm
 from domicilios.models import Domicile
 from domicilios.models import Company_Transportation
 #///Importaciones domicilios
-# Fin importaciones PDF
+
+#importaciones correo
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.conf import settings
+#///Fin importaciones correo
 # Cierre importaciones
 
 
@@ -61,15 +68,45 @@ def salir(request):
     messages.success(request, 'Sesión finalizada')
     return redirect('inicio')
 # //
-
 # Contactanos
 
-
-def contactanos(request):
-    return render(request, 'contactanos.html', {
-        # contexto
+def contactopg(request):
+    return render(request, 'contactopg.html',{
+        #context
     })
-# //
+
+#contactanos correo
+def contactanos(request):
+    if request.method == "POST":
+        try:
+            name = request.POST['name']
+            email = request.POST['email']
+            subject = request.POST['subject']
+            message = request.POST['message']
+
+            template = render_to_string('email_template.html', {
+                'name': name,
+                'email': email,
+                'message': message
+            })
+
+            email = EmailMessage(
+                subject,
+                template,
+                settings.EMAIL_HOST_USER,
+                ['jmaringutierrez851@gmail.com']
+            )
+
+            email.fail_silently = False
+            email.send()
+
+            messages.success(request, 'Se ha enviado correctamente')
+            return redirect('contactopg')
+        except Exception as e:
+            
+            messages.error(request, f'Error al enviar el mensaje: {e}')
+            return redirect('contactanos')
+#/// fin contactanos
 
 # Servicios
 
@@ -138,6 +175,8 @@ class CustomSaleInvoicePdf(View):
             return HttpResponse(f'Error: {str(e)}', status=500)
 
 # FIN PDF
+
+
 # Cierre todo principal
 
 
