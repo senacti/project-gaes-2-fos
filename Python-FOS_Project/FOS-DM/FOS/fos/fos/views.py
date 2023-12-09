@@ -94,7 +94,7 @@ def contactanos(request):
                 subject,
                 template,
                 settings.EMAIL_HOST_USER,
-                ['jmaringutierrez851@gmail.com']
+                ['jmaringutierrez851@gmail.com', 'osmansax15@gmail.com']
             )
 
             email.fail_silently = False
