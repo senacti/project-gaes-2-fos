@@ -42,6 +42,10 @@ urlpatterns = [
     # Domicilios
     path('domicilios/', views.domicilios, name='domicilios'),
     path('domiciliosloa/', views.domiciliosloa, name='domiciliosloa'),
+    path('consultar_domicilios/', views.consultar_domicilios, name='consultar_domicilios'),
+    path('consultar_empresa/', views.consultar_empresa, name='consultar_empresa'),
+    path('agendar_consultar/', views.agendar_consultar, name='agendar_consultar'),
+    path('agendar', views.agendar, name='agendar'),
     # Cierre domicilios
 
     # PDF

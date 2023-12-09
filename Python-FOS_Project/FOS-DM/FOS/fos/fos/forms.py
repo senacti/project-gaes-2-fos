@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from domicilios.models import Domicile
 
 class CustomUserCreationForm(UserCreationForm):
     # Agrega campos personalizados que no están en el modelo User
@@ -16,3 +17,11 @@ class CustomUserCreationForm(UserCreationForm):
         if commit:
             user.save()
             return user
+        
+
+#Domicilios
+class DomicileForm(forms.ModelForm):
+    class Meta:
+        model = Domicile
+        fields = ['date', 'direction', 'city', 'cod_status_domicile', 'sale']
+#///Domicilios

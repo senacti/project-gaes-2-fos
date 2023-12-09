@@ -25,6 +25,11 @@
                     <li><a style="text-decoration: none; " href="{% url 'inicio' %}">Inicio</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'contactanos' %}">Contactanos</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'servicios' %}">Nuestros Servicios</a></li>
+                    {% if request.user.is_authenticated %}
+                    {% if not request.user.is_staff %}
+                    <li><a style="text-decoration: none;" href="{% url 'ventas' %}">Comprar</a></li>
+                    {% endif %}
+                    {% endif %}
                 </ul>
 
             </nav>
@@ -42,7 +47,7 @@
 
                                     {% if user.is_staff %}
                                     <a style="text-decoration: none;" href="#" class="custom-menu-item">Inventario</a>
-                                    <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}" class="custom-menu-item">Domicilios</a>
+                                    <a style="text-decoration: none;" href="{% url 'domiciliosloa'%}" class="custom-menu-item">Domicilios</a>
                                     <a style="text-decoration: none;" href="#" class="custom-menu-item">Venta</a>
                                     <a style="text-decoration: none;" href="{% url 'admin:index' %}" class="custom-menu-item">Administrador</a>
                                     {% else %}
@@ -85,7 +90,9 @@
                                                     <button type="button" class="btn btn-primary">Guardar
                                                         Cambios</button>
                                                 </form>
+
                                                 <hr>
+
                                                 <h6>Cambiar Color de Página:</h6>
                                                 <form>
                                                     <div class="form-group">
@@ -93,7 +100,6 @@
                                                         <select class="form-control" id="colorSelect">
                                                             <option value="blue">Azul</option>
                                                             <option value="green">Verde</option>
-                                                            
                                                         </select>
                                                     </div>
                                                     <button type="button" class="btn btn-primary">Guardar

@@ -35,7 +35,7 @@ class Domicile(models.Model):
     cod_status_domicile = models.ForeignKey(Domicile_Status, on_delete=models.CASCADE, related_name='domiciles', verbose_name="Estado del domicilio")
     sale = models.ForeignKey(Sale, on_delete= models.CASCADE, verbose_name="Venta")
     def __str__(self):
-        return f"{self.date} - {self.direction} - {self.city} - {self.cod_status_domicile} - {self.sale}" #- {self.id_client}"
+        return f"{self.date} - {self.cod_status_domicile} " #- {self.id_client}"
 
     class Meta:
         verbose_name = "Domicilio"

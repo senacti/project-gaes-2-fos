@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Validación de la complejidad de la contraseña (mayúsculas, minúsculas, números y símbolos)
-        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
+        // Validación de la complejidad de la contraseña (mayúsculas, minúsculas, números y signos de puntuación)
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]+$/;
         if (!passwordRegex.test(passwordValue)) {
-            alert('La contraseña debe contener al menos una mayúscula, una minúscula, un número y un símbolo.');
+            alert('La contraseña debe contener al menos una mayúscula, una minúscula, un número y un signo de puntuación.');
             event.preventDefault(); // Evita que el formulario se envíe
             return;
         }

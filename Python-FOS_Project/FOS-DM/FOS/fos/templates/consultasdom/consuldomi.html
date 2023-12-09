@@ -1,0 +1,121 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOS | Consultar</title>
+    <link rel="icon" href="{% static 'img/logo1.ico'%}">
+
+    
+    <!-- Bootstrap CSS (Asegúrate de incluir la ruta correcta al archivo CSS de Bootstrap) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Aquí puedes agregar tus propias hojas de estilo si las tienes -->
+
+</head>
+<style>
+    body{
+    background-color: #0f0e17; 
+    
+    }
+    .boton1{
+        align-items: center;
+        align-content: center;
+        position: absolute;
+        transform: translate(85vh, 45vh);
+        border: none;
+        border-radius: 20px;
+        height: 40px;
+        background-color: #3da9fc;
+        color: white;
+
+    }
+    .boton1:hover{
+        color: white;
+        opacity: .10;
+    }
+    a{
+        z-index: 1;
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        position: absolute;
+        transform: translate(10vh, 5vh);
+    }
+    a:hover{
+        color: #f9bc60;
+        text-decoration: none;
+    }
+    h1{
+        position: absolute;
+        transform: translate(95vh, 35vh);
+        color: white;
+    }
+    h1:hover{
+        color: #f9bc60;
+    }
+</style>
+<body>
+
+    <!-- Contenido principal de la página -->
+    <a href="#" onclick="goBack()">Regresar</a>
+    <h1>FOS</h1>
+    <!-- Botón para abrir el modal -->
+    <button type="button" class="boton1" data-toggle="modal" data-target="#domiciliosModal">
+        Abrir Consulta de Domicilios
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="domiciliosModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="color: white;">
+    <div class="modal-dialog" role="document"
+        style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
+        <div class="modal-content"
+            style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
+            <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Consultar Domicilios</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Cuerpo del modal :) -->
+                    <br>
+                    <br>
+
+                    <!-- Resultados de la consulta -->
+                    {% if domicilios %}
+                        <h4>Resultados:</h4>
+                        <ul>
+                            {% for domicilio in domicilios %}
+                                <li>{{ domicilio }}</li>
+                            {% endfor %}
+                        </ul>
+                        <br>
+                        
+                    {% else %}
+                        <p>No se encontraron resultados.</p>
+                    {% endif %}
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (Asegúrate de incluir la ruta correcta al archivo JS de Bootstrap y jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Otros scripts JS si los necesitas -->
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

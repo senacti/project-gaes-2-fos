@@ -13,7 +13,7 @@ class Sale(models.Model):
     total = models.PositiveIntegerField(verbose_name="Total")
 
     def __srt__(self):
-        return f'{self.sale_date} - {self.sale_amount} - {self.sale_send} - {self.unit_value} - {self.discount} - {self.vat} - {self.subtotal} - {self.total}'
+        return self.sale_date
     
     class Meta:
         verbose_name = "Venta"

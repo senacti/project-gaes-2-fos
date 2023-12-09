@@ -17,6 +17,11 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.contrib.staticfiles import finders
+#Importaciones domicilios
+from .forms import DomicileForm
+from domicilios.models import Domicile
+from domicilios.models import Company_Transportation
+#///Importaciones domicilios
 # Fin importaciones PDF
 # Cierre importaciones
 
@@ -94,7 +99,12 @@ def signup(request):
         if request.POST['password1'] == request.POST['password2']:
             try:
                 user = User.objects.create_user(
-                    username=request.POST['username'], password=request.POST['password1'])
+                    username=request.POST['username'],
+                    password=request.POST['password1'],
+                    first_name=request.POST['first_name'],
+                    last_name=request.POST['last_name'],
+                    email=request.POST['email']
+                )
                 authenticated_user = authenticate(
                     request, username=request.POST['username'], password=request.POST['password1'])
                 if authenticated_user:
@@ -135,9 +145,71 @@ class CustomSaleInvoicePdf(View):
 def domicilios(request):
     return render(request, 'domicilios.html')
 
+# /////consultas
+def consultar_domicilios(request):
+    if request.method == 'POST':
+        fecha = request.POST.get('fecha')
+        direccion = request.POST.get('direccion')
+        
+
+        # Realiza la consulta a la base de datos
+        domicilios = Domicile.objects.filter(
+            date=fecha,
+            direction=direccion,
+            
+        )
+
+        return render(request, 'consultasdom/consuldomi.html', {'domicilios': domicilios})
+
+
+def consultar_empresa(request):
+    if request.method == 'POST':
+        nit = request.POST.get('nit')
+        fechaen = request.POST.get('fechaen')
+        domicilio = request.POST.get('domicilio')
+
+        domicilios = Company_Transportation.objects.filter(
+            company_nit = nit,
+            date_domicile = fechaen,
+            id_domicile = domicilio,
+        )
+
+        return render(request, 'consultasdom/consulem.html', {'domicilios':domicilios})
+    
+
+def agendar_consultar(request):
+    if request.method == 'POST':
+        nomusu = request.POST.get('nomusu')
+        email = request.POST.get('email')
+        fechadom = request.POST.get('fechadom')
+        direccion = request.POST.get('direccion')
+
+        domicilios = User.objects.filter(
+            first_name = nomusu,
+            email = email,
+
+        )
+
+        domicilios = Domicile.objects.filter(
+            date = fechadom,
+            direction = direccion,
+        )
+        return render(request, 'consultasdom/consuagen.html', {'domicilios':domicilios})
+    
+
+def agendar(request):
+    if request.method == 'POST':
+        form = DomicileForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('domicilios.html')  # Puedes redirigir a la página que desees después de guardar el domicilio
+    else:
+        form = DomicileForm()
+    
+    return render(request, 'agendar.html', {'form': form})
+
+#//// fin consultas
 # loading domicilios
-
-
 def domiciliosloa(request):
     return render(request, 'loadings/domiciliosloa.html')
 # //

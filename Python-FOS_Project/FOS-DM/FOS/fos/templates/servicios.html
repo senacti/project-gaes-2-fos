@@ -27,6 +27,11 @@
                     <li><a style="text-decoration: none; " href="{% url 'inicio' %}">Inicio</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'contactanos' %}">Contactanos</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'servicios' %}">Nuestros Servicios</a></li>
+                    {% if request.user.is_authenticated %}
+                    {% if not request.user.is_staff %}
+                    <li><a style="text-decoration: none;" href="{% url 'ventas' %}">Comprar</a></li>
+                    {% endif %}
+                    {% endif %}
                 </ul>
 
             </nav>
@@ -44,7 +49,7 @@
 
                                     {% if user.is_staff %}
                                     <a style="text-decoration: none;" href="#" class="custom-menu-item">Inventario</a>
-                                    <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}" class="custom-menu-item">Domicilios</a>
+                                    <a style="text-decoration: none;" href="{% url 'domiciliosloa'%}" class="custom-menu-item">Domicilios</a>
                                     <a style="text-decoration: none;" href="#" class="custom-menu-item">Venta</a>
                                     <a style="text-decoration: none;" href="{% url 'admin:index' %}" class="custom-menu-item">Administrador</a>
                                     {% else %}
