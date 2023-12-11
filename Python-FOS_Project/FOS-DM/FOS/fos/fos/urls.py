@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from django.urls import path
-from .views import CustomSaleInvoicePdf
+from .views import PDFExportView
 
 
 urlpatterns = [
@@ -50,7 +50,7 @@ urlpatterns = [
     # Cierre domicilios
 
     # PDF
-    path('custom_invoice/pdf', CustomSaleInvoicePdf.as_view(), name='custom_invoice'),
+    path('Reportes/pdf', PDFExportView.as_view(), name='exportar_pdf'),
     # Cierre PDF
 
     # Ventas

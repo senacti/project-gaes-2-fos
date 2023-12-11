@@ -11,12 +11,15 @@ from django.db import IntegrityError
 from django.http import HttpResponse
 from django.views import View
 # Importaciones PDF
-import os
-from django.conf import settings
 from django.http import HttpResponse
-from django.template.loader import get_template
-from xhtml2pdf import pisa
+from django.views import View
+from reportlab.pdfgen import canvas
+from venta.models import Product
 from django.contrib.staticfiles import finders
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Image
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
 # Fin importaciones PDF
 
 #Importaciones domicilios
@@ -158,22 +161,68 @@ def signup(request):
 
 
 # INICIO PDF
-class CustomSaleInvoicePdf(View):
+class PDFExportView(View):
     def get(self, request, *args, **kwargs):
-        try:
-            template = get_template('PDF.html')
-            context = {'TITULO': '1° | PDF'}
-            html = template.render(context)
-            response = HttpResponse(content_type='application/pdf')
-            response['Content-Disposition'] = 'attachment; filename="FOS | Report.pdf"'
-            pisa_status = pisa.CreatePDF(
-                html, dest=response)
-            if pisa_status.err:
-                return HttpResponse('Error al generar PDF')
-            return response
-        except Exception as e:
-            return HttpResponse(f'Error: {str(e)}', status=500)
+        # Crear el objeto PDF
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="FOS_R.pdf"'
+        # Crear el objeto SimpleDocTemplate
+        doc = SimpleDocTemplate(response, pagesize=letter)
+        # Contenido del PDF
+        content = []
+        # Crear el objeto Canvas para generar el PDF
+        p = canvas.Canvas(response)
+        # Obtener todos los productos de la base de datos
+        productos = Product.objects.all()  
+        # Configurar encabezados de la tabla
+        encabezados = ["ID", "Nombre", "Marca", "Cantidad", "Fecha Fabricación", "Color", "Promoción", "Descuento", "Estado", "Categoría"]
 
+        data = [encabezados]
+        # Agregar contenido de la tabla al PDF
+        for producto in productos:
+            data.append([
+                str(producto.id),
+                producto.product_name,
+                producto.product_brand,
+                str(producto.product_amount),
+                str(producto.fabrication_date),
+                producto.product_color,
+                producto.promotion,
+                str(producto.discount),
+                str(producto.Status_p),
+                str(producto.category_p),
+            ])
+            table = Table(data)
+            table.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, 0), colors.grey),
+                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
+                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+                ('GRID', (0, 0), (-1, -1), 1, colors.black)]))
+
+        # Agregar la tabla al contenido del PDF
+        content.append(table)
+
+        # Logo (ajusta la ruta y las coordenadas según tu proyecto)
+        logo_path = finders.find('static/img/logo1.png')
+        if logo_path:
+            try:
+                content.append(Image(logo_path, width=100, height=50))
+            except Exception as e:
+                print(f"Error al cargar la imagen: {e}")
+        else:
+            
+            print("No se encontró la ruta del logo.")
+
+        # Título del informe
+        styles = getSampleStyleSheet()
+        title = Paragraph("PRODUCTOS", styles['Title'])
+        content.append(title)
+
+        # Construir el PDF
+        doc.build(content)
+        return response        
 # FIN PDF
 
 
