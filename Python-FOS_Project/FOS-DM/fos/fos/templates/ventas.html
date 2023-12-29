@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/37a7d1d6c8.js" crossorigin="anonymous"></script>
     <title>FOS | VENTAS</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{% static 'css/ventas.css' %}">
@@ -16,13 +17,14 @@
             <label for="menu"><img src="{% static 'img/menu.png' %}" class="menu-icono" alt=""></label>
             <nav class="navbar">
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="{% url 'inicio'%}">Inicio</a></li>
+                    <li><a href="{% url 'servicios'%}">Servicios</a></li>
+                    <li><a href="{% url 'contactopg'%}">Contactanos</a></li>
                 </ul>
             </nav>
             <div>
                 <ul>
+                    <li class="icousu"><a href="#"><i class="fa-solid fa-user"></i></a></li>
                     <li class="submenu">
                         <img src="{% static 'img/carrito.png' %}" id="img-carrito" alt="">
                         <div id="carrito">

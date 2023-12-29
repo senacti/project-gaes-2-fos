@@ -5,6 +5,7 @@
     
     }
     .containerser .h1pri{
+    z-index: -1;
     text-align: center;
     padding: 10%;
     margin-bottom: 60px;

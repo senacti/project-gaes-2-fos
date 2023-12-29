@@ -319,6 +319,17 @@ h2{
     
 }
 
+@media screen and (max-width: 600px) {
+    .footer {
+        background-color: #6ca8d3;
+    }
+
+    .socials {
+        flex-direction: column;
+        text-align: center; 
+    }
+}
+
 .header .navbar ul li{
     float: left;
     position: relative;
