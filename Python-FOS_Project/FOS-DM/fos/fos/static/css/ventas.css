@@ -133,12 +133,18 @@ body{
     display: block;
     position: absolute;
     right: 0;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(25px );
     top: 100%;
     z-index: 1;
-    background-color: #3da9fc;
+    background-color: transparent;
     padding: 20px;
     min-width: 400px;
+    transition: .10s;
+    border-radius: 10px;
+    border-bottom: 3px solid #3da9fc;
+    border-left: 2px solid #3da9fc;
+    border-right: 2px solid #3da9fc;
+    border-top: 0,5px solid #3da9fc;
 }
 
 table{
@@ -146,7 +152,7 @@ table{
 }
 
 th, td{
-    color: #e53170;
+    color: white;
 }
 
 .borrar{
@@ -155,6 +161,7 @@ th, td{
     padding: 5px 10px;
     color: #3da9fc;
     font-weight: 800;
+    cursor: pointer;
 }
 
 .header-content{
@@ -313,7 +320,7 @@ hr{
     display: inline-block;
     padding: 10px 25px;
     font-size: 14px;
-    color: #e53170;
+    color: white;
     border: 1px solid #3da9fc;
     border-radius: 25px;
     margin-top: 15px;

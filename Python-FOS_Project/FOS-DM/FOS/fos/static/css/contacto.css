@@ -63,7 +63,7 @@
     transform: translateY(-50%);
     font-size: 1rem;
     pointer-events: none;
-    transition: .6s;
+    transition: .20s;
     font-weight: bold;
     color: white;
 }

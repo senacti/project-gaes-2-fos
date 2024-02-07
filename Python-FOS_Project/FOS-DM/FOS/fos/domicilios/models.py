@@ -58,3 +58,9 @@ class Company_Transportation(models.Model):
         db_table = "empresa_transportadora"
         ordering = ['id']
 # Create your models here.
+        
+
+
+
+
+
