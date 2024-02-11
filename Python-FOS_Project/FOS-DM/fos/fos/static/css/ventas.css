@@ -145,6 +145,7 @@ body{
     border-left: 2px solid #3da9fc;
     border-right: 2px solid #3da9fc;
     border-top: 0,5px solid #3da9fc;
+    text-decoration: none;
 }
 
 table{
@@ -220,6 +221,7 @@ th, td{
 
 .btn-1:hover{
     background-color: #f9bc60;
+    text-decoration: none;
 }
 
 hr{
@@ -324,10 +326,12 @@ hr{
     border: 1px solid #3da9fc;
     border-radius: 25px;
     margin-top: 15px;
+    text-decoration: none;
 }
 
 .btn-3:hover{
     background-color: #f9bc60;
+    text-decoration: none;
 }
 
 .footer{
