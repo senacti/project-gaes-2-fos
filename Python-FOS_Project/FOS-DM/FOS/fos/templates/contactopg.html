@@ -139,10 +139,19 @@
             {% if messages %}
 
             {% for message in messages %}
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success" role="alert" id="('successMessage')">
                     {{message}}
                 </div>
             {% endfor %}
+            <script>
+                
+                setTimeout(function() {
+                    var successMessage = document.getElementById('successMessage');
+                    if (successMessage) {
+                        successMessage.style.display = 'none';
+                    }
+                }, 2000);
+            </script>
 
             {% endif %}
             <div class="input-contenedor">

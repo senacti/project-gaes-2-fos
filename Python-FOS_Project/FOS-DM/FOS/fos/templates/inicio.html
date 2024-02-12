@@ -19,7 +19,25 @@
 </head>
 
 <body>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert" id="successMessage" style="max-width: 50%;  transform: translateX(65vh); ">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <script>
+        // Agregar un timeout de 2 segundos (2000 milisegundos)
+        setTimeout(function() {
+            var successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+        }, 2000);
+    </script>
+{% endif %}
     <header class="header">
+        
         <div class="menu container">
             <a href="{% url 'inicio' %}"><img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" "></a>
             <input type="checkbox" id="menu" />
