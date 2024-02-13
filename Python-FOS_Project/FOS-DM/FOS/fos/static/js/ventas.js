@@ -41,6 +41,7 @@ const elementos2 = document.getElementById('lista-2');
 const elementos3 = document.getElementById('lista-3');
 const lista = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
+let valorTotal = 0; // Variable para almacenar el valor total
 
 cargarEvenListeners();
 
@@ -65,12 +66,13 @@ function leerDatosElemento(elemento){
     const infoElemento = {
         imagen: elemento.querySelector('img').src,
         titulo: elemento.querySelector('h3').textContent,
-        precio: elemento.querySelector('.precio').textContent,
+        precio: parseFloat(elemento.querySelector('.precio').textContent.replace('$', '').replace(',', '')), // Convertir el precio a número flotante y eliminar caracteres no numéricos
         id: elemento.querySelector('a').getAttribute('data-id')
     }
 
     insertarCarrito(infoElemento);
 }
+
 
 function insertarCarrito(elemento){
     const row = document.createElement('tr');
@@ -88,11 +90,13 @@ function insertarCarrito(elemento){
         </td>
 
         <td>
-            <a herf="#" class="borrar" data-id="${elemento.id}">X</a>
+            <a href="#" class="borrar" data-id="${elemento.id}">X</a>
         </td>
     `;
 
     lista.appendChild(row);
+    valorTotal += elemento.precio; // Sumar el precio del producto al valor total
+    document.getElementById('total').textContent = valorTotal.toFixed(3); // Mostrar el valor total en el span con id "total"
 }
 
 function eliminarElemento(e){
@@ -104,6 +108,10 @@ function eliminarElemento(e){
         e.target.parentElement.parentElement.remove();
         elemento = e.target.parentElement.parentElement;
         elementoId = elemento.querySelector('a').getAttribute('data-id');
+        // Restar el precio del producto eliminado del valor total
+        const precioEliminado = parseFloat(elemento.querySelector('td:nth-child(3)').textContent);
+        valorTotal -= precioEliminado;
+        document.getElementById('total').textContent = valorTotal.toFixed(3); // Actualizar el valor total mostrado
     }
 }
 
@@ -111,5 +119,7 @@ function vaciarCarrito(){
     while(lista.firstChild){
         lista.removeChild(lista.firstChild);
     }
+    valorTotal = 0; // Restablecer el valor total a 0
+    document.getElementById('total').textContent = valorTotal.toFixed(3); // Actualizar el valor total mostrado
     return false;
 }

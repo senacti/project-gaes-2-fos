@@ -15,6 +15,8 @@ body{
     margin: 0 auto;
 }
 
+
+
 .header{
     display: flex;
     align-items: center;
@@ -148,6 +150,40 @@ body{
     text-decoration: none;
 }
 
+#carrito {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-right: 100px; /* Ajustamos el padding derecho para dejar espacio al valor total */
+}
+
+#total-container {
+    position: absolute;
+    right: 0;
+    top: 10; /* Ajustamos la posición superior para alinear el valor total correctamente */
+    color: white;
+    margin-top: 22px; /* Ajustamos el margen superior */
+    margin-right: 110px; /* Ajustamos el margen derecho */
+}
+
+#lista-carrito {
+    flex: 1; /* Hacemos que la tabla ocupe todo el espacio disponible */
+}
+
+#carrito a {
+    margin-left: 10px; /* Añadimos un margen entre los botones */
+    color: white; /* Aplicamos color de texto blanco */
+}
+
+#vaciar-carrito {
+    color: white; /* Aplicamos color de texto blanco */
+    margin-right: 160px; /* Añadimos margen derecho para separarlo del botón "Pagar" */
+}
+
+#Pagar {
+    color: white; /* Aplicamos color de texto blanco */
+}
+
 table{
     width: 100%;
 }
@@ -155,6 +191,7 @@ table{
 th, td{
     color: white;
 }
+
 
 .borrar{
     background-color: #f9bc60;
@@ -320,7 +357,7 @@ hr{
 
 .btn-3{
     display: inline-block;
-    padding: 10px 25px;
+    padding: 7px 10px;
     font-size: 14px;
     color: white;
     border: 1px solid #3da9fc;
