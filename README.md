@@ -12,7 +12,6 @@ Desarrollar un software  (FOS) para la piñateria latino tendrá la capacidad de
 - Controlar una planeación y visión más clara sobre el inventario en aspectos como proveedores, referencias que más salen, cantidades, anticipación a escasez también con el reemplazo del kardex físico se optimizará tiempo y espacio. 
 - Administrar los registros de ventas de manera más rápida evitando confusión e incertidumbre sobre datos que no están claros o se perdieron, para tener una información precisa y concisa. 
 - Gestionar y mantener un registro, edición, supervisión y manejo completo de los domicilios realizados en la empresa, así manteniendo un control preciso de estos. 
-- Generar un servicio de gestión y creación  de eventos como proceso innovador. 
 
 ## Planteamiento del problema 🤢
 
