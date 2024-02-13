@@ -23,14 +23,13 @@
 <body>
     <header class="header">
         <div class="menu container">
-            <a href="{% url 'inicio' %}"><img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" "></a>
+            <a href="{% url 'ventas' %}"><img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" "></a>
             <input type="checkbox" id="menu" />
             <label for="menu">
                 <img src="{% static 'img/menu.png' %}" class="menu-icono" alt=" ">
             </label>
             <nav class="navbar">
                 <ul>
-                    <li><a style="text-decoration: none; " href="{% url 'inicio' %}"> <i class="fa-solid fa-house"></i> Inicio</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'contactopg' %}"> <i class="fa-solid fa-phone"></i> Contactanos</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'servicios' %}"> <i class="fa-solid fa-group-arrows-rotate"></i> Nuestros Servicios</a></li>
                     {% if request.user.is_authenticated %}

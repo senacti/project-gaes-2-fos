@@ -22,24 +22,24 @@ from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet
 # Fin importaciones PDF
 
-#Importaciones domicilios
+# Importaciones domicilios
 from .forms import DomicileForm
 from domicilios.models import Domicile
 from domicilios.models import Company_Transportation
-#///Importaciones domicilios
+# ///Importaciones domicilios
 
-#importaciones correo
+# importaciones correo
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
-#///Fin importaciones correo
+# ///Fin importaciones correo
 # Cierre importaciones
 
 
 # Todo principal
 # Principal
 def inicio(request):
-    return render(request, 'inicio.html', {
+    return render(request, 'ventas.html', {
         # context
     })
 # //
@@ -56,7 +56,7 @@ def login_view(request):
         if user:
             login(request, user)
             messages.success(request, 'Bienvenido')
-            return redirect('inicio')
+            return redirect('ventas')
         else:
             messages.error(request, 'Usuario o contraseña incorrectos')
     return render(request, 'login.html', {
@@ -73,12 +73,15 @@ def salir(request):
 # //
 # Contactanos
 
+
 def contactopg(request):
-    return render(request, 'contactopg.html',{
-        #context
+    return render(request, 'contactopg.html', {
+        # context
     })
 
-#contactanos correo
+# contactanos correo
+
+
 def contactanos(request):
     if request.method == "POST":
         try:
@@ -106,10 +109,10 @@ def contactanos(request):
             messages.success(request, 'Se ha enviado correctamente')
             return redirect('contactopg')
         except Exception as e:
-            
+
             messages.error(request, f'Error al enviar el mensaje: {e}')
             return redirect('contactanos')
-#/// fin contactanos
+# /// fin contactanos
 
 # Servicios
 
@@ -173,9 +176,10 @@ class PDFExportView(View):
         # Crear el objeto Canvas para generar el PDF
         p = canvas.Canvas(response)
         # Obtener todos los productos de la base de datos
-        productos = Product.objects.all()  
+        productos = Product.objects.all()
         # Configurar encabezados de la tabla
-        encabezados = ["ID", "Nombre", "Marca", "Cantidad", "Fecha Fabricación", "Color", "Promoción", "Descuento", "Estado", "Categoría"]
+        encabezados = ["ID", "Nombre", "Marca", "Cantidad", "Fecha Fabricación",
+                       "Color", "Promoción", "Descuento", "Estado", "Categoría"]
 
         data = [encabezados]
         # Agregar contenido de la tabla al PDF
@@ -194,12 +198,15 @@ class PDFExportView(View):
             ])
             table = Table(data)
             table.setStyle(TableStyle([('BACKGROUND', (0, 0), (-1, 0), colors.grey),
-                ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
-                ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-                ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-                ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-                ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
-                ('GRID', (0, 0), (-1, -1), 1, colors.black)]))
+                                       ('TEXTCOLOR', (0, 0),
+                                        (-1, 0), colors.whitesmoke),
+                                       ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                                       ('FONTNAME', (0, 0),
+                                        (-1, 0), 'Helvetica-Bold'),
+                                       ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                                       ('BACKGROUND', (0, 1),
+                                        (-1, -1), colors.beige),
+                                       ('GRID', (0, 0), (-1, -1), 1, colors.black)]))
 
         # Agregar la tabla al contenido del PDF
         content.append(table)
@@ -212,7 +219,7 @@ class PDFExportView(View):
             except Exception as e:
                 print(f"Error al cargar la imagen: {e}")
         else:
-            
+
             print("No se encontró la ruta del logo.")
 
         # Título del informe
@@ -222,7 +229,7 @@ class PDFExportView(View):
 
         # Construir el PDF
         doc.build(content)
-        return response        
+        return response
 # FIN PDF
 
 
@@ -234,17 +241,18 @@ def domicilios(request):
     return render(request, 'domicilios.html')
 
 # /////consultas
+
+
 def consultar_domicilios(request):
     if request.method == 'POST':
         fecha = request.POST.get('fecha')
         direccion = request.POST.get('direccion')
-        
 
         # Realiza la consulta a la base de datos
         domicilios = Domicile.objects.filter(
             date=fecha,
             direction=direccion,
-            
+
         )
 
         return render(request, 'consultasdom/consuldomi.html', {'domicilios': domicilios})
@@ -257,13 +265,13 @@ def consultar_empresa(request):
         domicilio = request.POST.get('domicilio')
 
         domicilios = Company_Transportation.objects.filter(
-            company_nit = nit,
-            date_domicile = fechaen,
-            id_domicile = domicilio,
+            company_nit=nit,
+            date_domicile=fechaen,
+            id_domicile=domicilio,
         )
 
-        return render(request, 'consultasdom/consulem.html', {'domicilios':domicilios})
-    
+        return render(request, 'consultasdom/consulem.html', {'domicilios': domicilios})
+
 
 def agendar_consultar(request):
     if request.method == 'POST':
@@ -273,31 +281,34 @@ def agendar_consultar(request):
         direccion = request.POST.get('direccion')
 
         domicilios = User.objects.filter(
-            first_name = nomusu,
-            email = email,
+            first_name=nomusu,
+            email=email,
 
         )
 
         domicilios = Domicile.objects.filter(
-            date = fechadom,
-            direction = direccion,
+            date=fechadom,
+            direction=direccion,
         )
-        return render(request, 'consultasdom/consuagen.html', {'domicilios':domicilios})
-    
+        return render(request, 'consultasdom/consuagen.html', {'domicilios': domicilios})
+
 
 def agendar(request):
     if request.method == 'POST':
         form = DomicileForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('domicilios.html')  # Puedes redirigir a la página que desees después de guardar el domicilio
+            # Puedes redirigir a la página que desees después de guardar el domicilio
+            return redirect('domicilios.html')
     else:
         form = DomicileForm()
-    
+
     return render(request, 'agendar.html', {'form': form})
 
-#//// fin consultas
+# //// fin consultas
 # loading domicilios
+
+
 def domiciliosloa(request):
     return render(request, 'loadings/domiciliosloa.html')
 # //

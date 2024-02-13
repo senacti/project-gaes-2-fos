@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,37 +12,61 @@
     <link rel="stylesheet" href="{% static 'css/ventas.css' %}">
     <link rel="stylesheet" href="{% static 'css/stylemenulogoutlogin.css'%}">
 </head>
+
 <body>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert" id="successMessage"
+        style="max-width: 50%;  transform: translate(60vh, 10vh); ">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <script>
+        // Agregar un timeout de 2 segundos (2000 milisegundos)
+        setTimeout(function () {
+            var successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+        }, 2000);
+    </script>
+    {% endif %}
     <header class="header">
         <div class="menu container">
-            <a href="{% url 'inicio' %}"><img src="{% static 'img/logo1.png' %}" id="logo" alt=""></a>
-            
+            <a href="{% url 'ventas' %}"><img src="{% static 'img/logo1.png' %}" id="logo" alt=""></a>
+
             <input type="checkbox" id="menu">
             <label for="menu"><img src="{% static 'img/menu.png' %}" class="menu-icono" alt=""></label>
             <nav class="navbar">
                 <ul>
-                    <li><a href="{% url 'inicio'%}">Inicio</a></li>
-                    <li><a href="{% url 'servicios'%}">Servicios</a></li>
-                    <li><a href="{% url 'contactopg'%}">Contactanos</a></li>
+                    <li><a href="{% url 'contactopg'%}"><i class="fa-solid fa-phone"></i> Contactanos</a></li>
+                    <li><a href="{% url 'servicios'%}"><i class="fa-solid fa-group-arrows-rotate"></i> Nuestros Servicios</a></li>
                 </ul>
             </nav>
             <nav class="navbar" style="position: absolute; transform: translateX(150vh);">
                 <ul>
                     {% if user.is_authenticated %}
                     <li class="custom-dropdown" style="display: inline-block;">
-                        <a style="text-decoration: none;" class="custom-dropbtn"><i class="fa-solid fa-user" style="transform: translateX(-2vh);"></i>{{ user.username|capfirst}}</a>
+                        <a style="text-decoration: none;" class="custom-dropbtn"><i class="fa-solid fa-user"
+                                style="transform: translateX(-2vh);"></i>{{ user.username|capfirst}}</a>
                         <div class="custom-dropdown-content">
-                            <a style="text-decoration: none;" href="{% url 'salir' %}" class="custom-menu-item">  Salir <i class="fa-solid fa-right-from-bracket" style="position: absolute; font-size: 1.6rem; top: 19px; right: 8px;"></i></a>
+                            <a style="text-decoration: none;" href="{% url 'salir' %}" class="custom-menu-item"> Salir
+                                <i class="fa-solid fa-right-from-bracket"
+                                    style="position: absolute; font-size: 1.6rem; top: 19px; right: 8px;"></i></a>
                             <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
                                 data-target="#configuracionModal">Configuración</a>
 
                             {% if user.is_staff %}
-                            <a style="text-decoration: none;" href="{% url 'domicilios'%}" class="custom-menu-item">  Domicilios </a>
-                            <a style="text-decoration: none;" href="{% url 'admin:index' %}" class="custom-menu-item">Administrador </a>
+                            <a style="text-decoration: none;" href="{% url 'domicilios'%}" class="custom-menu-item">
+                                Domicilios </a>
+                            <a style="text-decoration: none;" href="{% url 'admin:index' %}"
+                                class="custom-menu-item">Administrador </a>
                             {% else %}
                             {% for group in user.groups.all %}
                             {% if group.name == 'Empleados' %}
-                            <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}" class="custom-menu-item">Domicilios  </a>
+                            <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}"
+                                class="custom-menu-item">Domicilios </a>
                             {% endif %}
                             {% endfor %}
                             {% endif %}
@@ -52,15 +77,16 @@
                     {% endif %}
 
                     <!-- Modal -->
-                    <div class="modal fade" id="configuracionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true" style="color: white;">
-                    <div class="modal-dialog" role="document"
-                        style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
-                        <div class="modal-content"
-                            style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
-                            <div class="modal-header">
+                    <div class="modal fade" id="configuracionModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: white;">
+                        <div class="modal-dialog" role="document"
+                            style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
+                            <div class="modal-content"
+                                style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
+                                <div class="modal-header">
                                     <h5 class="modal-title" id="configuracionModalLabel">Configuración</h5>
-                                    <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" style="color: white;" class="close" data-dismiss="modal"
+                                        aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -96,8 +122,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger"
-                                        data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +135,7 @@
                 <ul>
                     <li class="submenu">
                         <!--<img src="" id="img-carrito" alt="" >-->
-                        <i class="fa-solid fa-cart-shopping" id="img-carrito" ></i>
+                        <i class="fa-solid fa-cart-shopping" id="img-carrito"></i>
                         <div id="carrito">
                             <table id="lista-carrito">
                                 <thead>
@@ -125,9 +150,9 @@
                             </table>
                             <div id="total-container">
                                 <p>Total: <span id="total">0</span></p>
-                            </div>                            
+                            </div>
                             <a href="#" id="vaciar-carrito" class="btn-3">Vaciar Carrito</a>
-                            <a href="#" id="Pagar" class="btn-3">Pagar</a>               
+                            <a href="#" id="Pagar" class="btn-3">Pagar</a>
                         </div>
                     </li>
                 </ul>
@@ -151,7 +176,7 @@
                             <div class="header-img">
                                 <img src="{% static 'img/oso.png' %}" alt="">
                             </div>
-                        </div>              
+                        </div>
                     </div>
 
                     <div class="swiper-slide">
@@ -167,7 +192,7 @@
                             <div class="header-img">
                                 <img src="{% static 'img/pinata.png' %}" alt="">
                             </div>
-                        </div>       
+                        </div>
                     </div>
 
                     <div class="swiper-slide">
@@ -197,70 +222,70 @@
     <hr>
 
     <section class="seccion-1">
-    <section class="promos container" id="lista-1">
-        <h2>PROMOCIONES</h2>
+        <section class="promos container" id="lista-1">
+            <h2>PROMOCIONES</h2>
 
-        <div class="categories">
+            <div class="categories">
 
-            <div class="categorie">
-                <div class="categorie-1">
-                    <h3>Promo 1</h3>
-                    <div class="prices">
-                        <p class="price-1">$200.000</p>
-                        <p class="precio">$149.999</p>
+                <div class="categorie">
+                    <div class="categorie-1">
+                        <h3>Promo 1</h3>
+                        <div class="prices">
+                            <p class="price-1">$200.000</p>
+                            <p class="precio">$149.999</p>
+                        </div>
+                        <a href="#" class="agregar-carrito btn-3" data-id="1">Agregar al Carrito</a>
                     </div>
-                    <a href="#" class="agregar-carrito btn-3" data-id="1">Agregar al Carrito</a>
+                    <div class="categorie-img">
+                        <img src="{% static 'img/robot.png' %}" alt="">
+                    </div>
                 </div>
-                <div class="categorie-img">
-                    <img src="{% static 'img/robot.png' %}" alt="">
+
+                <div class="categorie">
+                    <div class="categorie-1">
+                        <h3>Promo 2</h3>
+                        <div class="prices">
+                            <p class="price-1">$100.000</p>
+                            <p class="precio">$49.999</p>
+                        </div>
+                        <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar al Carrito</a>
+                    </div>
+                    <div class="categorie-img">
+                        <img src="{% static 'img/tren.png' %}" alt="">
+                    </div>
+                </div>
+
+                <div class="categorie">
+                    <div class="categorie-1">
+                        <h3>Promo 3</h3>
+                        <div class="prices">
+                            <p class="price-1">$50.000</p>
+                            <p class="precio">$24.999</p>
+                        </div>
+                        <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar al Carrito</a>
+                    </div>
+                    <div class="categorie-img">
+                        <img src="{% static 'img/bloques.png' %}" alt="">
+                    </div>
+                </div>
+
+                <div class="categorie">
+                    <div class="categorie-1">
+                        <h3>Promo 4</h3>
+                        <div class="prices">
+                            <p class="price-1">$300.000</p>
+                            <p class="precio">$249.999</p>
+                        </div>
+                        <a href="#" class="agregar-carrito btn-3" data-id="4">Agregar al Carrito</a>
+                    </div>
+                    <div class="categorie-img">
+                        <img src="{% static 'img/oso.png' %}" alt="">
+                    </div>
+
                 </div>
             </div>
 
-            <div class="categorie">
-                <div class="categorie-1">
-                    <h3>Promo 2</h3>
-                    <div class="prices">
-                        <p class="price-1">$100.000</p>
-                        <p class="precio">$49.999</p>
-                    </div>
-                    <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar al Carrito</a>
-                </div>
-                <div class="categorie-img">
-                    <img src="{% static 'img/tren.png' %}" alt="">
-                </div>
-            </div>
-
-            <div class="categorie">
-                <div class="categorie-1">
-                    <h3>Promo 3</h3>
-                    <div class="prices">
-                        <p class="price-1">$50.000</p>
-                        <p class="precio">$24.999</p>
-                    </div>
-                    <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar al Carrito</a>
-                </div>
-                <div class="categorie-img">
-                    <img src="{% static 'img/bloques.png' %}" alt="">
-                </div>
-            </div>
-
-            <div class="categorie">
-                <div class="categorie-1">
-                    <h3>Promo 4</h3>
-                    <div class="prices">
-                        <p class="price-1">$300.000</p>
-                        <p class="precio">$249.999</p>
-                    </div>
-                    <a href="#" class="agregar-carrito btn-3" data-id="4">Agregar al Carrito</a>
-                </div>
-                <div class="categorie-img">
-                    <img src="{% static 'img/oso.png' %}" alt="">
-                </div>
-
-            </div>
-        </div>
-
-    </section>
+        </section>
     </section>
 
     <hr>
@@ -301,7 +326,7 @@
                             <a href="#" class="agregar-carrito btn-3" data-id="7">Agregar al Carrito</a>
                         </div>
                     </div>
-                </div>               
+                </div>
                 <div class="swiper-slide">
                     <div class="product">
                         <img src="{% static 'img/dinosaurio.png' %}" alt="">
@@ -323,59 +348,59 @@
     <hr>
 
     <section class="seccion-2">
-    <section class="products container" id="lista-3">
-        <h2 class="titulo-2">PRODUCTOS</h2>
-        <div class="swiper mySwiper-2">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <div class="product">
-                        <img src="{% static 'img/dinosaurio.png' %}" alt="">
-                        <div class="product-txt">
-                            <h3>Juguete</h3>
-                            <p>Calidad Premium</p>
-                            <p class="precio">$200</p>
-                            <a href="#" class="agregar-carrito btn-3" data-id="9">Agregar al Carrito</a>
+        <section class="products container" id="lista-3">
+            <h2 class="titulo-2">PRODUCTOS</h2>
+            <div class="swiper mySwiper-2">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img src="{% static 'img/dinosaurio.png' %}" alt="">
+                            <div class="product-txt">
+                                <h3>Juguete</h3>
+                                <p>Calidad Premium</p>
+                                <p class="precio">$200</p>
+                                <a href="#" class="agregar-carrito btn-3" data-id="9">Agregar al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img src="{% static 'img/dinosaurio.png' %}" alt="">
+                            <div class="product-txt">
+                                <h3>Juguete</h3>
+                                <p>Calidad Premium</p>
+                                <p class="precio">$200</p>
+                                <a href="#" class="agregar-carrito btn-3" data-id="10">Agregar al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img src="{% static 'img/dinosaurio.png' %}" alt="">
+                            <div class="product-txt">
+                                <h3>Juguete</h3>
+                                <p>Calidad Premium</p>
+                                <p class="precio">$200</p>
+                                <a href="#" class="agregar-carrito btn-3" data-id="11">Agregar al Carrito</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="product">
+                            <img src="{% static 'img/dinosaurio.png' %}" alt="">
+                            <div class="product-txt">
+                                <h3>Juguete</h3>
+                                <p>Calidad Premium</p>
+                                <p class="precio">$200</p>
+                                <a href="#" class="agregar-carrito btn-3" data-id="12">Agregar al Carrito</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="product">
-                        <img src="{% static 'img/dinosaurio.png' %}" alt="">
-                        <div class="product-txt">
-                            <h3>Juguete</h3>
-                            <p>Calidad Premium</p>
-                            <p class="precio">$200</p>
-                            <a href="#" class="agregar-carrito btn-3" data-id="10">Agregar al Carrito</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product">
-                        <img src="{% static 'img/dinosaurio.png' %}" alt="">
-                        <div class="product-txt">
-                            <h3>Juguete</h3>
-                            <p>Calidad Premium</p>
-                            <p class="precio">$200</p>
-                            <a href="#" class="agregar-carrito btn-3" data-id="11">Agregar al Carrito</a>
-                        </div>
-                    </div>
-                </div>               
-                <div class="swiper-slide">
-                    <div class="product">
-                        <img src="{% static 'img/dinosaurio.png' %}" alt="">
-                        <div class="product-txt">
-                            <h3>Juguete</h3>
-                            <p>Calidad Premium</p>
-                            <p class="precio">$200</p>
-                            <a href="#" class="agregar-carrito btn-3" data-id="12">Agregar al Carrito</a>
-                        </div>
-                    </div>
-                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-        </div>
-    </section>
+        </section>
     </section>
 
     <footer class="footer container">
@@ -417,7 +442,9 @@
         </div>
         <div class="link">
             <h3>lorem</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus eligendi, optio blanditiis, cupiditate totam ad illum recusandae adipisci quae saepe explicabo ipsa velit esse sit aut libero dolore provident enim?</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus eligendi, optio blanditiis,
+                cupiditate totam ad illum recusandae adipisci quae saepe explicabo ipsa velit esse sit aut libero dolore
+                provident enim?</p>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -426,4 +453,5 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script src="{% static 'js/ventas.js' %}"></script>
 </body>
+
 </html>

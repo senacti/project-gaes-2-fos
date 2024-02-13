@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,21 +15,24 @@
     <link rel="stylesheet" href="{% static 'css/servicios.css' %}">
 
 </head>
+
 <body>
     <header class="header">
         <div class="menu container">
-            <a href="{% url 'inicio' %}"><img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" "></a>
+            <a href="{% url 'ventas' %}"><img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" "></a>
             <input type="checkbox" id="menu" />
             <label for="menu">
                 <img src="{% static 'img/menu.png' %}" class="menu-icono" alt=" ">
             </label>
             <nav class="navbar">
                 <ul>
-                    <li><a style="text-decoration: none; " href="{% url 'inicio' %}"> <i class="fa-solid fa-house"></i> Inicio</a></li>
-                    <li><a style="text-decoration: none;" href="{% url 'contactopg' %}"> <i class="fa-solid fa-phone"></i> Contactanos</a></li>
-                    <li><a style="text-decoration: none;" href="{% url 'servicios' %}"> <i class="fa-solid fa-group-arrows-rotate"></i> Nuestros Servicios</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'contactopg' %}"> <i
+                                class="fa-solid fa-phone"></i> Contactanos</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'servicios' %}"> <i
+                                class="fa-solid fa-group-arrows-rotate"></i> Nuestros Servicios</a></li>
                     {% if request.user.is_authenticated %}
-                    <li><a style="text-decoration: none;" href="{% url 'ventas' %}"> <i class="fa-solid fa-shop"></i> Comprar</a></li>
+                    <li><a style="text-decoration: none;" href="{% url 'ventas' %}"> <i class="fa-solid fa-shop"></i>
+                            Comprar</a></li>
                     {% if not request.user.is_staff %}
                     {% endif %}
                     {% endif %}
@@ -41,19 +45,25 @@
                         <ul>
                             {% if user.is_authenticated %}
                             <li class="custom-dropdown" style="display: inline-block;">
-                                <a style="text-decoration: none;" class="custom-dropbtn"><i class="fa-solid fa-user" style="transform: translateX(-2vh);"></i>{{ user.username|capfirst}}</a>
+                                <a style="text-decoration: none;" class="custom-dropbtn"><i class="fa-solid fa-user"
+                                        style="transform: translateX(-2vh);"></i>{{ user.username|capfirst}}</a>
                                 <div class="custom-dropdown-content">
-                                    <a style="text-decoration: none;" href="{% url 'salir' %}" class="custom-menu-item">  Salir <i class="fa-solid fa-right-from-bracket" style="position: absolute; font-size: 1.6rem; top: 19px; right: 8px;"></i></a>
-                                    <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
-                                        data-target="#configuracionModal">Configuración</a>
+                                    <a style="text-decoration: none;" href="{% url 'salir' %}" class="custom-menu-item">
+                                        Salir <i class="fa-solid fa-right-from-bracket"
+                                            style="position: absolute; font-size: 1.6rem; top: 19px; right: 8px;"></i></a>
+                                    <a style="text-decoration: none;" href="#" class="custom-menu-item"
+                                        data-toggle="modal" data-target="#configuracionModal">Configuración</a>
 
                                     {% if user.is_staff %}
-                                    <a style="text-decoration: none;" href="{% url 'domiciliosloa'%}" class="custom-menu-item">  Domicilios </a>
-                                    <a style="text-decoration: none;" href="{% url 'admin:index' %}" class="custom-menu-item">Administrador </a>
+                                    <a style="text-decoration: none;" href="{% url 'domiciliosloa'%}"
+                                        class="custom-menu-item"> Domicilios </a>
+                                    <a style="text-decoration: none;" href="{% url 'admin:index' %}"
+                                        class="custom-menu-item">Administrador </a>
                                     {% else %}
                                     {% for group in user.groups.all %}
                                     {% if group.name == 'Empleados' %}
-                                    <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}" class="custom-menu-item">Domicilios  </a>
+                                    <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}"
+                                        class="custom-menu-item">Domicilios </a>
                                     {% endif %}
                                     {% endfor %}
                                     {% endif %}
@@ -64,15 +74,16 @@
                             {% endif %}
 
                             <!-- Modal -->
-                            <div class="modal fade" id="configuracionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                            aria-hidden="true" style="color: white;">
-                            <div class="modal-dialog" role="document"
-                                style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
-                                <div class="modal-content"
-                                    style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
-                                    <div class="modal-header">
+                            <div class="modal fade" id="configuracionModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: white;">
+                                <div class="modal-dialog" role="document"
+                                    style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
+                                    <div class="modal-content"
+                                        style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
+                                        <div class="modal-header">
                                             <h5 class="modal-title" id="configuracionModalLabel">Configuración</h5>
-                                            <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" style="color: white;" class="close"
+                                                data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -114,6 +125,59 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="modal fade" id="ventasModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: white;">
+                                <div class="modal-dialog" role="document"
+                                    style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
+                                    <div class="modal-content"
+                                        style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="configuracionModalLabel">Configuración</h5>
+                                            <button type="button" style="color: white;" class="close"
+                                                data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-body">
+                                                <h6>Cambiar Idioma:</h6>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="idiomaSelect">Selecciona un idioma:</label>
+                                                        <select class="form-control" id="idiomaSelect">
+                                                            <option value="es">Español</option>
+                                                            <option value="en">Inglés</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary">Guardar
+                                                        Cambios</button>
+                                                </form>
+
+                                                <hr>
+
+                                                <h6>Cambiar Color de Página:</h6>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="colorSelect">Selecciona un color:</label>
+                                                        <select class="form-control" id="colorSelect">
+                                                            <option value="blue">Azul</option>
+                                                            <option value="green">Verde</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary">Guardar
+                                                        Cambios</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </ul>
 
 
@@ -128,27 +192,22 @@
         <h1 class="h1pri">Nuestros servicios</h1>
         <div class="row">
             <div class="service">
-                
-                <i class="fa-solid fa-warehouse"></i>
-                <h2>Inventario</h2>
-                <p >Permitir tener una planeación y visión más clara sobre el inventario en aspectos como proveedores, referencias que más salen, cantidades, anticipación a escasez también con el reemplazo del kardex físico se optimizará tiempo y espacio.</p>
-                <a href="{% url 'loading'%}">
-                    <button class="botonservi2">Saber mas</button>
-                </a>
-            </div>
-            <div class="service">
                 <i class="fa-solid fa-store"></i>
                 <h2>Ventas</h2>
-                <p>Acceder a los registros de ventas de manera más rápida evitando confusión e incertidumbre sobre datos que no están claros o se perdieron, para tener una información precisa y concisa.</p>
+                <p>Acceder a los registros de ventas de manera más rápida evitando confusión e incertidumbre sobre datos
+                    que no están claros o se perdieron, para tener una información precisa y concisa.</p>
                 <br>
-                <a href="{% url 'loading'%}">
-                    <button class="botonservi2">Saber mas</button>
-                </a>
+                <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                    data-target="#ventasModal" ></a>
+
+                    
+
             </div>
             <div class="service">
                 <i class="fa-sharp fa-solid fa-truck"></i>
                 <h2>Domicilios</h2>
-                <p>Gestionar y mantener un registro, edición, supervisión y manejo completo de los domicilios realizados en la empresa, así manteniendo un control preciso de estos.</p>
+                <p>Gestionar y mantener un registro, edición, supervisión y manejo completo de los domicilios realizados
+                    en la empresa, así manteniendo un control preciso de estos.</p>
                 <br>
                 <br>
                 <a href="{% url 'loading'%}">
@@ -193,4 +252,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>

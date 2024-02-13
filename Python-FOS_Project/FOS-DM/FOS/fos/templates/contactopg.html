@@ -18,14 +18,13 @@
     
     <header class="header">
         <div class="menu container">
-            <a href="{% url 'inicio' %}"><img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" "></a>
+            <a href="{% url 'ventas' %}"><img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" "></a>
             <input type="checkbox" id="menu" />
             <label for="menu">
                 <img src="{% static 'img/menu.png' %}" class="menu-icono" alt=" ">
             </label>
             <nav class="navbar">
                 <ul>
-                    <li><a style="text-decoration: none; " href="{% url 'inicio' %}"> <i class="fa-solid fa-house"></i> Inicio</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'contactopg' %}"> <i class="fa-solid fa-phone"></i> Contactanos</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'servicios' %}"> <i class="fa-solid fa-group-arrows-rotate"></i> Nuestros Servicios</a></li>
                     {% if request.user.is_authenticated %}
@@ -132,7 +131,15 @@
             <a href="#"><i class="fa fa-phone"></i> 57 350 595 2493</a>
             <a href="#"><i class="fa fa-envelope"></i> mlbbdaniel30@gmail.com</a>
             <a href="#"><i class="fa fa-map-marked"></i> Bogota, Colombia</a>
+            <section>
+                <iframe class="map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31815.35461736233!2d-74.11056320427828!3d4.608462430735198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f996fc1731b19%3A0x67d539e568f514ca!2zTG9zIE3DoXJ0aXJlcywgQm9nb3TDoQ!5e0!3m2!1ses!2sco!4v1697998005245!5m2!1ses!2sco"
+                    width="40%" height="200px"
+                    style=" position: absolute; border:0; border-radius: 20px; transform: translate(-15vh,0vh); margin-left: 15vh;"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </section>
         </div>
+        
         <form method="post" action="{% url 'contactanos'%}">
             {% csrf_token %}
 
