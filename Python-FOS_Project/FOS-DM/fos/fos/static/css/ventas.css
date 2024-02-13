@@ -111,6 +111,8 @@ body{
 
 .submenu{
     position: relative;
+    cursor: pointer;
+
 }
 
 .submenu #img-carrito{
@@ -119,7 +121,6 @@ body{
     padding: 15px 25px;
     color: #f9bc60;
     border-radius: 50px;
-    
 }
 
 .submenu #img-carrito:hover{

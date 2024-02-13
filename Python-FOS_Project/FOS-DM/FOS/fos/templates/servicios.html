@@ -30,12 +30,10 @@
                                 class="fa-solid fa-phone"></i> Contactanos</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'servicios' %}"> <i
                                 class="fa-solid fa-group-arrows-rotate"></i> Nuestros Servicios</a></li>
-                    {% if request.user.is_authenticated %}
+                    
                     <li><a style="text-decoration: none;" href="{% url 'ventas' %}"> <i class="fa-solid fa-shop"></i>
                             Comprar</a></li>
-                    {% if not request.user.is_staff %}
-                    {% endif %}
-                    {% endif %}
+                    
                 </ul>
 
             </nav>
@@ -81,7 +79,7 @@
                                     <div class="modal-content"
                                         style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="configuracionModalLabel">Configuración</h5>
+                                            <h5 class="modal-title" id="configuracionModalLabel"> <i class="fa-solid fa-screwdriver-wrench"></i>  Configuración</h5>
                                             <button type="button" style="color: white;" class="close"
                                                 data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -98,7 +96,7 @@
                                                             <option value="en">Inglés</option>
                                                         </select>
                                                     </div>
-                                                    <button type="button" class="btn btn-primary">Guardar
+                                                    <button type="button" class="btn btn-primary"> <i class="fa-solid fa-folder"></i> Guardar
                                                         Cambios</button>
                                                 </form>
 
@@ -113,19 +111,19 @@
                                                             <option value="green">Verde</option>
                                                         </select>
                                                     </div>
-                                                    <button type="button" class="btn btn-primary">Guardar
+                                                    <button type="button" class="btn btn-primary"> <i class="fa-solid fa-folder"></i>  Guardar
                                                         Cambios</button>
                                                 </form>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-danger"
-                                                data-dismiss="modal">Cerrar</button>
+                                                data-dismiss="modal"> <i class="fa-solid fa-xmark"></i> Cerrar</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="modal fade" id="ventasModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: white;">
                                 <div class="modal-dialog" role="document"
@@ -133,7 +131,7 @@
                                     <div class="modal-content"
                                         style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="configuracionModalLabel">Configuración</h5>
+                                            <h5 class="modal-title" id="configuracionModalLabel"> <i class="fa-solid fa-circle-info" style="font-size: 20px;"></i> Ventas</h5>
                                             <button type="button" style="color: white;" class="close"
                                                 data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -141,38 +139,66 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="modal-body">
-                                                <h6>Cambiar Idioma:</h6>
+                                                <h6>Informacion ventas: </h6>
                                                 <form>
                                                     <div class="form-group">
-                                                        <label for="idiomaSelect">Selecciona un idioma:</label>
-                                                        <select class="form-control" id="idiomaSelect">
-                                                            <option value="es">Español</option>
-                                                            <option value="en">Inglés</option>
-                                                        </select>
+                                                        <p class="infoven">Lorem ipsum dolor sit amet consectetur
+                                                            adipisicing elit. Quos eveniet doloribus repellat quae! Amet
+                                                            laudantium distinctio iure illum. Nihil reiciendis
+                                                            asperiores qui quae necessitatibus doloribus quas quibusdam
+                                                            enim ut ab!</p>
                                                     </div>
-                                                    <button type="button" class="btn btn-primary">Guardar
-                                                        Cambios</button>
-                                                </form>
 
-                                                <hr>
-
-                                                <h6>Cambiar Color de Página:</h6>
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="colorSelect">Selecciona un color:</label>
-                                                        <select class="form-control" id="colorSelect">
-                                                            <option value="blue">Azul</option>
-                                                            <option value="green">Verde</option>
-                                                        </select>
-                                                    </div>
-                                                    <button type="button" class="btn btn-primary">Guardar
-                                                        Cambios</button>
-                                                </form>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
+                                            {% if user.is_authenticated %}
+                                            
+                                            {% else %}
+                                                <button type="button" class="btn btn-primary"> <i class="fa-solid fa-user-plus"></i> Registrarse</button>
+                                            {% endif %}
                                             <button type="button" class="btn btn-danger"
-                                                data-dismiss="modal">Cerrar</button>
+                                                data-dismiss="modal"><i class="fa-solid fa-xmark"></i> Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="domiciliosModal" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: white;">
+                                <div class="modal-dialog" role="document"
+                                    style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
+                                    <div class="modal-content"
+                                        style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="configuracionModalLabel"> <i class="fa-solid fa-circle-info" style="font-size: 20px;"></i> Domicilios</h5>
+                                            <button type="button" style="color: white;" class="close"
+                                                data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-body">
+                                                <h6>Informacion domicilios: </h6>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <p class="infoven">Lorem ipsum dolor sit amet consectetur
+                                                            adipisicing elit. Quos eveniet doloribus repellat quae! Amet
+                                                            laudantium distinctio iure illum. Nihil reiciendis
+                                                            asperiores qui quae necessitatibus doloribus quas quibusdam
+                                                            enim ut ab!</p>
+                                                    </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            {% if user.is_authenticated %}
+                                            
+                                            {% else %}
+                                                <button type="button" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i> Registrarse</button>
+                                            {% endif %}
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal"> <i class="fa-solid fa-xmark"></i> Cerrar</button>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -194,25 +220,27 @@
             <div class="service">
                 <i class="fa-solid fa-store"></i>
                 <h2>Ventas</h2>
-                <p>Acceder a los registros de ventas de manera más rápida evitando confusión e incertidumbre sobre datos
-                    que no están claros o se perdieron, para tener una información precisa y concisa.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque saepe maxime facilis, sapiente quam
+                    voluptate officia suscipit nam praesentium dolores alias reiciendis. Nostrum asperiores voluptatum
+                    fugit, ducimus dicta earum dolorem.</p>
                 <br>
-                <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
-                    data-target="#ventasModal" ></a>
+                <br>
+                <a style="text-decoration: none; background-color: #3da9fc; color: white; border-radius: 25px; font-size: 20px; border: 1px solid white;"
+                    href="#" class="custom-menu-item" data-toggle="modal" data-target="#ventasModal"><i class="fa-solid fa-circle-info" style="font-size: 20px;"></i> Saber más </a>
 
-                    
+
 
             </div>
             <div class="service">
                 <i class="fa-sharp fa-solid fa-truck"></i>
                 <h2>Domicilios</h2>
-                <p>Gestionar y mantener un registro, edición, supervisión y manejo completo de los domicilios realizados
-                    en la empresa, así manteniendo un control preciso de estos.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolorum accusantium aliquam recusandae
+                    laboriosam corporis inventore nam id ad? Nostrum dolor repellat voluptatibus alias ut assumenda quas
+                    porro eos? Soluta.</p>
                 <br>
                 <br>
-                <a href="{% url 'loading'%}">
-                    <button class="botonservi2">Saber mas</button>
-                </a>
+                <a style="text-decoration: none; background-color: #3da9fc; color: white; border-radius: 25px; font-size: 20px; border: 1px solid white;"
+                    href="#" class="custom-menu-item" data-toggle="modal" data-target="#domiciliosModal"> <i class="fa-solid fa-circle-info" style="font-size: 20px;"></i> Saber más</a>
             </div>
         </div>
     </div>

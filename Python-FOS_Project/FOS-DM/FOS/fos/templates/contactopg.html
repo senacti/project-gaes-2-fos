@@ -27,11 +27,7 @@
                 <ul>
                     <li><a style="text-decoration: none;" href="{% url 'contactopg' %}"> <i class="fa-solid fa-phone"></i> Contactanos</a></li>
                     <li><a style="text-decoration: none;" href="{% url 'servicios' %}"> <i class="fa-solid fa-group-arrows-rotate"></i> Nuestros Servicios</a></li>
-                    {% if request.user.is_authenticated %}
                     <li><a style="text-decoration: none;" href="{% url 'ventas' %}"> <i class="fa-solid fa-shop"></i> Comprar</a></li>
-                    {% if not request.user.is_staff %}
-                    {% endif %}
-                    {% endif %}
                 </ul>
 
             </nav>
@@ -71,7 +67,7 @@
                                 <div class="modal-content"
                                     style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
                                     <div class="modal-header">
-                                            <h5 class="modal-title" id="configuracionModalLabel">Configuración</h5>
+                                            <h5 class="modal-title" id="configuracionModalLabel">   Configuración</h5>
                                             <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
