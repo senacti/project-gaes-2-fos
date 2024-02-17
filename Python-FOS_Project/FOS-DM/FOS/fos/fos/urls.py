@@ -35,6 +35,7 @@ urlpatterns = [
     path('loadingcontac', views.loadingcontac, name='loadingcontac'),
     path('signup', views.signup, name='signup'),
     path('contactanos', views.contactanos, name='contactanos'),
+    path('factura', views.factura, name='factura'),
 
 
 
@@ -43,7 +44,8 @@ urlpatterns = [
     # Domicilios
     path('domicilios/', views.domicilios, name='domicilios'),
     path('domiciliosloa/', views.domiciliosloa, name='domiciliosloa'),
-    path('consultar_domicilios/', views.consultar_domicilios, name='consultar_domicilios'),
+    path('consultar_domicilios/', views.consultar_domicilios,
+         name='consultar_domicilios'),
     path('consultar_empresa/', views.consultar_empresa, name='consultar_empresa'),
     path('agendar_consultar/', views.agendar_consultar, name='agendar_consultar'),
     path('agendar', views.agendar, name='agendar'),

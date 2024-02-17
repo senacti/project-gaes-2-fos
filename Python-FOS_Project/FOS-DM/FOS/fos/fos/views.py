@@ -232,7 +232,11 @@ class PDFExportView(View):
         return response
 # FIN PDF
 
+# factura
 
+
+def factura(request):
+    return render(request, 'factura.html')
 # Cierre todo principal
 
 

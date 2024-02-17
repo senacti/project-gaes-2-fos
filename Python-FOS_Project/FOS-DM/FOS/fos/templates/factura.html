@@ -1,0 +1,275 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOS | FACTURA</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="icon" href="{% static 'img/logo1.ico'%}">
+    <script src="https://kit.fontawesome.com/37a7d1d6c8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/styleinicio.css'%}">
+    <link rel="stylesheet" href="{% static 'css/stylemenulogoutlogin.css'%}">
+    <link rel="stylesheet" href="{% static 'css/contacto.css' %}">
+</head>
+
+<body>
+    
+    <header class="header">
+        <div class="menu container">
+            <a href="{% url 'ventas' %}"><img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" "></a>
+            <input type="checkbox" id="menu" />
+            <label for="menu">
+                <img src="{% static 'img/menu.png' %}" class="menu-icono" alt=" ">
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a style="text-decoration: none;" href="{% url 'ventas' %}"> <i class="fa-solid fa-shop"></i> Seguir Comprando</a></li>
+                </ul>
+
+            </nav>
+            <div>
+                <ul>
+                    <nav class="navbar">
+                        <ul>
+                            {% if user.is_authenticated %}
+                            <li class="custom-dropdown" style="display: inline-block;">
+                                <a style="text-decoration: none;" class="custom-dropbtn"><i class="fa-solid fa-user" style="transform: translateX(-2vh);"></i>{{ user.username|capfirst}}</a>
+                                <div class="custom-dropdown-content">
+                                    <a style="text-decoration: none;" href="{% url 'salir' %}" class="custom-menu-item">  Salir <i class="fa-solid fa-right-from-bracket" style="position: absolute; font-size: 1.6rem; top: 19px; right: 8px;"></i></a>
+                                    <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                                        data-target="#configuracionModal">Configuración</a>
+
+                                    {% if user.is_staff %}
+                                    <a style="text-decoration: none;" href="{% url 'domiciliosloa'%}" class="custom-menu-item">  Domicilios </a>
+                                    <a style="text-decoration: none;" href="{% url 'admin:index' %}" class="custom-menu-item">Administrador </a>
+                                    {% else %}
+                                    {% for group in user.groups.all %}
+                                    {% if group.name == 'Empleados' %}
+                                    <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}" class="custom-menu-item">Domicilios  </a>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </li>
+                            {% else %}
+                            <li><a style="text-decoration: none;" href="{% url 'loading' %}">Iniciar sesión</a></li>
+                            {% endif %}
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="configuracionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true" style="color: white;">
+                            <div class="modal-dialog" role="document"
+                                style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
+                                <div class="modal-content"
+                                    style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
+                                    <div class="modal-header">
+                                            <h5 class="modal-title" id="configuracionModalLabel">   Configuración</h5>
+                                            <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="modal-body">
+                                                <h6>Cambiar Idioma:</h6>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="idiomaSelect">Selecciona un idioma:</label>
+                                                        <select class="form-control" id="idiomaSelect">
+                                                            <option value="es">Español</option>
+                                                            <option value="en">Inglés</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary">Guardar
+                                                        Cambios</button>
+                                                </form>
+
+                                                <hr>
+
+                                                <h6>Cambiar Color de Página:</h6>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <label for="colorSelect">Selecciona un color:</label>
+                                                        <select class="form-control" id="colorSelect">
+                                                            <option value="blue">Azul</option>
+                                                            <option value="green">Verde</option>
+                                                        </select>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary">Guardar
+                                                        Cambios</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+
+
+                    </nav>
+
+
+                </ul>
+            </div>
+    </header>
+    
+    <div class="container-form">
+        <div class="info-form">
+            <h2>Tu Pedido</h2>
+            <p>Carrito de Compras</p>
+        </div>
+
+        <button id="mostrarFormulario">1. Identificación</button>
+
+<div id="primerFormularioContainer" style="float: right;">
+    <form id="primerFormulario">
+        {% csrf_token %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert" id="successMessage">
+            {{message}}
+        </div>
+        {% endfor %}
+        <script>
+            setTimeout(function () {
+                var successMessage = document.getElementById('successMessage');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+            }, 2000);
+        </script>
+        {% endif %}
+        <div class="input-contenedor">
+            <input type="text" required name="name">
+            <label for="name"><i class="fa-solid fa-user"></i> Nombre</label>
+        </div>
+
+        <div class="input-contenedor">
+            <input type="email" required name="email">
+            <label for="email"><i class="fa-solid fa-envelope"></i> Correo</label>
+        </div>
+
+        <div class="input-contenedor">
+            <input type="text" name="subject" required>
+            <label style="color: white;" for="subject"> <i class="fa-solid fa-pen"></i> Cedula</label>
+        </div>
+
+        <div class="input-contenedor">
+            <input type="number" name="message" required>
+            <label style="color: white;" for="message"><i class="fa-solid fa-phone"></i> Telefono</label>
+        </div>
+        <button type="submit">Ir a Envío</button>
+    </form>
+</div>
+
+<div id="segundoFormularioContainer" style="display: none; float: right;">
+    <form id="segundoFormulario">
+        {% csrf_token %}
+        <div class="input-contenedor">
+            <input type="text" required name="direccion">
+            <label for="direccion"><i class="fa-solid fa-map-marker"></i> Dirección</label>
+        </div>
+        <div class="input-contenedor">
+            <input type="text" required name="ciudad">
+            <label for="ciudad"><i class="fa-solid fa-city"></i> Ciudad</label>
+        </div>
+        <div class="input-contenedor">
+            <input type="text" required name="pais">
+            <label for="pais"><i class="fa-solid fa-globe"></i> País</label>
+        </div>
+        <button type="button" id="irAPago">Ir a Pago</button>
+    </form>
+</div>
+
+<div id="tercerFormularioContainer" style="display: none; float: right;">
+    <form id="tercerFormulario">
+        {% csrf_token %}
+        <div class="input-contenedor">
+            <input type="number" required name="numeroTarjeta">
+            <label for="numeroTarjeta"><i class="fa-solid fa-credit-card"></i> N° tarjeta</label>
+        </div>
+        <div class="input-contenedor">
+            <input type="number" required name="cvc">
+            <label for="cvc"><i class="fa-solid fa-shield-check"></i> CVC</label>
+        </div>
+        <div class="input-contenedor">
+            <input type="date" required name="fecha">
+            <label for="fecha"><i class="fa-solid fa-calendar-days"></i> Fecha</label>
+        </div>
+        <button type="submit">Pagar</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('mostrarFormulario').addEventListener('click', function () {
+        document.getElementById('primerFormularioContainer').style.display = 'block';
+    });
+
+    document.getElementById('irAPago').addEventListener('click', function () {
+        document.getElementById('segundoFormularioContainer').style.display = 'none';
+        document.getElementById('tercerFormularioContainer').style.display = 'block';
+    });
+
+    document.getElementById('primerFormulario').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evitar que se recargue la página
+
+        // Obtener los datos del primer formulario
+        var formData = new FormData(this);
+
+        // Realizar la solicitud AJAX para enviar los datos al servidor
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '{% url 'contactanos' %}', true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Mostrar el segundo formulario
+                document.getElementById('segundoFormularioContainer').style.display = 'block';
+            }
+        };
+        xhr.send(formData);
+    });
+</script>
+    </div>
+    
+    <footer class="footer container" style="padding: 0; height: 25vh;">
+        <img class="logo-2" src="{% static 'img/logo1.png' %}" alt="">
+
+
+        <div class="links" style="display: flex;
+        flex-direction: row;
+        align-items: center;">
+
+            <div class="socials" style="display: flex;
+            flex-direction: row;
+            align-items: center; transform: translate(20vh, -10vh);">
+                <a href="#">
+                    <div class="social" style="margin: 0 10px;">
+                        <img src="{% static 'img/whatsapp.png' %}" alt="">
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="social" style="margin: 0 10px;">
+                        <img src="{% static 'img/facebook.png' %}" alt="">
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="social" style="margin: 0 10px;">
+                        <img src="{% static 'img/instagram.png' %}" alt="">
+                    </div>
+                </a>
+                <p style="color: white; transform: translateY(1.5vh);">&copy; 2023 FOS. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

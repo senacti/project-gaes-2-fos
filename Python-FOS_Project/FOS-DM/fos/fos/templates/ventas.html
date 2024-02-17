@@ -175,6 +175,42 @@
     <section class="seccion-1">
         <section class="promos container" id="lista-1">
             <h2>PROMOCIONES</h2>
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Obtener referencia al elemento padre que contiene todos los botones
+                    var contenedorBotones = document.body; // Puedes cambiar document.body al contenedor específico donde se encuentran tus botones
+
+                    // Agregar un event listener al contenedor de botones
+                    contenedorBotones.addEventListener('click', function (event) {
+                        // Verificar si el clic provino de un botón con la clase "agregar-carrito"
+                        if (event.target.classList.contains('agregar-carrito')) {
+                            // Evitar que el enlace redirija a otra página
+                            event.preventDefault();
+
+                            // Crear un elemento div para simular la alerta
+                            var alerta = document.createElement('div');
+                            alerta.className = 'alert';
+                            alerta.textContent = 'Se agregó correctamente al carrito';
+                            alerta.style.backgroundColor = 'lightblue';
+                            alerta.style.padding = '10px';
+                            alerta.style.borderRadius = '5px';
+                            alerta.style.position = 'fixed';
+                            alerta.style.top = '10px';
+                            alerta.style.left = '50%';
+                            alerta.style.transform = 'translateX(-50%)';
+                            alerta.style.zIndex = '9999';
+
+                            // Agregar la alerta al cuerpo del documento
+                            document.body.appendChild(alerta);
+
+                            // Cerrar automáticamente la alerta después de 2 segundos (2000 milisegundos)
+                            setTimeout(function () {
+                                alerta.style.display = 'none';
+                            }, 1000);
+                        }
+                    });
+                });
+            </script>
 
             <div class="categories">
 
@@ -191,6 +227,8 @@
                         <img src="{% static 'img/robot.png' %}" alt="">
                     </div>
                 </div>
+                
+                
 
                 <div class="categorie">
                     <div class="categorie-1">
