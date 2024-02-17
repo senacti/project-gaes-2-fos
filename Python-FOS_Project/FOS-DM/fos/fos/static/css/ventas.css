@@ -524,4 +524,8 @@ hr{
     .link{
         width: 100%;
     }
+    #mensaje {
+        width: 80%;
+        margin-left: 10px;
+    }
 }

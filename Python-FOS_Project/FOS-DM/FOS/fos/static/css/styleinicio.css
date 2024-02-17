@@ -319,7 +319,7 @@ h2{
     
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 991px) {
     .footer {
         background-color: #6ca8d3;
     }
@@ -328,6 +328,7 @@ h2{
         flex-direction: column;
         text-align: center; 
     }
+    
 }
 
 .header .navbar ul li{

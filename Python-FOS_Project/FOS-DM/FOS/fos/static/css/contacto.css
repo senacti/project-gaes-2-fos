@@ -127,3 +127,18 @@ button:hover{
     color: white;
     border-color: 2px solid white;
 }
+
+@media screen and (max-width: 991px) {
+    .container-form {
+        grid-template-columns: 1fr; 
+    }
+    .info-form{
+        transform: translateX(30vh);
+        justify-content: baseline;
+    }
+    .container-form h2{
+        transform: translateX(20vh);
+    }
+
+    
+}

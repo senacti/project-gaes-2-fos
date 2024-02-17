@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/37a7d1d6c8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>FOS | VENTAS</title>
+    <link rel="icon" href="{% static 'img/logo1.ico'%}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{% static 'css/ventas.css' %}">
     <link rel="stylesheet" href="{% static 'css/stylemenulogoutlogin.css'%}">
@@ -40,11 +41,11 @@
             <label for="menu"><img src="{% static 'img/menu.png' %}" class="menu-icono" alt=""></label>
             <nav class="navbar">
                 <ul>
-                    <li><a href="{% url 'contactopg'%}"><i class="fa-solid fa-phone"></i> Contactanos</a></li>
+                    <li><a href="{% url 'contactopg'%}" style="z-index: 1;"><i class="fa-solid fa-phone"></i> Contactanos</a></li>
                     <li><a href="{% url 'servicios'%}"><i class="fa-solid fa-group-arrows-rotate"></i> Nuestros Servicios</a></li>
                 </ul>
             </nav>
-            <nav class="navbar" style="position: absolute; transform: translateX(150vh);">
+            <nav class="navbar" style=" transform: translateX(20vh);">
                 <ul>
                     {% if user.is_authenticated %}
                     <li class="custom-dropdown" style="display: inline-block;">
@@ -104,6 +105,50 @@
                             </div>
                             <a href="#" id="vaciar-carrito" class="btn-3">Vaciar Carrito</a>
                             <a href="#" id="Pagar" class="btn-3">Pagar</a>
+                            <div id="mensaje" style="display: none;"></div>
+                            
+                            <script>
+                                document.getElementById('Pagar').addEventListener('click', function (event) {
+                                    var usuarioIniciadoSesion = {% if user.is_authenticated %} true {% else %} false {% endif %};
+
+                                if (usuarioIniciadoSesion) {
+                                    window.location.href = '{% url "factura" %}';
+                                } else {
+                                    mostrarMensaje(' <i class="fa-solid fa-circle-exclamation"></i> Debe iniciar sesión para continuar.', 1000); 
+                                }
+
+                                event.preventDefault();
+                            });
+
+                                function mostrarMensaje(mensaje, tiempo) {
+                                    var mensajeDiv = document.getElementById('mensaje');
+                                    mensajeDiv.innerHTML = mensaje;
+                                    mensajeDiv.style.display = 'block';
+                                    mensajeDiv.style.backgroundColor = '#0f0e17';
+                                    mensajeDiv.style.padding = '10px';
+                                    mensajeDiv.style.borderRadius = '5px';
+                                    mensajeDiv.style.position = 'fixed';
+                                    mensajeDiv.style.top = '10px';
+                                    mensajeDiv.style.left = '50%';
+                                    mensajeDiv.style.transform = 'translateX(-85vh)';
+                                    mensajeDiv.style.zIndex = '9999';
+                                    mensajeDiv.style.borderLeft = '1px solid #3da9fc';
+                                    mensajeDiv.style.borderRight = '1px solid #3da9fc';
+                                    mensajeDiv.style.borderBottom = '2px solid #3da9fc';
+                                    mensajeDiv.style.borderTop = '0.5px solid #3da9fc';
+                                    mensajeDiv.style.boxShadow = '0 4px 8px #3da9fc, 0 6px 20px #3da9fc';
+                                    mensajeDiv.style.color = '#ffffff';
+                                    mensajeDiv.style.height = '70px';
+                                    mensajeDiv.style.marginTop = '-30px';
+                                    mensajeDiv.style.overflow = 'hidden';
+                                    mensajeDiv.style.textAlign = 'center';
+
+                                    setTimeout(function () {
+                                        mensajeDiv.style.display = 'none';
+                                    }, tiempo);
+                                }
+                            </script>
+
                         </div>
                     </li>
                 </ul>
@@ -190,8 +235,8 @@
                             // Crear un elemento div para simular la alerta
                             var alerta = document.createElement('div');
                             alerta.className = 'alert';
-                            alerta.textContent = 'Se agregó correctamente al carrito';
-                            alerta.style.backgroundColor = 'lightblue';
+                            alerta.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>  Se agregó correctamente al carrito';
+                            alerta.style.backgroundColor = '#0f0e17';
                             alerta.style.padding = '10px';
                             alerta.style.borderRadius = '5px';
                             alerta.style.position = 'fixed';
@@ -199,6 +244,12 @@
                             alerta.style.left = '50%';
                             alerta.style.transform = 'translateX(-50%)';
                             alerta.style.zIndex = '9999';
+                            alerta.style.borderLeft = '1px solid #3da9fc';
+                            alerta.style.borderRight = '1px solid #3da9fc';
+                            alerta.style.borderBottom = '2px solid #3da9fc';
+                            alerta.style.borderTop = '0.5px solid #3da9fc';
+                            alerta.style.boxShadow = '0 4px 8px #3da9fc, 0 6px 20px #3da9fc';
+                            alerta.style.color = '#ffffff';
 
                             // Agregar la alerta al cuerpo del documento
                             document.body.appendChild(alerta);
