@@ -19,6 +19,7 @@ from django.urls import path, include
 from . import views
 from django.urls import path
 from .views import PDFExportView
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -32,12 +33,16 @@ urlpatterns = [
     path('contactopg/', views.contactopg, name='contactopg'),
     path('servicios/', views.servicios, name='servicios'),
     path('loading/', views.loading, name='loading'),
-    path('loadingcontac', views.loadingcontac, name='loadingcontac'),
+    path('loadingcontac/', views.loadingcontac, name='loadingcontac'),
     path('signup', views.signup, name='signup'),
     path('contactanos', views.contactanos, name='contactanos'),
     path('factura', views.factura, name='factura'),
-
-
+    #restablecer contrasena
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name="reset_password.html"), name='reset_password'),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="reset_password_sent.html"), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="reset.html"), name='password_reset_confirm'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="reset_password_complete.html"), name='password_reset_complete'),
+    #//restablecer contrasena
 
     # Cierre todo principal
 
@@ -45,7 +50,7 @@ urlpatterns = [
     path('domicilios/', views.domicilios, name='domicilios'),
     path('domiciliosloa/', views.domiciliosloa, name='domiciliosloa'),
     path('consultar_domicilios/', views.consultar_domicilios,
-         name='consultar_domicilios'),
+        name='consultar_domicilios'),
     path('consultar_empresa/', views.consultar_empresa, name='consultar_empresa'),
     path('agendar_consultar/', views.agendar_consultar, name='agendar_consultar'),
     path('agendar', views.agendar, name='agendar'),
