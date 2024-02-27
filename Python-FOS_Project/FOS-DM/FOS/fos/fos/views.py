@@ -133,8 +133,10 @@ def loading(request):
 def loadingcontac(request):
     return render(request, 'loadings/loadingcontac.html')
 
+
 def loadingrecuperar(request):
-    return render(request, 'loadings/loadingrecuperar.html' )
+    return render(request, 'loadings/loadingrecuperar.html')
+
 
 def reset_password_sent(request):
     return render(request, 'reset_password_sent.html')
