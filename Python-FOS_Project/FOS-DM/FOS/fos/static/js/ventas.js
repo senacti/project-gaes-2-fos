@@ -34,7 +34,6 @@ var swiper = new Swiper(".mySwiper-2", {
 });
 
 //carrito
-
 const carrito = document.getElementById('carrito');
 const elementos1 = document.getElementById('lista-1');
 const elementos2 = document.getElementById('lista-2');
@@ -52,6 +51,10 @@ function cargarEvenListeners(){
     carrito.addEventListener('click', eliminarElemento);
 
     vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
+
+    // Agregar evento al botón de pagar
+    const botonPagar = document.querySelector('.button1');
+    botonPagar.addEventListener('click', mostrarResumenCompra);
 }
 
 function comprarElemento(e){
@@ -123,3 +126,31 @@ function vaciarCarrito(){
     document.getElementById('total').textContent = valorTotal.toFixed(3); // Actualizar el valor total mostrado
     return false;
 }
+
+function mostrarResumenCompra() {
+    const productosCarrito = lista.querySelectorAll('tr');
+    const resumenCompra = document.querySelector('.order-summary');
+    
+    // Limpiar el resumen de compra antes de agregar los productos
+    resumenCompra.innerHTML = '';
+    
+    // Recorrer los productos del carrito y agregarlos al resumen de compra
+    productosCarrito.forEach(producto => {
+        const imagen = producto.querySelector('img').src;
+        const titulo = producto.querySelector('td:nth-child(2)').textContent;
+        const precio = parseFloat(producto.querySelector('td:nth-child(3)').textContent);
+        
+        const productoHTML = `
+            <div class="producto-resumen">
+                <img src="${imagen}" width="50">
+                <p>${titulo}</p>
+                <p>$${precio}</p>
+            </div>
+        `;
+        
+        resumenCompra.innerHTML += productoHTML;
+    });
+}
+
+
+
