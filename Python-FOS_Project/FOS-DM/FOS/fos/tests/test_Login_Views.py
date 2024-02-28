@@ -1,37 +1,51 @@
-import pytest
-
-
-
 from django.test import TestCase, Client
-from django.urls import reverse
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, login
 
 class LoginViewTest(TestCase):
+
     def setUp(self):
+        # Crear un usuario para usar en las pruebas
+        self.user = get_user_model().objects.create_user(
+            username='testuser',
+            password='testpassword'
+        )
         self.client = Client()
-        self.login_url = reverse('login')
-        self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword',
-        }
-        self.user = User.objects.create_user(**self.user_data)
 
     def test_login_successful(self):
-        response = self.client.post(self.login_url, self.user_data, follow=True)
-        self.assertTrue(response.context['user'].is_authenticated)
-        self.assertRedirects(response, reverse('ventas'))
-        self.assertContains(response, 'Bienvenido')
+        # Prueba de inicio de sesión exitoso
+        response = self.client.post('/login/', {
+            'username': 'testuser',
+            'password': 'testpassword',
+        })
+        self.assertEqual(response.status_code, 302)  # Redirección después del inicio de sesión
+        self.assertRedirects(response, '/ventas/')  # Ajusta esto según tu configuración de URL
+
+        # Verifica si el usuario está autenticado
+        user = self.client.session['_auth_user_id']
+        self.assertEqual(int(user), self.user.id)
 
     def test_login_unsuccessful(self):
-        # Intenta iniciar sesión con credenciales incorrectas
-        response = self.client.post(self.login_url, {'username': 'incorrect', 'password': 'incorrect'})
-        self.assertFalse(response.context['user'].is_authenticated)
+        # Prueba de inicio de sesión sin éxito
+        response = self.client.post('/login/', {
+            'username': 'testuser',
+            'password': 'wrongpassword',
+        })
+        self.assertEqual(response.status_code, 200)  # La página de inicio de sesión debería volver a cargar
         self.assertContains(response, 'Usuario o contraseña incorrectos')
 
+        # Verifica si el usuario no está autenticado
+        self.assertNotIn('_auth_user_id', self.client.session)
+
     def test_login_view_rendered_correctly(self):
-        response = self.client.get(self.login_url)
-        self.assertEqual(response.status_code, 200)  # 200: OK
+        # Prueba de que la vista se renderiza correctamente
+        response = self.client.get('/login/')
+        self.assertEqual(response.status_code, 200)  # La página de inicio de sesión debería cargar
         self.assertTemplateUsed(response, 'login.html')
+
+    # Puedes agregar más pruebas según sea necesario
+
+
 
 
 
