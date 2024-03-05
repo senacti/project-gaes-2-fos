@@ -1,5 +1,6 @@
 from django.db import models
 from venta.models import Sale
+
 #Ciudad
 class City(models.Model):
     cod_city = models.PositiveIntegerField( verbose_name="Codigo de Ciudad")
