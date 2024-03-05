@@ -19,11 +19,11 @@ PYMYSQL = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'fosdef',
-        'USER': 'serdaniel',
-        'PASSWORD': 'danidark.55',
-        'HOST': 'dani-db.mysql.database.azure.com',  
+        'USER': 'fos_admin',
+        'PASSWORD': 'Daniel.Marin.12',
+        'HOST': 'fosdb.mysql.database.azure.com',  
         'PORT': '3306',
-        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"}, 
+        'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
     }
 }
 

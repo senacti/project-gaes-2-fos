@@ -1,8 +1,9 @@
 from django.db import models
 from venta.models import Sale
+
 #Ciudad
 class City(models.Model):
-    cod_city = models.PositiveIntegerField(unique=True, verbose_name="Codigo de Ciudad")
+    cod_city = models.PositiveIntegerField( verbose_name="Codigo de Ciudad")
     city = models.CharField(max_length=50, verbose_name="Ciudad")
 
     def __str__(self):
