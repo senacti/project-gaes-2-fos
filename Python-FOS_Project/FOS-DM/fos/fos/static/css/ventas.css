@@ -47,7 +47,7 @@ body{
 }
 
 .swiper-pagination-bullet{
-    background-color: #e53170;
+    background-color: #3da9fc;
     opacity: 1;
 }
 
@@ -141,7 +141,7 @@ body{
     z-index: 1;
     background-color: transparent;
     padding: 20px;
-    min-width: 400px;
+    min-width: 500px;
     transition: .10s;
     border-radius: 10px;
     border-bottom: 3px solid #3da9fc;
@@ -164,7 +164,7 @@ body{
     top: 10; /* Ajustamos la posición superior para alinear el valor total correctamente */
     color: white;
     margin-top: 22px; /* Ajustamos el margen superior */
-    margin-right: 110px; /* Ajustamos el margen derecho */
+    margin-right: 150px; /* Ajustamos el margen derecho */
 }
 
 #lista-carrito {
@@ -174,15 +174,51 @@ body{
 #carrito a {
     margin-left: 10px; /* Añadimos un margen entre los botones */
     color: white; /* Aplicamos color de texto blanco */
+
 }
 
 #vaciar-carrito {
     color: white; /* Aplicamos color de texto blanco */
-    margin-right: 160px; /* Añadimos margen derecho para separarlo del botón "Pagar" */
+    margin-right: 250px; /* Añadimos margen derecho para separarlo del botón "Pagar" */
 }
 
 #Pagar {
     color: white; /* Aplicamos color de texto blanco */
+}
+
+#lista-carrito td:nth-child(4) {
+    text-align: center;
+}
+
+.quantity {
+    display: flex; /* Para que los elementos internos se alineen horizontalmente */
+    align-items: center; /* Para centrar verticalmente los elementos internos */
+}
+
+.subtract,
+.add {
+    background-color: #0f0e17; /* Color de fondo */ 
+    border: 1px solid #3da9fc;/* Eliminar bordes */
+    padding: 5px 10px; /* Espaciado interno */
+    cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+    border-radius: 5px;
+    color: white;
+    outline: none; /* Eliminar contorno al hacer clic */
+}
+.add:hover{
+    background-color: #f9bc60;
+    font-weight: bold;
+}
+.subtract:hover{
+    background-color: #f9bc60;
+    font-weight: bold;
+}
+.quantity-input {
+    width: 40px; /* Ancho del campo de entrada */
+    margin: 0 30px; /* Margen entre los botones y el campo de entrada */
+    text-align: center; /* Centrar el texto en el campo de entrada */
+    border-radius: 10px;
+    border: 1px solid #3da9fc; /* Añadir un borde al campo de entrada */
 }
 
 table{
@@ -237,7 +273,7 @@ th, td{
 
 .price-1{
     font-size: 30px;
-    color: #e53170;
+    color: #ffff;
     text-decoration-line: line-through;
     margin-right: 25px;
 }
@@ -263,7 +299,7 @@ th, td{
 }
 
 hr{
-    border: 1px solid #e53170;
+    border: 1px solid #f9bc60;
 }
 
 .seccion-1{
@@ -307,7 +343,7 @@ hr{
 }
 
 .categorie-1 p{
-    color: #e53170;
+    color: #ffff;
     font-size: 18px;
 }
 
@@ -347,7 +383,7 @@ hr{
 }
 
 .product-txt p{
-    color: #e53170;
+    color: #ffff;
     font-size: 16px;
     margin-bottom: 15px;
 }
@@ -382,19 +418,19 @@ hr{
 }
 
 .link h3{
-    color: #e53170;
+    color: #3da9fc;
     margin-bottom: 20px;
 }
 
 .link a{
-    color: #f9bc60;
+    color: #ffff;
     font-size: 16px;
     display: block;
     margin-bottom: 10px;
 }
 
 .link p{
-    color: #3da9fc;
+    color: #ffff;
     font-size: 16px;
 }
 @media(max-width:991px){

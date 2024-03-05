@@ -55,6 +55,11 @@ function cargarEvenListeners(){
     // Agregar evento al botón de pagar
     const botonPagar = document.querySelector('.button1');
     botonPagar.addEventListener('click', mostrarResumenCompra);
+
+    // Escuchar eventos de cambio en los campos de cantidad
+    document.querySelectorAll('.quantity-input').forEach(input => {
+        input.addEventListener('change', actualizarCantidad);
+    });
 }
 
 function comprarElemento(e){
@@ -66,19 +71,21 @@ function comprarElemento(e){
 }
 
 function leerDatosElemento(elemento){
+    const cantidad = parseInt(elemento.querySelector('.quantity-input').value); // Capturar la cantidad ingresada por el usuario
     const infoElemento = {
         imagen: elemento.querySelector('img').src,
         titulo: elemento.querySelector('h3').textContent,
         precio: parseFloat(elemento.querySelector('.precio').textContent.replace('$', '').replace(',', '')), // Convertir el precio a número flotante y eliminar caracteres no numéricos
-        id: elemento.querySelector('a').getAttribute('data-id')
+        id: elemento.querySelector('a').getAttribute('data-id'),
+        cantidad: cantidad // Incluir la cantidad en la estructura del elemento
     }
 
     insertarCarrito(infoElemento);
 }
 
-
 function insertarCarrito(elemento){
     const row = document.createElement('tr');
+    const subtotal = elemento.precio * elemento.cantidad; // Calcular el subtotal multiplicando el precio por la cantidad
     row.innerHTML = `
         <td>
             <img src="${elemento.imagen}" width=100 >
@@ -93,14 +100,23 @@ function insertarCarrito(elemento){
         </td>
 
         <td>
+            ${elemento.cantidad}
+        </td>
+
+        <td>
+            ${subtotal.toFixed(3)}
+        </td>
+
+        <td>
             <a href="#" class="borrar" data-id="${elemento.id}">X</a>
         </td>
     `;
 
     lista.appendChild(row);
-    valorTotal += elemento.precio; // Sumar el precio del producto al valor total
+    valorTotal += subtotal; // Sumar el subtotal al valor total
     document.getElementById('total').textContent = valorTotal.toFixed(3); // Mostrar el valor total en el span con id "total"
 }
+
 
 function eliminarElemento(e){
     e.preventDefault();
@@ -127,30 +143,29 @@ function vaciarCarrito(){
     return false;
 }
 
-function mostrarResumenCompra() {
-    const productosCarrito = lista.querySelectorAll('tr');
-    const resumenCompra = document.querySelector('.order-summary');
+function actualizarCantidad(e) {
+    const input = e.target;
+    const row = input.closest('tr');
+    const cantidad = parseInt(input.value);
+
+    // Obtener el precio del producto de la misma fila
+    const precioUnitario = parseFloat(row.querySelector('td:nth-child(3)').textContent);
     
-    // Limpiar el resumen de compra antes de agregar los productos
-    resumenCompra.innerHTML = '';
+    // Actualizar el precio total de la fila multiplicando el precio unitario por la cantidad
+    const precioTotal = precioUnitario * cantidad;
+    row.querySelector('td:nth-child(4)').textContent = cantidad; // Mostrar la cantidad en la tabla
+    row.querySelector('td:nth-child(5)').textContent = precioTotal.toFixed(3); // Mostrar el nuevo precio total
+
+    // Actualizar el valor total sumando o restando la diferencia al valor total existente
+    valorTotal += (precioTotal - (parseInt(row.dataset.precioTotal) || 0));
+    document.getElementById('total').textContent = valorTotal.toFixed(3);
     
-    // Recorrer los productos del carrito y agregarlos al resumen de compra
-    productosCarrito.forEach(producto => {
-        const imagen = producto.querySelector('img').src;
-        const titulo = producto.querySelector('td:nth-child(2)').textContent;
-        const precio = parseFloat(producto.querySelector('td:nth-child(3)').textContent);
-        
-        const productoHTML = `
-            <div class="producto-resumen">
-                <img src="${imagen}" width="50">
-                <p>${titulo}</p>
-                <p>$${precio}</p>
-            </div>
-        `;
-        
-        resumenCompra.innerHTML += productoHTML;
-    });
+    // Guardar el nuevo precio total en el atributo dataset para futuras actualizaciones
+    row.dataset.precioTotal = precioTotal;
 }
+
+
+
 
 
 

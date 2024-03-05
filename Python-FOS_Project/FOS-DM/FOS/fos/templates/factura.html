@@ -113,58 +113,75 @@
                 </ul>
             </div>
     </header>
-<section>
-    <div class="factura">
-        <h1>Tu Pedido</h1>
-        <br>
-            <div class="section">
-                <h2>1. IDENTIFICACIÓN</h2>
-                <p>Solicitamos únicamente la información esencial para la finalización de la compra.</p>
-                <label for="email">Correo:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="name">Nombre:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="last_name">Apellidos:</label>
-                <input type="text" id="last_name" name="last_name" required>
-                <label for="id_number">Cédula de ciudadanía o extranjería:</label>
-                <input type="text" id="id_number" name="id_number" required>
-                <label for="phone_number">Teléfono/Móvil:</label>
-                <input type="tel" id="phone_number" name="phone_number" required>
-                <button type="button" class="button1">IR PARA LA ENTREGA</button>
-            </div>
+    <section>
+        <div class="factura">
+            <h4>1. IDENTIFICACIÓN</h4>
             <br>
-            <div class="section">
-                <h2 class="envio">2. ENVÍO</h2>
-                <select id="delivery-method" name="delivery-method" required>
-                    <option value="estandar" selected>Departamento - Bogota D,C</option>
-                    <option value="estandar" selected>Departamento - Boyaca</option>
-                    <option value="estandar" selected>Departamento - Quindio</option>
-                    <option value="estandar" selected>Departamento - Risaralda</option>
-                </select>
-                <br>
-                <br>
-                <label for="city">Municipio:</label>
-                <input type="text" id="city" name="city" value="Bogotá, D.c." required>
-                <label for="neighborhood">Barrio:</label>
-                <input type="text" id="neighborhood" name="neighborhood">
-                <label for="complement">Dirección Complementa:</label>
-                <input type="text" id="complement" name="complement">
-                <label for="additional">Información adicional (ej.: apto. 201):</label>
-                <input type="text" id="additional" name="additional">
-                <label for="delivery">Destinatario:</label>
-                <input type="text" id="delivery" name="delivery" value="David Vargas" required>
-                <label for="delivery-method">Método de entrega:</label>
-                <select id="delivery-method" name="delivery-method" required>
-                    <option value="estandar" selected>Envío Estándar - En hasta 2 días hábiles</option>
-                </select>
-                <br>
-                <br>
-                <input type="button" class="button1" value="IR PARA EL PAGO">
-            </div>
+            <button id="showIdentificationForm" class="button1">Identificacion</button>
             <br>
-            <div class="section">
-                <h2>3. PAGO</h2>
-                <label for="card-type">Tarjeta de crédito</label>
+            <div id="identificationForm" class="section" style="display: none;">
+                <form id="identification-form">
+                    <br>
+                    <label for="email">Correo:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="last_name">Apellidos:</label>
+                    <input type="text" id="last_name" name="last_name" required>
+                    <label for="id_number">Cédula de ciudadanía o extranjería:</label>
+                    <input type="text" id="id_number" name="id_number" required>
+                    <label for="phone_number">Teléfono/Móvil:</label>
+                    <input type="tel" id="phone_number" name="phone_number" required>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="factura">
+            <h4>2. ENVIO</h4>
+            <br>
+            <button id="showShippingForm" class="button1">Envio</button>
+            <br>
+            <div id="shippingForm" class="section" style="display: none;">
+                    <select id="delivery-method" name="delivery-method" required>
+                        <br>
+                        <option value="estandar" selected>Departamento - Bogota D,C</option>
+                        <option value="estandar">Departamento - Boyaca</option>
+                        <option value="estandar">Departamento - Quindio</option>
+                        <option value="estandar">Departamento - Risaralda</option>
+                    </select>
+                    <br>
+                    <br>
+                    <label for="city">Municipio:</label>
+                    <input type="text" id="city" name="city" value="Bogotá, D.c." required>
+                    <label for="neighborhood">Barrio:</label>
+                    <input type="text" id="neighborhood" name="neighborhood">
+                    <label for="complement">Dirección Complementa:</label>
+                    <input type="text" id="complement" name="complement">
+                    <label for="additional">Información adicional (ej.: apto. 201):</label>
+                    <input type="text" id="additional" name="additional">
+                    <label for="delivery">Destinatario:</label>
+                    <input type="text" id="delivery" name="delivery" value="David Vargas" required>
+                    <label for="delivery-method">Método de entrega:</label>
+                    <select id="delivery-method" name="delivery-method" required>
+                        <option value="estandar" selected>Envío Estándar - En hasta 2 días hábiles</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="factura">
+            <h4>3. PAGO</h4>
+            <br>
+            <button id="showPaymentForm" class="button1">Pago</button>
+            <br>
+            <div id="paymentForm" class="section" style="display: none;">
+                <form id="payment-form">
+                    <br>
+                    <label for="card-type">Tarjeta de crédito</label>
                 <input type="radio" id="card-type" name="payment-method" value="card" required>
                 <br>
                 <label for="card-number">Número:</label>
@@ -190,28 +207,12 @@
                 <input type="text" id="expiration-date" name="expiration-date" required>
                 <label for="security-code">Código de Seguridad:</label>
                 <input type="text" id="security-code" name="security-code" required>
+                <button id="showPaymentForm" class="button1">Finañizar Compra</button>
+                </form>
             </div>
-            <div class="section2">
-                <button type="button" class="button2" style="transform: translateY(-3vh);">Volver a carrito</button>
-                <br>
-                <h2>RESUMEN DE LA COMPRA</h2>
-                <div class="order-summary">
-                </div>
-                <div class="product-summary">
-                </div>
-                <hr>
-                <p>Envío:</p>
-                <div class="discount-container">
-                    <label for="discount">Añadir cupón de descuento:</label>
-                    <input type="text" id="discount" name="discount">
-                </div>
-            </div>
-            <div class="sectionpago">
-                <p>Subtotal:</p>
-                <p>Total:</p>
-                <button type="button" class="button1">Finalizar Compra</button>
-            </div>
-</section>
+        </div>
+    </section>
+    
     
     <footer class="footer container" style="padding: 0; height: 25vh;">
         <img class="logo-2" src="{% static 'img/logo1.png' %}" alt="">
@@ -247,7 +248,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="{% static 'js/ventas.js' %}"></script>
+    <script src="{% static 'js/factura.js' %}"></script>
 </body>
 
 

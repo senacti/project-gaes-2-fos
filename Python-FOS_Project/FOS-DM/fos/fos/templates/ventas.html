@@ -86,7 +86,6 @@
             <div>
                 <ul>
                     <li class="submenu">
-                        <!--<img src="" id="img-carrito" alt="" >-->
                         <i class="fa-solid fa-cart-shopping" style="cursor: pointer;" id="img-carrito"></i>
                         <div id="carrito">
                             <table id="lista-carrito">
@@ -95,6 +94,8 @@
                                         <th>Imagen</th>
                                         <th>Nombre</th>
                                         <th>Precio</th>
+                                        <th>Cantidad</th>
+                                        <th>subtotal</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -220,57 +221,18 @@
     <section class="seccion-1">
         <section class="promos container" id="lista-1">
             <h2>PROMOCIONES</h2>
-            <script>
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Obtener referencia al elemento padre que contiene todos los botones
-                    var contenedorBotones = document.body; // Puedes cambiar document.body al contenedor específico donde se encuentran tus botones
-
-                    // Agregar un event listener al contenedor de botones
-                    contenedorBotones.addEventListener('click', function (event) {
-                        // Verificar si el clic provino de un botón con la clase "agregar-carrito"
-                        if (event.target.classList.contains('agregar-carrito')) {
-                            // Evitar que el enlace redirija a otra página
-                            event.preventDefault();
-
-                            // Crear un elemento div para simular la alerta
-                            var alerta = document.createElement('div');
-                            alerta.className = 'alert';
-                            alerta.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>  Se agregó correctamente al carrito';
-                            alerta.style.backgroundColor = '#0f0e17';
-                            alerta.style.padding = '10px';
-                            alerta.style.borderRadius = '5px';
-                            alerta.style.position = 'fixed';
-                            alerta.style.top = '10px';
-                            alerta.style.left = '50%';
-                            alerta.style.transform = 'translateX(-50%)';
-                            alerta.style.zIndex = '9999';
-                            alerta.style.borderLeft = '1px solid #3da9fc';
-                            alerta.style.borderRight = '1px solid #3da9fc';
-                            alerta.style.borderBottom = '2px solid #3da9fc';
-                            alerta.style.borderTop = '0.5px solid #3da9fc';
-                            alerta.style.boxShadow = '0 4px 8px #3da9fc, 0 6px 20px #3da9fc';
-                            alerta.style.color = '#ffffff';
-
-                            // Agregar la alerta al cuerpo del documento
-                            document.body.appendChild(alerta);
-
-                            // Cerrar automáticamente la alerta después de 2 segundos (2000 milisegundos)
-                            setTimeout(function () {
-                                alerta.style.display = 'none';
-                            }, 1000);
-                        }
-                    });
-                });
-            </script>
-
             <div class="categories">
-
                 <div class="categorie">
                     <div class="categorie-1">
                         <h3>Promo 1</h3>
                         <div class="prices">
                             <p class="price-1">$200.000</p>
                             <p class="precio">$149.999</p>
+                        </div>
+                        <div class="quantity">
+                            <button class="subtract">-</button>
+                            <input type="text" class="quantity-input" value="1">
+                            <button class="add">+</button>
                         </div>
                         <a href="#" class="agregar-carrito btn-3" data-id="1">Agregar al Carrito</a>
                     </div>
@@ -279,14 +241,17 @@
                     </div>
                 </div>
                 
-                
-
                 <div class="categorie">
                     <div class="categorie-1">
                         <h3>Promo 2</h3>
                         <div class="prices">
                             <p class="price-1">$100.000</p>
                             <p class="precio">$49.999</p>
+                        </div>
+                        <div class="quantity">
+                            <button class="subtract">-</button>
+                            <input type="text" class="quantity-input" value="1">
+                            <button class="add">+</button>
                         </div>
                         <a href="#" class="agregar-carrito btn-3" data-id="2">Agregar al Carrito</a>
                     </div>
@@ -302,6 +267,11 @@
                             <p class="price-1">$50.000</p>
                             <p class="precio">$24.999</p>
                         </div>
+                        <div class="quantity">
+                            <button class="subtract">-</button>
+                            <input type="text" class="quantity-input" value="1">
+                            <button class="add">+</button>
+                        </div>
                         <a href="#" class="agregar-carrito btn-3" data-id="3">Agregar al Carrito</a>
                     </div>
                     <div class="categorie-img">
@@ -316,16 +286,42 @@
                             <p class="price-1">$300.000</p>
                             <p class="precio">$249.999</p>
                         </div>
+                        <div class="quantity">
+                            <button class="subtract">-</button>
+                            <input type="text" class="quantity-input" value="1">
+                            <button class="add">+</button>
+                        </div>
                         <a href="#" class="agregar-carrito btn-3" data-id="4">Agregar al Carrito</a>
                     </div>
                     <div class="categorie-img">
                         <img src="{% static 'img/oso.png' %}" alt="">
                     </div>
-
                 </div>
             </div>
-
         </section>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const categories = document.querySelectorAll(".categorie");
+                categories.forEach(category => {
+                    const quantityInput = category.querySelector(".quantity-input");
+                    const subtractButton = category.querySelector(".subtract");
+                    const addButton = category.querySelector(".add");
+        
+                    subtractButton.addEventListener("click", () => {
+                        let quantity = parseInt(quantityInput.value);
+                        if (quantity > 1) {
+                            quantityInput.value = quantity - 1;
+                        }
+                    });
+        
+                    addButton.addEventListener("click", () => {
+                        let quantity = parseInt(quantityInput.value);
+                        quantityInput.value = quantity + 1;
+                    });
+                });
+            });
+        </script>
+        
     </section>
 
     <hr>
@@ -341,6 +337,11 @@
                             <h3>Juguete</h3>
                             <p>calidad Premium</p>
                             <p class="precio">$200</p>
+                            <div class="quantity">
+                                <button class="subtract">-</button>
+                                <input type="text" class="quantity-input" value="1">
+                                <button class="add">+</button>
+                            </div>
                             <a href="#" class="agregar-carrito btn-3" data-id="5">Agregar al Carrito</a>
                         </div>
                     </div>
@@ -352,6 +353,11 @@
                             <h3>Juguete</h3>
                             <p>Calidad Premium</p>
                             <p class="precio">$200</p>
+                            <div class="quantity">
+                                <button class="subtract">-</button>
+                                <input type="text" class="quantity-input" value="1">
+                                <button class="add">+</button>
+                            </div>
                             <a href="#" class="agregar-carrito btn-3" data-id="6">Agregar al Carrito</a>
                         </div>
                     </div>
@@ -363,6 +369,11 @@
                             <h3>Juguete</h3>
                             <p>Calidad Premium</p>
                             <p class="precio">$200</p>
+                            <div class="quantity">
+                                <button class="subtract">-</button>
+                                <input type="text" class="quantity-input" value="1">
+                                <button class="add">+</button>
+                            </div>
                             <a href="#" class="agregar-carrito btn-3" data-id="7">Agregar al Carrito</a>
                         </div>
                     </div>
@@ -374,6 +385,11 @@
                             <h3>Juguete</h3>
                             <p>Calidad Premium</p>
                             <p class="precio">$200</p>
+                            <div class="quantity">
+                                <button class="subtract">-</button>
+                                <input type="text" class="quantity-input" value="1">
+                                <button class="add">+</button>
+                            </div>
                             <a href="#" class="agregar-carrito btn-3" data-id="8">Agregar al Carrito</a>
                         </div>
                     </div>
@@ -382,7 +398,6 @@
             <div class="swiper-button-next"></div>
             <div class="swiper-button-prev"></div>
         </div>
-
     </section>
 
     <hr>
@@ -399,6 +414,11 @@
                                 <h3>Juguete</h3>
                                 <p>Calidad Premium</p>
                                 <p class="precio">$200</p>
+                                <div class="quantity">
+                                    <button class="subtract">-</button>
+                                    <input type="text" class="quantity-input" value="1">
+                                    <button class="add">+</button>
+                                </div>
                                 <a href="#" class="agregar-carrito btn-3" data-id="9">Agregar al Carrito</a>
                             </div>
                         </div>
@@ -410,6 +430,11 @@
                                 <h3>Juguete</h3>
                                 <p>Calidad Premium</p>
                                 <p class="precio">$200</p>
+                                <div class="quantity">
+                                    <button class="subtract">-</button>
+                                    <input type="text" class="quantity-input" value="1">
+                                    <button class="add">+</button>
+                                </div>
                                 <a href="#" class="agregar-carrito btn-3" data-id="10">Agregar al Carrito</a>
                             </div>
                         </div>
@@ -421,6 +446,11 @@
                                 <h3>Juguete</h3>
                                 <p>Calidad Premium</p>
                                 <p class="precio">$200</p>
+                                <div class="quantity">
+                                    <button class="subtract">-</button>
+                                    <input type="text" class="quantity-input" value="1">
+                                    <button class="add">+</button>
+                                </div>
                                 <a href="#" class="agregar-carrito btn-3" data-id="11">Agregar al Carrito</a>
                             </div>
                         </div>
@@ -432,6 +462,11 @@
                                 <h3>Juguete</h3>
                                 <p>Calidad Premium</p>
                                 <p class="precio">$200</p>
+                                <div class="quantity">
+                                    <button class="subtract">-</button>
+                                    <input type="text" class="quantity-input" value="1">
+                                    <button class="add">+</button>
+                                </div>
                                 <a href="#" class="agregar-carrito btn-3" data-id="12">Agregar al Carrito</a>
                             </div>
                         </div>
@@ -441,6 +476,68 @@
                 <div class="swiper-button-prev"></div>
             </div>
         </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                // Obtener referencia al elemento padre que contiene todos los botones
+                var contenedorBotones = document.body; // Puedes cambiar document.body al contenedor específico donde se encuentran tus botones
+
+                // Agregar un event listener al contenedor de botones
+                contenedorBotones.addEventListener('click', function (event) {
+                    // Verificar si el clic provino de un botón con la clase "agregar-carrito"
+                    if (event.target.classList.contains('agregar-carrito')) {
+                        // Evitar que el enlace redirija a otra página
+                        event.preventDefault();
+
+                        // Crear un elemento div para simular la alerta
+                        var alerta = document.createElement('div');
+                        alerta.className = 'alert';
+                        alerta.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>  Se agregó correctamente al carrito';
+                        alerta.style.backgroundColor = '#0f0e17';
+                        alerta.style.padding = '10px';
+                        alerta.style.borderRadius = '5px';
+                        alerta.style.position = 'fixed';
+                        alerta.style.top = '10px';
+                        alerta.style.left = '50%';
+                        alerta.style.transform = 'translateX(-50%)';
+                        alerta.style.zIndex = '9999';
+                        alerta.style.borderLeft = '1px solid #3da9fc';
+                        alerta.style.borderRight = '1px solid #3da9fc';
+                        alerta.style.borderBottom = '2px solid #3da9fc';
+                        alerta.style.borderTop = '0.5px solid #3da9fc';
+                        alerta.style.boxShadow = '0 4px 8px #3da9fc, 0 6px 20px #3da9fc';
+                        alerta.style.color = '#ffffff';
+
+                        // Agregar la alerta al cuerpo del documento
+                        document.body.appendChild(alerta);
+
+                        // Cerrar automáticamente la alerta después de 2 segundos (2000 milisegundos)
+                        setTimeout(function () {
+                            alerta.style.display = 'none';
+                        }, 1000);
+                    }
+                });
+            });
+                document.addEventListener("DOMContentLoaded", function () {
+                    const products = document.querySelectorAll(".product");
+                    products.forEach(product => {
+                        const quantityInput = product.querySelector(".quantity-input");
+                        const subtractButton = product.querySelector(".subtract");
+                        const addButton = product.querySelector(".add");
+
+                        subtractButton.addEventListener("click", () => {
+                            let quantity = parseInt(quantityInput.value);
+                            if (quantity > 1) {
+                                quantityInput.value = quantity - 1;
+                            }
+                        });
+
+                        addButton.addEventListener("click", () => {
+                            let quantity = parseInt(quantityInput.value);
+                            quantityInput.value = quantity + 1;
+                        });
+                    });
+                });
+            </script>
     </section>
 
     <footer class="footer container">
