@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'fos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = db.PYMYSQLAZU
+DATABASES = db.PYMYSQL
 
 
 # Password validation
@@ -167,3 +167,5 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 """
+
+
