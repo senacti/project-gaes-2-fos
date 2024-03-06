@@ -408,31 +408,37 @@ hr{
     text-decoration: none;
 }
 
-.footer{
+.footer {
     display: flex;
     padding: 30px 0;
 }
 
-.link{
-    width: 20%;
+.link {
+    flex-grow: 1; /* Hace que los elementos ocupen todo el espacio disponible */
+    margin-right: 300px; /* Añade un margen entre los elementos */
 }
 
-.link h3{
+.link:last-child {
+    margin-right: 0; /* Elimina el margen del último elemento para evitar un espacio adicional */
+}
+
+.link h3 {
     color: #3da9fc;
     margin-bottom: 20px;
 }
 
-.link a{
-    color: #ffff;
+.link a {
+    color: #fff;
     font-size: 16px;
     display: block;
     margin-bottom: 10px;
 }
 
-.link p{
-    color: #ffff;
+.link p {
+    color: #fff;
     font-size: 16px;
 }
+
 @media(max-width:991px){
     .menu{
         padding: 20px;
