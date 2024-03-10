@@ -25,6 +25,8 @@ urlpatterns = [
 
 
     # Todo principal
+    path('PDF/', views.PDF, name='PDF'),
+
     path('admin/', admin.site.urls, name='admin:index'),
     path('', views.inicio, name='inicio'),
     path('login/',  views.login_view, name='login'),
@@ -53,14 +55,15 @@ urlpatterns = [
     path('domicilios/', views.domicilios, name='domicilios'),
     path('domiciliosloa/', views.domiciliosloa, name='domiciliosloa'),
     path('consultar_domicilios/', views.consultar_domicilios,
-         name='consultar_domicilios'),
+        name='consultar_domicilios'),
     path('consultar_empresa/', views.consultar_empresa, name='consultar_empresa'),
     path('agendar_consultar/', views.agendar_consultar, name='agendar_consultar'),
     path('agendar', views.agendar, name='agendar'),
     # Cierre domicilios
 
     # PDF
-
+    path('report/', include(('report.urls', 'report'))),
+    
     # Cierre PDF
 
     # Ventas

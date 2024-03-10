@@ -164,7 +164,8 @@ def signup(request):
 
 
 # INICIO PDF
-
+def PDF (request):
+    return render(request, 'PDF.html')
 # FIN PDF
 
 

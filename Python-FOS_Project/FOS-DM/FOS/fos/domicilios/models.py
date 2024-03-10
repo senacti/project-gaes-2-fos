@@ -58,6 +58,11 @@ class Company_Transportation(models.Model):
         verbose_name_plural = "Empresas Transportadoras"
         db_table = "empresa_transportadora"
         ordering = ['id']
+
+
+
+
+
 # Create your models here.
         
 
