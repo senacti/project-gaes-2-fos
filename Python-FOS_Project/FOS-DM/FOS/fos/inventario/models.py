@@ -52,7 +52,7 @@ class Employee(models.Model):
     employee = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Empleado")
 
     def __str__(self):
-        return self.employee
+        return self.employee.username
     
     class Meta:
         verbose_name = "Empleado"
