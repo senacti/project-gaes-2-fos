@@ -1,10 +1,12 @@
 from django.db import models
 from venta.models import Sale
+from datetime import date
+from django.core.validators import MinValueValidator, RegexValidator
 
 #Ciudad
 class City(models.Model):
     cod_city = models.PositiveIntegerField( verbose_name="Codigo de Ciudad")
-    city = models.CharField(max_length=50, verbose_name="Ciudad")
+    city = models.CharField(max_length=50, verbose_name="Ciudad", validators=[RegexValidator(regex='^[a-zA-Z]*$', message='Solo se permiten letras.')])
 
     def __str__(self):
         return f"{self.cod_city} - {self.city}"
@@ -30,7 +32,7 @@ class Domicile_Status(models.Model):
 
 #Domicilio
 class Domicile(models.Model):
-    date = models.DateField(verbose_name="Fecha")
+    date = models.DateField(verbose_name="Fecha", validators=[MinValueValidator(limit_value=date.today())])
     direction = models.CharField(max_length=50, verbose_name="Dirección")
     city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='domiciles', verbose_name="Ciudad")
     cod_status_domicile = models.ForeignKey(Domicile_Status, on_delete=models.CASCADE, related_name='domiciles', verbose_name="Estado del domicilio")
@@ -47,7 +49,7 @@ class Domicile(models.Model):
 #Empresa transportadora
 class Company_Transportation(models.Model):
     company_nit = models.PositiveIntegerField(verbose_name="Nit Empresa")
-    date_domicile = models.DateField( verbose_name="Fecha Entrega")
+    date_domicile = models.DateField( verbose_name="Fecha Entrega", validators=[MinValueValidator(limit_value=date.today())])
     id_domicile = models.ForeignKey(Domicile, on_delete= models.CASCADE, verbose_name="Domicilio")
 
     def __str__(self):

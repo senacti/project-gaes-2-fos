@@ -1,12 +1,13 @@
 from django.contrib import admin
-from . models import Sale, Product, Product_Status, Product_Category
+from venta.models import *
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
 @admin.register(Sale)
 class SaleAdmin(ImportExportModelAdmin):
-    list_display = ['vat', 'subtotal', 'total', 'sale_date']
-    list_editable = ['subtotal', 'total']  
+    list_display = ['unit_value', 'discount', 'vat', 'subtotal', 'total']
+    list_editable = ['unit_value', 'discount', 'vat'] 
+    list_display_links = None  
     list_filter = ['sale_date']
     search_fields = ['sale_date']
     list_per_page = 20

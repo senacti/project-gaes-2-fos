@@ -2,11 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 from venta.models import Product
 from domicilios.models import City
+from datetime import date
+from django.core.validators import MinValueValidator, RegexValidator
 
 
 # Estado proveedor
 class Supplier_Status(models.Model):
-    status_s = models.CharField(max_length=50, verbose_name="Estado Proveedor")
+    status_s = models.CharField(max_length=50, verbose_name="Estado Proveedor", validators=[RegexValidator(regex='^[a-zA-Z]*$', message='Solo se permiten letras.')])
 
     def __str__(self):
         return self.status_s
@@ -21,7 +23,7 @@ class Supplier_Status(models.Model):
 class Entry(models.Model):
     amount = models.PositiveIntegerField(verbose_name="Cantidad")
     detail = models.CharField(max_length=50, verbose_name="Detalle")
-    entry_date = models.DateField(verbose_name="Fecha Entrada")
+    entry_date = models.DateField(verbose_name="Fecha Entrada", validators=[MinValueValidator(limit_value=date.today())])
 
     def __str__(self):
         return f"{self.amount}  - {self.detail} - {self.entry_date}"
@@ -34,7 +36,7 @@ class Entry(models.Model):
 
 # Estado solicitud
 class Request_Status(models.Model):
-    status = models.CharField(max_length=20, verbose_name="Estado de soliciutd")
+    status = models.CharField(max_length=20, verbose_name="Estado de soliciutd",  validators=[RegexValidator(regex='^[a-zA-Z]*$', message='Solo se permiten letras.')])
 
     def __str__(self):
         return self.status
@@ -60,7 +62,7 @@ class Employee(models.Model):
 
 # Tipo empleado
 class Employee_Type(models.Model):
-    employee_type = models.CharField(max_length=20, verbose_name="Tipo Empleado")
+    employee_type = models.CharField(max_length=20, verbose_name="Tipo Empleado",  validators=[RegexValidator(regex='^[a-zA-Z]*$', message='Solo se permiten letras.')])
 
     def __str__(self):
         return self.employee_type
@@ -89,7 +91,7 @@ class Work_Time(models.Model):
 class Output(models.Model):
     output_amount = models.IntegerField(verbose_name="Cantidad Salida")
     detail = models.CharField(max_length=50, verbose_name="Detalle")
-    output_date = models.DateTimeField(verbose_name="Fecha Salida")
+    output_date = models.DateTimeField(verbose_name="Fecha Salida", validators=[MinValueValidator(limit_value=date.today())])
     id_product = models.ForeignKey(Product, on_delete= models.CASCADE, verbose_name="Producto")
 
     def __str__(self):
@@ -122,7 +124,7 @@ class Inventory(models.Model):
 #Solicitud producto
 class Product_Request (models.Model):
     price_deliver = models.PositiveIntegerField(verbose_name="Precio Pedido")
-    deliver_date = models.DateTimeField(verbose_name="Fecha Entrega")
+    deliver_date = models.DateTimeField(verbose_name="Fecha Entrega", validators=[MinValueValidator(limit_value=date.today())])
     cod_status_s = models.ForeignKey(Request_Status, on_delete= models.CASCADE, verbose_name="Estado")
     id_employee = models.ForeignKey(Employee, on_delete= models.CASCADE, verbose_name="Empleado")
 
@@ -139,7 +141,11 @@ class Product_Request (models.Model):
 class Suplier(models.Model):
     nit = models.PositiveIntegerField(verbose_name="Nit")
     legal_representative_name = models.CharField(max_length=50, verbose_name="Nombre Representante Legal")
-    phone = models.PositiveIntegerField(verbose_name="Telefono")
+    phone = models.PositiveIntegerField(verbose_name="Telefono",
+        validators=[RegexValidator(
+            regex='^[0-9]{10,15}$',  
+            message='Formato de teléfono no válido. Debe tener entre 10 y 15 dígitos.'
+        )])
     id_solicitud_p = models.ForeignKey(Product_Request, on_delete= models.CASCADE, verbose_name="Solicitud producto")
     cod_status = models.ForeignKey(Supplier_Status, on_delete= models.CASCADE, verbose_name="Estado")
     cod_city = models.ForeignKey(City, on_delete= models.CASCADE, verbose_name="Ciudad")

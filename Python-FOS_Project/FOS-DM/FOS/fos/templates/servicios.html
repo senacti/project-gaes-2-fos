@@ -62,7 +62,9 @@
                                     {% if group.name == 'Empleados' %}
                                     <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}"
                                         class="custom-menu-item">Domicilios </a>
-                                    {% endif %}
+                                    <a style="text-decoration: none;" href="{%url 'admin:index'%}"
+                                        class="custom-menu-item">Administrador </a>
+                                    { % endif %}
                                     {% endfor %}
                                     {% endif %}
                                 </div>

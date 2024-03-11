@@ -58,7 +58,10 @@
                                     {% else %}
                                     {% for group in user.groups.all %}
                                     {% if group.name == 'Empleados' %}
-                                    <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}" class="custom-menu-item">Domicilios  </a>
+                                    <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}"
+                                        class="custom-menu-item">Domicilios </a>
+                                    <a style="text-decoration: none;" href="{%url 'admin:index'%}"
+                                        class="custom-menu-item">Administrador </a>
                                     {% endif %}
                                     {% endfor %}
                                     {% endif %}
