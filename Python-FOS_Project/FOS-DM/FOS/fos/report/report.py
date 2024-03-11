@@ -216,7 +216,7 @@ def save(request, report_type):
             report_type=report_type, report_definition=report_definition, last_modified_at=now)
     return HttpResponse('ok')
 
-def report(request, report_type):
+def report(request, report_type, data):
     """Prints a pdf file with all available albums.
     """
     
@@ -224,7 +224,7 @@ def report(request, report_type):
     # NOTE: these params must match exactly with the parameters defined in the
     # report definition in ReportBro Designer, check the name and type (Number, Date, List, ...)
     # of those parameters in the Designer.
-    params = ""
+    params = data
 
     if ReportDefinition.objects.filter(report_type=report_type).count() == 0:
         create_base_report_template()

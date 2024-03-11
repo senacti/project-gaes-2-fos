@@ -166,6 +166,9 @@ def signup(request):
 # INICIO PDF
 def PDF (request):
     return render(request, 'PDF.html')
+
+def pdfpg (request):
+    return render(request, 'pdfpg.html')
 # FIN PDF
 
 
@@ -262,3 +265,5 @@ def ventas(request):
 
 # Todo Inventario
 # Cierre todo Inventario
+
+

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{% static 'css/ventas.css' %}">
     <link rel="stylesheet" href="{% static 'css/stylemenulogoutlogin.css'%}">
 
-    
+
 </head>
 
 <body>
@@ -43,8 +43,10 @@
             <label for="menu"><img src="{% static 'img/menu.png' %}" class="menu-icono" alt=""></label>
             <nav class="navbar">
                 <ul>
-                    <li><a href="{% url 'contactopg'%}" style="z-index: 1;"><i class="fa-solid fa-phone"></i> Contactanos</a></li>
-                    <li><a href="{% url 'servicios'%}"><i class="fa-solid fa-group-arrows-rotate"></i> Nuestros Servicios</a></li>
+                    <li><a href="{% url 'contactopg'%}" style="z-index: 1;"><i class="fa-solid fa-phone"></i>
+                            Contactanos</a></li>
+                    <li><a href="{% url 'servicios'%}"><i class="fa-solid fa-group-arrows-rotate"></i> Nuestros
+                            Servicios</a></li>
                 </ul>
             </nav>
             <nav class="navbar" style=" transform: translateX(20vh);">
@@ -65,13 +67,17 @@
                                 Domicilios </a>
                             <a style="text-decoration: none;" href="{% url 'admin:index' %}"
                                 class="custom-menu-item">Administrador </a>
+                            <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                                data-target="#pdfModal">PDF</a>
                             {% else %}
                             {% for group in user.groups.all %}
                             {% if group.name == 'Empleados' %}
-                                <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}"
+                            <a style="text-decoration: none;" href="{%url 'domiciliosloa'%}"
                                 class="custom-menu-item">Domicilios </a>
-                                <a style="text-decoration: none;" href="{%url 'admin:index'%}"
+                            <a style="text-decoration: none;" href="{%url 'admin:index'%}"
                                 class="custom-menu-item">Administrador </a>
+                            <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                                data-target="#pdfModal">PDF</a>
                             {% endif %}
                             {% endfor %}
                             {% endif %}
@@ -81,8 +87,8 @@
                     <li><a style="text-decoration: none;" href="{% url 'loading' %}">Iniciar sesión</a></li>
                     {% endif %}
 
-                    
-                    
+
+
                 </ul>
 
 
@@ -111,7 +117,7 @@
                             <a href="#" id="vaciar-carrito" class="btn-3">Vaciar Carrito</a>
                             <a href="#" id="Pagar" class="btn-3">Pagar</a>
                             <div id="mensaje" style="display: none;"></div>
-                            
+
                             <script>
                                 document.getElementById('Pagar').addEventListener('click', function (event) {
                                     var usuarioIniciadoSesion = {% if user.is_authenticated %} true {% else %} false {% endif %};
@@ -119,7 +125,7 @@
                                 if (usuarioIniciadoSesion) {
                                     window.location.href = '{% url "factura" %}';
                                 } else {
-                                    mostrarMensaje(' <i class="fa-solid fa-circle-exclamation"></i> Debe iniciar sesión para continuar.', 1000); 
+                                    mostrarMensaje(' <i class="fa-solid fa-circle-exclamation"></i> Debe iniciar sesión para continuar.', 1000);
                                 }
 
                                 event.preventDefault();
@@ -244,7 +250,7 @@
                         <img src="{% static 'img/robot.png' %}" alt="">
                     </div>
                 </div>
-                
+
                 <div class="categorie">
                     <div class="categorie-1">
                         <h3>Promo 2</h3>
@@ -304,20 +310,20 @@
             </div>
         </section>
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 const categories = document.querySelectorAll(".categorie");
                 categories.forEach(category => {
                     const quantityInput = category.querySelector(".quantity-input");
                     const subtractButton = category.querySelector(".subtract");
                     const addButton = category.querySelector(".add");
-        
+
                     subtractButton.addEventListener("click", () => {
                         let quantity = parseInt(quantityInput.value);
                         if (quantity > 1) {
                             quantityInput.value = quantity - 1;
                         }
                     });
-        
+
                     addButton.addEventListener("click", () => {
                         let quantity = parseInt(quantityInput.value);
                         quantityInput.value = quantity + 1;
@@ -325,7 +331,7 @@
                 });
             });
         </script>
-        
+
     </section>
 
     <hr>
@@ -521,27 +527,27 @@
                     }
                 });
             });
-                document.addEventListener("DOMContentLoaded", function () {
-                    const products = document.querySelectorAll(".product");
-                    products.forEach(product => {
-                        const quantityInput = product.querySelector(".quantity-input");
-                        const subtractButton = product.querySelector(".subtract");
-                        const addButton = product.querySelector(".add");
+            document.addEventListener("DOMContentLoaded", function () {
+                const products = document.querySelectorAll(".product");
+                products.forEach(product => {
+                    const quantityInput = product.querySelector(".quantity-input");
+                    const subtractButton = product.querySelector(".subtract");
+                    const addButton = product.querySelector(".add");
 
-                        subtractButton.addEventListener("click", () => {
-                            let quantity = parseInt(quantityInput.value);
-                            if (quantity > 1) {
-                                quantityInput.value = quantity - 1;
-                            }
-                        });
+                    subtractButton.addEventListener("click", () => {
+                        let quantity = parseInt(quantityInput.value);
+                        if (quantity > 1) {
+                            quantityInput.value = quantity - 1;
+                        }
+                    });
 
-                        addButton.addEventListener("click", () => {
-                            let quantity = parseInt(quantityInput.value);
-                            quantityInput.value = quantity + 1;
-                        });
+                    addButton.addEventListener("click", () => {
+                        let quantity = parseInt(quantityInput.value);
+                        quantityInput.value = quantity + 1;
                     });
                 });
-            </script>
+            });
+        </script>
     </section>
 
     <footer class="footer container">
@@ -555,13 +561,20 @@
         <div class="link">
             <h3>Terminos y Condiciones</h3>
             <ul>
-                <li><a href="#">Politica de Privacidad</a></li>
-                <li><a href="#">Terminos de Servicios</a></li>
+                {% include 'politicapriv.html' %}
+                <li></li><a style="text-decoration: none;" href="#"  data-toggle="modal"
+                data-target="#politicaprivModal">Politica de Privacidad</a></li>
+                <li><a style="text-decoration: none;" href="#"  data-toggle="modal"
+                    data-target="#termserviModal">Terminos de Servicios</a></li>
             </ul>
         </div>
         <div class="link">
             <h3>Informacion de la Empresa</h3>
-            <p>La piñatería Latinos es un lugar vibrante y lleno de color, donde la diversión y la creatividad se fusionan para ofrecer una amplia variedad de piñatas y accesorios para fiestas. Desde piñatas clásicas hasta diseños personalizados, esta tienda es el destino perfecto para cualquier celebración. Con su ambiente acogedor y su selección de productos festivos, una visita a la piñatería promete una experiencia llena de risas y recuerdos duraderos.</p>
+            <p>La piñatería Latinos es un lugar vibrante y lleno de color, donde la diversión y la creatividad se
+                fusionan para ofrecer una amplia variedad de piñatas y accesorios para fiestas. Desde piñatas clásicas
+                hasta diseños personalizados, esta tienda es el destino perfecto para cualquier celebración. Con su
+                ambiente acogedor y su selección de productos festivos, una visita a la piñatería promete una
+                experiencia llena de risas y recuerdos duraderos.</p>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -572,53 +585,145 @@
 </body>
 
 </html>
-<div class="modal fade" id="configuracionModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true" style="color: white;">
-                        <div class="modal-dialog" role="document"
-                            style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
-                            <div class="modal-content"
-                                style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="configuracionModalLabel"> <i class="fa-solid fa-screwdriver-wrench"></i> Configuración</h5>
-                                    <button type="button" style="color: white;" class="close" data-dismiss="modal"
-                                        aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="modal-body">
-                                        <h6>Cambiar Idioma:</h6>
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="idiomaSelect">Selecciona un idioma:</label>
-                                                <select class="form-control" id="idiomaSelect">
-                                                    <option value="es">Español</option>
-                                                    <option value="en">Inglés</option>
-                                                </select>
-                                            </div>
-                                            <button type="button" class="btn btn-primary"> <i class="fa-solid fa-folder"></i> Guardar
-                                                Cambios</button>
-                                        </form>
-
-                                        <hr>
-
-                                        <h6>Cambiar Color de Página:</h6>
-                                        <form>
-                                            <div class="form-group">
-                                                <label for="colorSelect">Selecciona un color:</label>
-                                                <select class="form-control" id="colorSelect">
-                                                    <option value="blue">Azul</option>
-                                                    <option value="green">Verde</option>
-                                                </select>
-                                            </div>
-                                            <button type="button" class="btn btn-primary"> <i class="fa-solid fa-folder"></i> Guardar
-                                                Cambios</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa-solid fa-xmark"></i> Cerrar</button>
-                                </div>
-                            </div>
+<!--Modal configuracion-->
+<div class="modal fade" id="configuracionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="color: white;">
+    <div class="modal-dialog" role="document"
+        style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
+        <div class="modal-content"
+            style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="configuracionModalLabel"> <i class="fa-solid fa-screwdriver-wrench"></i>
+                    Configuración</h5>
+                <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <h6>Cambiar Idioma:</h6>
+                    <form>
+                        <div class="form-group">
+                            <label for="idiomaSelect">Selecciona un idioma:</label>
+                            <select class="form-control" id="idiomaSelect">
+                                <option value="es">Español</option>
+                                <option value="en">Inglés</option>
+                            </select>
                         </div>
-                    </div>
+                        <button type="button" class="btn btn-primary save-button"> <i class="fa-solid fa-folder"></i>
+                            Guardar Cambios</button>
+                    </form>
+
+                    <hr>
+
+                    <h6>Cambiar Color de Página:</h6>
+                    <form>
+                        <div class="form-group">
+                            <label for="colorSelect">Selecciona un color: (desabilitado)</label>
+                            <select class="form-control" id="colorSelect">
+                                <option value="Dark" disabled>Oscuro</option>
+                                <option value="Clear" disabled>Claro</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary"> <i class="fa-solid fa-folder"></i> Guardar
+                            Cambios</button>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa-solid fa-xmark"></i>
+                    Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal configuracion-->
+
+<!--Modal PDF-->
+<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    style="color: white;">
+    <div class="modal-dialog" role="document"
+        style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
+        <div class="modal-content"
+            style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="configuracionModalLabel"> <i class="fa-solid fa-file-pdf"></i>
+                    Generar PDF</h5>
+                <button type="button" style="color: white;" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <h6 style="text-align: center;">Genera tu PDF:</h6>
+                    {% if user.is_authenticated %}
+                    <p>Tu grupo actual es:
+                        
+                            {% for group in user.groups.all %}
+                                {{ group.name }}
+                            {% endfor %}
+                        
+                    </p>
+                    {% if user.is_staff %}
+                    <a href="{% url 'export_domicile' %}" target="_blank"><button class="btn btn-success"
+                            style="margin-right: 60px;">Domicilios</button></a>
+                    <a href="{% url 'admin:index' %}" target="_blank"><button class="btn btn-success"
+                            style="margin-right: 60px">Inventario</button></a>
+                    <a href="#" target="_blank"><button class="btn btn-success">Venta</button></a>
+                    {% else %}
+                    {% for group in user.groups.all %}
+                    {% if group.name == 'Empleados' %}
+                    <a href="{% url 'export_domicile' %}" target="_blank"><button
+                            class="btn btn-success">Domicilios</button></a>
+                        
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    <br><br>
+                    <p>Nota: Dependiendo tu grupo, los botones tendran permisos</p>
+                </div>
+                </li>
+                {% else %}
+                <li><a style="text-decoration: none;" href="{% url 'loading' %}">Iniciar sesión</a></li>
+                {% endif %}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa-solid fa-xmark"></i>
+                Cerrar</button>
+        </div>
+    </div>
+</div>
+</div>
+<!--Modal PDF-->
+
+<script>
+    $(document).ready(function () {
+        // Manejar el cambio en el idioma seleccionado dentro del formulario
+        $('#idiomaSelect').change(function () {
+            // Obtener el valor del idioma seleccionado
+            var selectedLanguage = $(this).val();
+
+            // Guardar el idioma seleccionado en el almacenamiento local
+            localStorage.setItem('selectedLanguage', selectedLanguage);
+
+            // Recargar la página
+            location.reload();
+        });
+
+        // Manejar el clic en el botón
+        $('.save-button').click(function () {
+            // Realizar acciones cuando se hace clic en el botón
+            console.log('Botón clickeado');
+            // Puedes agregar lógica adicional aquí
+        });
+    });
+
+    // Al cargar la página, establecer el idioma seleccionado si existe en el almacenamiento local
+    $(window).on('load', function () {
+        var selectedLanguage = localStorage.getItem('selectedLanguage');
+        if (selectedLanguage) {
+            $('#idiomaSelect').val(selectedLanguage);
+        }
+    });
+</script>
