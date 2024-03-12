@@ -1,7 +1,7 @@
 import pytest
 from datetime import date
 from venta.models import Sale
-from domicilios.models import City, Domicile_Status, Domicile
+from domicilios.models import *
 
 #//////////// test modelo ciudad///////////////////////
 
@@ -147,6 +147,40 @@ def test_create_domicile():
 
 
 
+#/////////////////Test modelo domicilio///////////////////////////////////////
+    
+
+
+#/////////////////Test modelo Empresa transportadora//////////////////////////
+@pytest.mark.django_db
+def test_create_empresa_transportadora():
+    #crear instancia
+    company = Company_Transportation.objects.create(
+        company_nit = '233344556',
+        date_domicile = '2024-03-07',
+        id_domicile = ''
+    )
+
+"""@pytest.mark.django_db
+def test_create_city():
+    # Crea una instancia de City
+    city = City.objects.create(
+        cod_city='8',
+        city="Example City"
+        )
+
+    #Verifica que la instancia se haya creado correctamente
+    assert City.objects.count() == 1
+    assert city.cod_city == '8'
+    assert city.city == "Example City"
+
+@pytest.mark.django_db
+def test_city_str_method():
+    # Crea una instancia de City
+    city = City.objects.create(
+        cod_city=1,
+        city="Example City"
+    )"""
 
 
 
