@@ -169,5 +169,7 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 """
+"""ALLOWED_HOSTS = ['c8a1-152-200-176-22.ngrok-free.app']"""
+
 
 

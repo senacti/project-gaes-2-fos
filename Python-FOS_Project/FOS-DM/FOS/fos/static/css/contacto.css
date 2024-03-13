@@ -127,18 +127,33 @@ button:hover{
     color: white;
     border-color: 2px solid white;
 }
+footer{
+    background-color: #123f60;
+    border-radius: 20px;
+
+}
 
 @media screen and (max-width: 991px) {
     .container-form {
         grid-template-columns: 1fr; 
     }
     .info-form{
-        transform: translateX(30vh);
+        transform: translate(10vh, 10vh);
         justify-content: baseline;
     }
     .container-form h2{
         transform: translateX(20vh);
     }
 
-    
+    section  .map{
+        transform: translate(20vh, -10vh);
+    }
+    .container-form form{
+        transform: translateY(40vh);
+        height: 100%;
+    }
+    footer {
+        transform: translateY(50vh);
+        
+    }
 }

@@ -88,5 +88,24 @@
     .botonservi2 :hover{
         opacity: .10;
     }
+    .footer-container{
+    background-color: #123f60;
+    border-radius: 20px;
+    }
+
+    @media screen and (max-width: 991px) {
+        .containerser .h1pri{
+            transform: translateY(10vh);
+        }
+        .row {
+            transform: translateY(10vh);
+        }
+        .containerser  h1::after{
+            transform: translateY(10vh);
+        }
+        .footer-container{
+            transform: translate(0, 10vh);
+        }
+    }
     
     

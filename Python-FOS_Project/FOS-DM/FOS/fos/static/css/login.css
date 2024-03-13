@@ -168,3 +168,21 @@ form{
 .contenedor h1 a:hover{
     color: #f9bc60;
 }
+
+@media screen and (max-width: 920px) {
+    .contenedor{
+        width: 100%;
+        transform: translateX(-40vh);
+        backdrop-filter: blur(10px);
+    }
+    
+    .formulario {
+    transform: translateX(-30vh);
+    }
+    .contenedor h2{
+        transform: translate(-3vh,-10vh);
+    }
+    .contenedor h1{
+        transform: translate(-10vh,-45vh);
+    }
+}
