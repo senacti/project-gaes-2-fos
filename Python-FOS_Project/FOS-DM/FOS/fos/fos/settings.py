@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    """'corsheaders',"""
     'configuracion',
     'report',
     'domicilios',
@@ -63,7 +62,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    """'corsheaders.middleware.CorsMiddleware',"""
 ]
 
 ROOT_URLCONF = 'fos.urls'
