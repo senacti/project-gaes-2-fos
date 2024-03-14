@@ -10,7 +10,7 @@
     border-left: 1px solid #3da9fc;
     border-right: 1px solid #3da9fc;
     border-bottom: 2px solid #3da9fc;
-    border-top: 0.5px solid #3da9fc; /* Corregido el valor, la coma no es necesaria */
+    border-top: 0,5px solid #3da9fc; 
 }
 
 .custom-menu-item {
@@ -28,16 +28,6 @@
 
 .custom-dropdown:hover .custom-dropdown-content {
     display: block;
-}
 
-@media (max-width: 991px) {
-    .custom-dropdown-content {
-        display: block; /* Mostrar el menú desplegable en dispositivos pequeños */
-        position: static; /* Cambiar la posición para que fluya con el contenido */
-        background-color: #123f60; /* Cambiar el color de fondo si es necesario */
-        border: none; /* Eliminar los bordes si es necesario */
-        border-radius: 0; /* Eliminar el radio de borde si es necesario */
-        box-shadow: none; /* Eliminar la sombra si es necesario */
-    }
 }
 
