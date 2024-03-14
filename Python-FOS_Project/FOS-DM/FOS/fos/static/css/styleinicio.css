@@ -320,15 +320,32 @@ h2{
 }
 
 @media screen and (max-width: 991px) {
-    .footer {
-        background-color: #6ca8d3;
+    .navbar ul {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background-color: #123f60;
+        width: 100%;
+        text-align: center;
     }
 
-    .socials {
+    .navbar ul.active {
+        display: flex;
         flex-direction: column;
-        text-align: center; 
     }
-    
+
+    .navbar ul li {
+        width: 100%;
+    }
+
+    .menu-icon {
+        display: block;
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        cursor: pointer;
+    }
 }
 
 .header .navbar ul li{
