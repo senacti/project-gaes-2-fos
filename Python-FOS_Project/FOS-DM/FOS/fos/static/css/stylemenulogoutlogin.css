@@ -30,4 +30,9 @@
     display: block;
 
 }
+@media (max-width: 991px) {
+    .custom-dropdown-content{
+        display: block;
+    }
+}
 
