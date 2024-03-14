@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    """'corsheaders',"""
     'configuracion',
     'report',
     'domicilios',
@@ -62,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    """'corsheaders.middleware.CorsMiddleware',"""
 ]
 
 ROOT_URLCONF = 'fos.urls'
@@ -169,7 +171,10 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 """
-"""ALLOWED_HOSTS = ['c8a1-152-200-176-22.ngrok-free.app']"""
+"""ALLOWED_HOSTS = ['ed33-179-19-8-205.ngrok-free.app']
+CORS_ALLOWED_ORIGINS = [
+    "https://ed33-179-19-8-205.ngrok-free.app",
+]"""
 
 
 
