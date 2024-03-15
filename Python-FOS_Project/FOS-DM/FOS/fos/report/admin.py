@@ -1,7 +1,12 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
+from report.models import ReportRequest, ReportDefinition
 
-from report.models import *
+class ReportRequestAdmin(ImportExportModelAdmin):
+    pass
 
-admin.site.register(ReportRequest)
-admin.site.register(ReportDefinition)
-# Register your models here.
+class ReportDefinitionAdmin(ImportExportModelAdmin):
+    pass
+
+admin.site.register(ReportRequest, ReportRequestAdmin)
+admin.site.register(ReportDefinition, ReportDefinitionAdmin)
