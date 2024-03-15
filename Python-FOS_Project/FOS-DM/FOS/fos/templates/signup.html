@@ -13,7 +13,7 @@
 <body>
     <section  >
         <h1></h1>
-        <h1 style="transform: translate(70vh,-31vh);">Registro</h1>
+       
         <img style="max-width: 30%; transform: translate(50%, 3%); border-radius: 20px;" class="img-logo-login"  src="{% static 'img/logo1.png' %}" alt="">
 
         <div style="height: 600px;" class="contenedor">
@@ -22,6 +22,7 @@
 
                 <form action="{% url 'signup' %}" id="formulario" class="form" method="POST">
                     {% csrf_token %}
+                    {% csrf_protect %}
                     <h1 style="color: white;" class="title">Registro</h1>
                     <div class="input-contenedor">
                         <i class="fa-solid fa-user"></i>

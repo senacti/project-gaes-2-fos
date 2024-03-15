@@ -170,9 +170,12 @@ form{
 }
 
 @media screen and (max-width: 920px) {
+    body{
+        height: 100%;
+    }
     .contenedor{
         width: 100%;
-        transform: translateX(-40vh);
+        transform: translateX(-23vh);
         backdrop-filter: blur(10px);
     }
     
@@ -180,9 +183,28 @@ form{
     transform: translateX(-30vh);
     }
     .contenedor h2{
-        transform: translate(-3vh,-10vh);
+        transform: translate(0,-5vh);
     }
     .contenedor h1{
-        transform: translate(-10vh,-45vh);
+        transform: translate(-3vh,-45vh);
+    }
+}
+
+@media screen and (min-width: 1317px) and (min-height: 958px) {
+    .contenedor {
+        width: 1000px; 
+        transform: translateX(-30vh);
+    }
+    
+    .formulario {
+        transform: translateX(-10vh); 
+    }
+    
+    .contenedor h2 {
+        transform: translate(0vh, 0); /* Ajusta la posición del título h2 */
+    }
+    
+    .contenedor h1 {
+        transform: translate(-65vh, -45vh); /* Ajusta la posición del título h1 */
     }
 }

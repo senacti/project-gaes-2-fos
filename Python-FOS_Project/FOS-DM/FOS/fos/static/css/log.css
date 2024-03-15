@@ -168,3 +168,46 @@ form{
 .contenedor h1 a:hover{
     color: #f9bc60;
 }
+
+@media screen and (max-width: 920px) {
+    body{
+        height: 100%;
+    }
+    .contenedor{
+        width: 100%;
+        transform: translateX(-5vh);
+        backdrop-filter: blur(10px);
+    }
+    
+    .formulario {
+    transform: translateX(-30vh);
+    }
+    .contenedor h2{
+        transform: translate(0,-5vh);
+    }
+    .contenedor h1{
+        transform: translate(-3vh,-45vh);
+    }
+    img .img-logo-login{
+        max-width: 100px;
+    }
+}
+
+@media screen and (min-width: 1317px) and (min-height: 958px) {
+    .contenedor {
+        width: 1100px; 
+        transform: translateX(-30vh);
+    }
+    
+    .formulario {
+        transform: translate(0,-5vh); 
+    }
+    
+    .formulario .title{
+        transform: translate(-45vh,10vh);
+    }
+    
+    .contenedor h1 {
+        transform: translate(-65vh, -45vh); /* Ajusta la posición del título h1 */
+    }
+}
