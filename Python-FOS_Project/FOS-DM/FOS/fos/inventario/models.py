@@ -1,8 +1,10 @@
+import datetime
 from django.contrib.auth.models import User
 from django.db import models
+from django.forms import ValidationError
 from venta.models import Product
 from domicilios.models import City
-from datetime import date
+from datetime import date, datetime, timezone, timedelta
 from django.core.validators import MinValueValidator, RegexValidator
 
 
@@ -22,7 +24,7 @@ class Supplier_Status(models.Model):
 # Entrada
 class Entry(models.Model):
     amount = models.PositiveIntegerField(verbose_name="Cantidad")
-    detail = models.CharField(max_length=50, verbose_name="Detalle")
+    detail = models.CharField(max_length=200, verbose_name="Detalle")
     entry_date = models.DateField(verbose_name="Fecha Entrada", validators=[MinValueValidator(limit_value=date.today())])
 
     def __str__(self):
@@ -91,7 +93,7 @@ class Work_Time(models.Model):
 class Output(models.Model):
     output_amount = models.IntegerField(verbose_name="Cantidad Salida")
     detail = models.CharField(max_length=50, verbose_name="Detalle")
-    output_date = models.DateTimeField(verbose_name="Fecha Salida", validators=[MinValueValidator(limit_value=date.today())])
+    output_date = models.DateField(verbose_name="Fecha Salida", validators=[MinValueValidator(limit_value=date.today())])
     id_product = models.ForeignKey(Product, on_delete= models.CASCADE, verbose_name="Producto")
 
     def __str__(self):
@@ -124,7 +126,7 @@ class Inventory(models.Model):
 #Solicitud producto
 class Product_Request (models.Model):
     price_deliver = models.PositiveIntegerField(verbose_name="Precio Pedido")
-    deliver_date = models.DateTimeField(verbose_name="Fecha Entrega", validators=[MinValueValidator(limit_value=date.today())])
+    deliver_date = models.DateField(verbose_name="Fecha Entrega", validators=[MinValueValidator(limit_value=date.today())])
     cod_status_s = models.ForeignKey(Request_Status, on_delete= models.CASCADE, verbose_name="Estado")
     id_employee = models.ForeignKey(Employee, on_delete= models.CASCADE, verbose_name="Empleado")
 
@@ -138,8 +140,20 @@ class Product_Request (models.Model):
         ordering = ['id']
 
 #proveedor
+def validate_nit(value):
+    # Convertir el valor a cadena
+    nit_str = str(value)
+
+    cleaned_value = ''.join(nit_str.split('-')).replace(' ', '')
+
+    if len(cleaned_value) not in [9, 10]:
+        raise ValidationError('El NIT debe tener 9 o 10 dígitos.')
+
+    if not cleaned_value.isdigit():
+        raise ValidationError('El NIT solo puede contener dígitos.')
+
 class Suplier(models.Model):
-    nit = models.PositiveIntegerField(verbose_name="Nit")
+    nit = models.PositiveIntegerField(verbose_name="Nit", validators=[validate_nit])
     legal_representative_name = models.CharField(max_length=50, verbose_name="Nombre Representante Legal")
     phone = models.PositiveIntegerField(verbose_name="Telefono",
         validators=[RegexValidator(

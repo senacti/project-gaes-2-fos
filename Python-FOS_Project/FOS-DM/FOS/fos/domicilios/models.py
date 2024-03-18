@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ValidationError
 from venta.models import Sale
 from datetime import date
 from django.core.validators import MinValueValidator, RegexValidator
@@ -38,7 +39,7 @@ class Domicile(models.Model):
     cod_status_domicile = models.ForeignKey(Domicile_Status, on_delete=models.CASCADE, related_name='domiciles', verbose_name="Estado del domicilio")
     sale = models.ForeignKey(Sale, on_delete= models.CASCADE, verbose_name="Venta")
     def __str__(self):
-        return f"{self.date} - {self.cod_status_domicile} " #- {self.id_client}"
+        return f"{self.date} - {self.cod_status_domicile} "
 
     class Meta:
         verbose_name = "Domicilio"
@@ -47,19 +48,34 @@ class Domicile(models.Model):
         ordering = ['id']
 
 #Empresa transportadora
+        
+def validate_nit(value):
+    # Convertir el valor a cadena
+    nit_str = str(value)
+
+    cleaned_value = ''.join(nit_str.split('-')).replace(' ', '')
+
+    if len(cleaned_value) not in [9, 10]:
+        raise ValidationError('El NIT debe tener 9 o 10 dígitos.')
+
+    if not cleaned_value.isdigit():
+        raise ValidationError('El NIT solo puede contener dígitos.')
+
 class Company_Transportation(models.Model):
-    company_nit = models.PositiveIntegerField(verbose_name="Nit Empresa")
+    company_nit = models.PositiveIntegerField(verbose_name="Nit Empresa", validators=[validate_nit])
+    company_name = models.CharField(max_length=50, verbose_name="Nombre Empresa", null=True, blank=True)
     date_domicile = models.DateField( verbose_name="Fecha Entrega", validators=[MinValueValidator(limit_value=date.today())])
     id_domicile = models.ForeignKey(Domicile, on_delete= models.CASCADE, verbose_name="Domicilio")
 
     def __str__(self):
-        return f"{self.company_nit} - {self.date_domicile} , {self.id_domicile}"
+        return f"{self.company_nit} - {self.company_name} - {self.date_domicile} , {self.id_domicile}"
     
     class Meta: 
         verbose_name = "Empresa Trasportadora"
         verbose_name_plural = "Empresas Transportadoras"
         db_table = "empresa_transportadora"
         ordering = ['id']
+
 
 
 

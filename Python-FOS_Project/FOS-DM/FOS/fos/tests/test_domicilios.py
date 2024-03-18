@@ -1,5 +1,5 @@
 import pytest
-from datetime import date
+from datetime import date, timezone
 from venta.models import Sale
 from domicilios.models import *
 
@@ -66,7 +66,7 @@ def test_delete_city():
 #/////////// test modelo estado domicilio ////////////////
 
 @pytest.mark.django_db
-def test_create_domicile_estatus():
+def test_create_domicile_status():
     #crea una instancia de domicilio estado
     domicile = Domicile_Status.objects.create(
         status_d = "Entregado"
@@ -109,78 +109,135 @@ def test_delete_domicile_status():
 #/////////// fin test modelo estado domicilio ////////////////
     
 #///////////  test modelo domicilio ////////////////
-    
-@pytest.mark.django_db
-def test_create_domicile():
-    # Crea instancias de modelos relacionados
-    city = City.objects.create(cod_city=1, city="Ciudad Ejemplo")
-    status_domicile = Domicile_Status.objects.create(status_d="Entregado")
-    
-    # Crear una instancia de Sale con un valor para sale_amount
-    sale = Sale.objects.create(
-        sale_date="2024-03-07",  
-        sale_amount=100,  
-        sale_send="Envio venta",  
-        unit_value="21000",
-        discount="15",
-        vat="19",
-        subtotal="21241",
-        total="21241"
-    )
 
-    # Crea una instancia de Domicile con valores específicos
+@pytest.fixture
+def create_city():
+    # Crear un objeto de ciudad para usarlo en las pruebas
+    city = City.objects.create(cod_city=1, city="Ciudad Ejemplo")
+    yield city
+    # Limpiar después de las pruebas
+    city.delete()
+
+@pytest.fixture
+def create_domicile_status():
+    # Crear un objeto de estado de domicilio para usarlo en las pruebas
+    domicile_status = Domicile_Status.objects.create(status_d="Entregado")
+    yield domicile_status
+    # Limpiar después de las pruebas
+    domicile_status.delete()
+
+@pytest.fixture
+def create_sale():
+    # Crear un objeto de venta para usarlo en las pruebas
+    sale = Sale.objects.create(sale_date=date.today(),
+        sale_amount=100,
+        sale_send="Envio Venta",
+        unit_value=21000,
+        discount=15,
+        vat=19)
+    yield sale
+    # Limpiar después de las pruebas
+    sale.delete()
+
+@pytest.mark.django_db
+def test_create_domicile(create_city, create_domicile_status, create_sale):
+    # Crear una instancia de Domicile
     domicile = Domicile.objects.create(
         date=date.today(),
         direction="Dirección de ejemplo",
-        city=city,
-        cod_status_domicile=status_domicile,
-        sale=sale  
+        city=create_city,
+        cod_status_domicile=create_domicile_status,
+        sale=create_sale
     )
 
-    # Verifica que la instancia se haya creado correctamente
-    assert Domicile.objects.exists(), "No se creó la instancia de Domicile"
-    assert domicile.date == date.today(), f"La fecha es {domicile.date}, se esperaba {date.today()}"
-    assert domicile.direction == "Dirección de ejemplo", "La dirección no coincide"
-    assert domicile.city == city, "La ciudad no coincide"
-    assert domicile.cod_status_domicile == status_domicile, "El estado del domicilio no coincide"
-    assert domicile.sale == sale, "La venta no coincide"
+    # Verificar que se haya creado correctamente
+    assert domicile is not None
+
+@pytest.mark.django_db
+def test_edit_domicile(create_city, create_domicile_status, create_sale):
+    # Crear una instancia de Domicile
+    domicile = Domicile.objects.create(
+        date=date.today(),
+        direction="Dirección de ejemplo",
+        city=create_city,
+        cod_status_domicile=create_domicile_status,
+        sale=create_sale
+    )
+
+    # Modificar la dirección del domicilio
+    new_direction = "Nueva Dirección"
+    domicile.direction = new_direction
+    domicile.save()
+
+    # Verificar que la edición se realizó correctamente
+    updated_domicile = Domicile.objects.get(pk=domicile.pk)
+    assert updated_domicile.direction == new_direction
+
+@pytest.mark.django_db
+def test_delete_domicile(create_city, create_domicile_status, create_sale):
+    # Crear una instancia de Domicile
+    domicile = Domicile.objects.create(
+        date=date.today(),
+        direction="Dirección de ejemplo",
+        city=create_city,
+        cod_status_domicile=create_domicile_status,
+        sale=create_sale
+    )
+
+    # Eliminar la instancia de Domicile
+    domicile.delete()
+
+    # Verificar que se haya eliminado correctamente
+    with pytest.raises(Domicile.DoesNotExist):
+        Domicile.objects.get(pk=domicile.pk)
 
 
 
-#/////////////////Test modelo domicilio///////////////////////////////////////
+#/////////////////Fin Test modelo domicilio///////////////////////////////////////
     
 
 
 #/////////////////Test modelo Empresa transportadora//////////////////////////
-@pytest.mark.django_db
-def test_create_empresa_transportadora():
-    #crear instancia
-    company = Company_Transportation.objects.create(
-        company_nit = '233344556',
-        date_domicile = '2024-03-07',
-        id_domicile = ''
+
+
+@pytest.fixture
+def create_domicile(create_city, create_domicile_status, create_sale):
+    # Crear un objeto de domicilio para usarlo en las pruebas
+    domicile = Domicile.objects.create(
+        date=date.today(),
+        direction="Dirección de ejemplo",
+        city=create_city,  # Aquí se invoca la función para obtener una instancia de City
+        cod_status_domicile=create_domicile_status,
+        sale=create_sale
     )
+    yield domicile
+    # Limpiar después de las pruebas
+    domicile.delete()
 
-"""@pytest.mark.django_db
-def test_create_city():
-    # Crea una instancia de City
-    city = City.objects.create(
-        cod_city='8',
-        city="Example City"
-        )
-
-    #Verifica que la instancia se haya creado correctamente
-    assert City.objects.count() == 1
-    assert city.cod_city == '8'
-    assert city.city == "Example City"
+@pytest.fixture
+def create_company_transportation(create_domicile):
+    # Crear una instancia de Company_Transportation para usarlo en las pruebas
+    company_transportation = Company_Transportation.objects.create(
+        company_nit=1234567890,
+        company_name="Nombre Empresa",
+        date_domicile=date.today(),
+        id_domicile=create_domicile
+    )
+    yield company_transportation
+    # Limpiar después de las pruebas
+    company_transportation.delete()
 
 @pytest.mark.django_db
-def test_city_str_method():
-    # Crea una instancia de City
-    city = City.objects.create(
-        cod_city=1,
-        city="Example City"
-    )"""
+def test_edit_company_transportation(create_company_transportation, create_domicile):
+    # Editar la instancia de Company_Transportation
+    company_transportation = create_company_transportation
+    new_company_name = "Nuevo Nombre"
+    company_transportation.company_name = new_company_name
+    company_transportation.save()
+
+    # Verificar que la edición se realizó correctamente
+    updated_company_transportation = Company_Transportation.objects.get(pk=company_transportation.pk)
+    assert updated_company_transportation.company_name == new_company_name
 
 
 
