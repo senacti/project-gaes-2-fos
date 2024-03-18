@@ -4,22 +4,21 @@ from django.core.validators import MinValueValidator, RegexValidator, MaxValueVa
 
 #Venta
 class Sale(models.Model):
-    
     sale_date = models.DateField(verbose_name="Fecha Venta", validators=[MinValueValidator(limit_value=date.today())])
     sale_amount = models.PositiveIntegerField(verbose_name="Cantidad Venta")
     sale_send = models.CharField(max_length=50, verbose_name="Envio Venta")
     unit_value = models.PositiveIntegerField(verbose_name="Valor Unitario")
-    discount = models.PositiveIntegerField(verbose_name="Descuento",validators=[MinValueValidator(limit_value=0), MaxValueValidator(limit_value=100)])
+    discount = models.PositiveIntegerField(verbose_name="Descuento", validators=[MinValueValidator(limit_value=0), MaxValueValidator(limit_value=100)])
     vat = models.PositiveIntegerField(verbose_name="IVA", validators=[MinValueValidator(limit_value=0), MaxValueValidator(limit_value=100)])
-    subtotal = models.PositiveIntegerField(verbose_name="Subtotal", editable=False )
+    subtotal = models.PositiveIntegerField(verbose_name="Subtotal", editable=False)
     total = models.PositiveIntegerField(verbose_name="Total", editable=False)
 
     def save(self, *args, **kwargs):
         discount_amount = (self.unit_value * self.discount / 100) * self.sale_amount
         vat_amount = (self.unit_value * self.vat / 100) * self.sale_amount
 
-        self.subtotal = (self.unit_value * self.sale_amount) - discount_amount + vat_amount
-        self.total = self.subtotal
+        self.subtotal = (self.unit_value * self.sale_amount) - discount_amount
+        self.total = self.subtotal + vat_amount
 
         super().save(*args, **kwargs)
 
