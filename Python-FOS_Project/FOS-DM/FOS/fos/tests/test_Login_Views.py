@@ -1,4 +1,4 @@
-"""from django.test import TestCase, Client
+from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login
 
@@ -20,7 +20,7 @@ class LoginViewTest(TestCase):
         self.assertRedirects(response, '/ventas/')  
         self.assertTrue(self.client.login(username='daniel', password='Dark123456%'))  # Verifica el inicio de sesión
 
-    ""def test_login_unsuccessful(self):
+    def test_login_unsuccessful(self):
         response = self.client.post('/login/', {
             'username': 'daniel',
         'password': 'Dark123456%',
@@ -34,7 +34,7 @@ class LoginViewTest(TestCase):
         response = self.client.get('/login/')
         self.assertEqual(response.status_code, 200)  
         self.assertTemplateUsed(response, 'login.html')
-"""
+
 
 
 
