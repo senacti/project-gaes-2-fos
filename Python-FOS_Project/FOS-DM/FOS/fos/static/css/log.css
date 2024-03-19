@@ -169,7 +169,7 @@ form{
     color: #f9bc60;
 }
 
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 991px) {
     body{
         height: 100%;
     }
@@ -183,13 +183,13 @@ form{
     transform: translateX(-30vh);
     }
     .contenedor h2{
-        transform: translate(0,-5vh);
+        transform: translate(-5vh,-5vh);
     }
     .contenedor h1{
-        transform: translate(-3vh,-45vh);
+        transform: translate(5vh,-45vh);
     }
-    img .img-logo-login{
-        max-width: 100px;
+    img{
+        height: 350px;
     }
 }
 

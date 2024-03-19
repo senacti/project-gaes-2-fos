@@ -1,10 +1,11 @@
-.containerser{
+.containerser {
     width: 100%;
     height: 100vh;
     padding: 0 8%;
-    
-    }
-    .containerser .h1pri{
+
+}
+
+.containerser .h1pri {
     z-index: -1;
     text-align: center;
     padding: 10%;
@@ -13,14 +14,14 @@
     position: relative;
     transform: translateY(-5vh);
     color: white;
-    
-    }
 
-    .containerser .h1pri:hover{
-        color: #f9bc60;
-    }
+}
 
-    .containerser  h1::after{
+.containerser .h1pri:hover {
+    color: #f9bc60;
+}
+
+.containerser h1::after {
     content: '';
     background: #3da9fc;
     width: 50px;
@@ -29,15 +30,17 @@
     bottom: 70px;
     left: 50%;
     transform: translateX(-50%);
-    
-    }
-    .row{
+
+}
+
+.row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 30px;
     transform: translateY(-15vh);
-    }
-    .service{
+}
+
+.service {
     text-align: center;
     padding: 25px 10px;
     border-radius: 5px;
@@ -46,34 +49,39 @@
     background: transparent;
     transition: transform 0.5s;
     color: white;
-    
-    }
-    .service i{
+
+}
+
+.service i {
     font-size: 40px;
     margin-bottom: 10px;
     color: white;
-    }
-    .service h2{
+}
+
+.service h2 {
     font-weight: 600;
     margin-bottom: 8px;
-    
-    
-    }
-    
-    .service:hover{
+
+
+}
+
+.service:hover {
     background: transparent;
     color: #fff;
     transform: scale(1.05);
     box-shadow: 0px 5px 10px 5px #3da9fc;
     font-weight: bold;
-    }
-    .service:hover i{
+}
+
+.service:hover i {
     color: #3da9fc;
-    }
-    .service:hover h2{
-        color: #f9bc60;
-    }
-    .botonservi2{
+}
+
+.service:hover h2 {
+    color: #f9bc60;
+}
+
+.botonservi2 {
     width: 100%;
     height: 50px;
     border: 1px solid;
@@ -84,29 +92,42 @@
     cursor: pointer;
     outline: none;
     margin-top: 10px;
-    }
-    .botonservi2 :hover{
-        opacity: .10;
-    }
-    .footer-container{
+}
+
+.botonservi2 :hover {
+    opacity: .10;
+}
+
+.footer-container {
     background-color: #123f60;
     border-radius: 20px;
+}
+
+@media screen and (max-width: 991px) {
+    
+
+    .containerser .h1pri {
+        transform: translateY(10vh);
     }
 
-    @media screen and (max-width: 991px) {
-        .containerser .h1pri{
-            transform: translateY(10vh);
-        }
-        .row {
-            transform: translateY(10vh);
-        }
-        .containerser  h1::after{
-            transform: translateY(10vh);
-        }
-        .footer-container{
-            margin-top: 70vh;
-        }
-        
+    .row {
+        transform: translateY(10vh);
+    }
+
+    .containerser h1::after {
+        transform: translateY(10vh);
+    }
+
+    .footer-container {
+        margin-top: 100vh;
+    }
+    .social{
+        transform: translate(0,-8vh);
+    }
+    .copy{
+        margin-left: -290px;
+        margin-top: 80px;
     }
     
-    
+
+}

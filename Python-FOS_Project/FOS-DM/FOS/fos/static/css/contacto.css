@@ -134,27 +134,70 @@ footer{
 }
 
 @media screen and (max-width: 991px) {
-    .container-form {
-        grid-template-columns: 1fr; 
+    .menu {
+        padding: 10%;
+        transform: translateX(-2vw);
+        z-index: 1;
     }
-    .info-form{
-        transform: translate(10vh, 10vh);
-        justify-content: baseline;
+    .menu label {
+        display: inline-block;
+        height: 30px;
+        width: 35px;
+        background-color: #3da9fc;
+        border-radius: 20px;
     }
-    .container-form h2{
-        transform: translateX(20vh);
-    }
-
-    section  .map{
-        transform: translate(20vh, -10vh);
-    }
-    .container-form form{
-        transform: translateY(40vh);
-        height: 100%;
-    }
-    footer {
-        transform: translateY(50vh);
+    .menu .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #123f60;
+        display: none;
+        transform: translateY(-40px);
+        border-radius: 20px;
         
     }
-    
+    .menu .navbar ul li {
+        width: 100%;
+    }
+    #menu:checked ~ .navbar {
+        display: block;
+        
+    }
+    img{
+        width: 50px;
+        transform: translateX(0.5vh);
+    }
+    .logo{
+        width: 30%;
+        transform: translate(30vh,-8vh);
+    }
+    .container-form {
+        grid-template-columns: 1fr;
+        transform: translateY(-35vh);
+    }
+    .info-form {
+        transform: translateY(10vh);
+        justify-content: center; /* Ajustado para centrar */
+    }
+    .container-form h2 {
+        transform: translateX(10vw);
+    }
+    section .map {
+        transform: translate(10vw, -10vh); /* Ajustado para mejorar la posición */
+    }
+    .container-form form {
+        transform: translateY(35vh);
+        height: auto; /* Ajustado para permitir una altura flexible */
+        width: auto;
+    }
+    footer {
+        transform: translateY(30vh);
+    }
+    .socials .copy{
+        margin-left: -330px;
+        margin-top: 65px;
+        transform: translateX(10vh);
+        text-align: center;
+    }
 }

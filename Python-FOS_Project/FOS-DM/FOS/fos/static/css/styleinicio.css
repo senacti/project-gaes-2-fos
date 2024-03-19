@@ -328,14 +328,52 @@ h2{
         flex-direction: column;
         text-align: center; 
     }
-    
+    .menu {
+        padding: 10%;
+        transform: translateX(-2vw);
+        z-index: 1;
+    }
+
+    .menu label {
+        display: inline-block;
+        height: 30px;
+        width: 35px;
+        background-color: #3da9fc;
+        border-radius: 20px;
+    }
+
+    .menu .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #123f60;
+        display: none;
+        transform: translateY(-40px);
+        border-radius: 20px;
+
+    }
+
+    .menu .navbar ul li {
+        width: 100%;
+    }
+
+    #menu:checked~.navbar {
+        display: block;
+
+    }
+
+    img {
+        width: 50px;
+        transform: translateX(0.5vh);
+    }
+
+    .logo {
+        width: 30%;
+        transform: translate(30vh, -8vh);
+    }
 }
 
-.header .navbar ul li{
-    float: left;
-    position: relative;
-}
-/* Media query para dispositivos con un ancho máximo de 990px */
 
 
 

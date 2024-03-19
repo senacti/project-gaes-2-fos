@@ -565,6 +565,10 @@ hr{
 
     .link{
         width: 100%;
+        text-align: center;
+    }
+    .link .terminos{
+        transform: translateX(20vh);
     }
     #mensaje {
         width: 80%;

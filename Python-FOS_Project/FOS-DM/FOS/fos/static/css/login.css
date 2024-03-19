@@ -169,24 +169,27 @@ form{
     color: #f9bc60;
 }
 
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 991px) {
     body{
         height: 100%;
     }
     .contenedor{
-        width: 100%;
+        width: 90%;
         transform: translateX(-23vh);
         backdrop-filter: blur(10px);
     }
     
     .formulario {
-    transform: translateX(-30vh);
+    transform: translateX(-32vh);
     }
     .contenedor h2{
         transform: translate(0,-5vh);
     }
     .contenedor h1{
-        transform: translate(-3vh,-45vh);
+        transform: translate(5vh,-45vh);
+    }
+    img{
+        height: 350px;
     }
 }
 
