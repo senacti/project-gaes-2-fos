@@ -667,9 +667,9 @@
                     {% if user.is_staff %}
                     <a href="{% url 'export_domicile' %}" target="_blank"><button class="btn btn-success"
                             style="margin-right: 60px;">Domicilios</button></a>
-                    <a href="{% url 'admin:index' %}" target="_blank"><button class="btn btn-success"
+                    <a href="#" target="_blank"><button class="btn btn-success"
                             style="margin-right: 60px">Inventario</button></a>
-                    <a href="#" target="_blank"><button class="btn btn-success">Venta</button></a>
+                    <a href="{% url 'export_sale' %}" target="_blank"><button class="btn btn-success">Venta</button></a>
                     {% else %}
                     {% for group in user.groups.all %}
                     {% if group.name == 'Empleados' %}

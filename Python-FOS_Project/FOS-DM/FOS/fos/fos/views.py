@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.views import View
+from django.contrib.auth.decorators import login_required
 # Importaciones PDF
 
 # Fin importaciones PDF
@@ -164,6 +165,7 @@ def signup(request):
 
 
 # INICIO PDF
+
 def PDF (request):
     return render(request, 'PDF.html')
 
@@ -179,12 +181,13 @@ def factura(request):
 
 
 # Todo domicilios
+@login_required
 def domicilios(request):
     return render(request, 'domicilios.html')
 
 # /////consultas
 
-
+@login_required
 def consultar_domicilios(request):
     if request.method == 'POST':
         fecha = request.POST.get('fecha')
@@ -199,7 +202,7 @@ def consultar_domicilios(request):
 
         return render(request, 'consultasdom/consuldomi.html', {'domicilios': domicilios})
 
-
+@login_required
 def consultar_empresa(request):
     if request.method == 'POST':
         nit = request.POST.get('nit')
@@ -214,7 +217,7 @@ def consultar_empresa(request):
 
         return render(request, 'consultasdom/consulem.html', {'domicilios': domicilios})
 
-
+@login_required
 def agendar_consultar(request):
     if request.method == 'POST':
         nomusu = request.POST.get('nomusu')
@@ -234,7 +237,7 @@ def agendar_consultar(request):
         )
         return render(request, 'consultasdom/consuagen.html', {'domicilios': domicilios})
 
-
+@login_required
 def agendar(request):
     if request.method == 'POST':
         form = DomicileForm(request.POST)

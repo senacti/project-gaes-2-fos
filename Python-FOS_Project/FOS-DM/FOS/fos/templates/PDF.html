@@ -1,13 +1,14 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOS | PDF</title>
     <link rel="SHORTCUT ICON" href="{% static 'favicon.ico' %}" type="image/x-icon">
     <link href="{% static 'reportbro/reportbro.css' %}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'css/styleinicio'%}">
 
     <script src="{% static 'reportbro/reportbro.js' %}"></script>
     <script src="{% static 'js/knockout-3.5.1.min.js' %}"></script>
@@ -33,7 +34,9 @@
         </script>
 
         <div>
-            <a href=" {% url 'report:report_edit' 'Users' %} ">Usuarios</a>
+            <a href=" {% url 'report:report_edit' 'Sales' %} ">Venta1</a>
+            <a href=" {% url 'report:report_edit' 'Sales' %} ">Venta</a>
+            <a href=" {% url 'report:report_edit' 'Inventory' %} ">Inventario</a>
             <a href=" {% url 'report:report_edit' 'Domiciles' %} ">Domicilio</a>
             {% block body %} {% endblock body %}
         </div>

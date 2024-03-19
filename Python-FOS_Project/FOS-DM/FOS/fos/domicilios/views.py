@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from domicilios.models import Domicile
+from venta.models import Sale
 from django.contrib.auth.models import User
 from report.report import report
+from django.http import HttpResponseServerError
+import traceback
 
 def exportDomicilePDF(request):
     domiciles = Domicile.objects.all()
@@ -21,6 +24,33 @@ def exportDomicilePDF(request):
     }
 
     return report(request, 'domiciles', data)
+
+def exportSalePDF(request):
+    try:
+        sales = Sale.objects.all()
+
+        sales_list = []
+        for sale in sales:
+            sales_list.append({
+                'sale_date': sale.sale_date,
+                'sale_amount': sale.sale_amount,
+                'sale_sent': sale.sale_send,
+                'unit_value': sale.unit_value,
+                'discount': sale.discount,
+                'vat': sale.vat,
+                'subtotal': sale.subtotal,
+                'total': sale.total
+            })
+
+        data = {
+            'sales': sales_list
+        }
+
+        return report(request, 'sales', data)
+    except Exception as e:
+        # Registra la excepción para depuración
+        traceback.print_exc()  # Esto imprimirá la traza de la pila en la consola del servidor
+        return HttpResponseServerError("Error interno del servidor al generar el informe PDF.")
 
 def exportUsersPDF(request):
     users = User.objects.all()

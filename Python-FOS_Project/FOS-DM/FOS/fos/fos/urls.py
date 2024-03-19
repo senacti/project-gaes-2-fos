@@ -19,7 +19,8 @@ from django.urls import path, include
 from . import views
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from domicilios.views import exportUsersPDF,exportDomicilePDF
+from domicilios.views import exportUsersPDF,exportDomicilePDF, exportSalePDF
+
 
 
 urlpatterns = [
@@ -66,6 +67,7 @@ urlpatterns = [
     path('report/', include(('report.urls', 'report'))),
     path('export_user_pdf/', exportUsersPDF, name='export_user'),
     path('export_domicile_pdf/', exportDomicilePDF, name='export_domicile'),
+    path('export_sale_pdf/', exportSalePDF, name='export_sale'),
     path('pdfpg', views.pdfpg, name='pdfpg'),
     # Cierre PDF
 
