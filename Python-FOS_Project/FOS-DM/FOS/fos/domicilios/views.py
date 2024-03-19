@@ -26,31 +26,26 @@ def exportDomicilePDF(request):
     return report(request, 'domiciles', data)
 
 def exportSalePDF(request):
-    try:
-        sales = Sale.objects.all()
+    sales = Sale.objects.all()
 
-        sales_list = []
-        for sale in sales:
-            sales_list.append({
-                'sale_date': sale.sale_date,
-                'sale_amount': sale.sale_amount,
-                'sale_sent': sale.sale_send,
-                'unit_value': sale.unit_value,
-                'discount': sale.discount,
-                'vat': sale.vat,
-                'subtotal': sale.subtotal,
-                'total': sale.total
-            })
+    sales_list = []
+    for sale in sales:
+        sales_list.append({
+            'sale_date':sale.sale_date,
+            'sale_amount':sale.sale_amount,
+            'sale_send': sale.sale_send,
+            'unit_value': sale.unit_value,
+            'discount': sale.discount,
+            'vat': sale.vat,
+            'subtotal': sale.subtotal,
+            'total': sale.total
+        })
 
-        data = {
-            'sales': sales_list
-        }
+    data = {
+        'sales': sales_list
+    }
 
-        return report(request, 'sales', data)
-    except Exception as e:
-        # Registra la excepción para depuración
-        traceback.print_exc()  # Esto imprimirá la traza de la pila en la consola del servidor
-        return HttpResponseServerError("Error interno del servidor al generar el informe PDF.")
+    return report(request, 'sales', data)
 
 def exportUsersPDF(request):
     users = User.objects.all()
