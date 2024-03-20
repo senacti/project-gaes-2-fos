@@ -169,10 +169,10 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 """
-ALLOWED_HOSTS = ['7e17-190-69-56-218.ngrok-free.app']
+ALLOWED_HOSTS = ['1cd0-190-69-56-218.ngrok-free.app']
 """USE_X_FORWARDED_HOST = True"""
 CSRF_TRUSTED_ORIGINS = [
-    'https://7e17-190-69-56-218.ngrok-free.app',
+    'https://1cd0-190-69-56-218.ngrok-free.app',
     
 ]
 
