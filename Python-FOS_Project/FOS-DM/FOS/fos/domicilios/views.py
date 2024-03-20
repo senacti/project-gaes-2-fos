@@ -1,11 +1,15 @@
 from django.shortcuts import render
 from domicilios.models import Domicile
 from venta.models import Sale
+from inventario.models import Suplier, Supplier_Status
 from django.contrib.auth.models import User
 from report.report import report
 from django.http import HttpResponseServerError
 import traceback
 
+
+
+#PDF domicilio
 def exportDomicilePDF(request):
     domiciles = Domicile.objects.all()
 
@@ -25,6 +29,10 @@ def exportDomicilePDF(request):
 
     return report(request, 'domiciles', data)
 
+#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#PDF ventas
 def exportSalePDF(request):
     sales = Sale.objects.all()
 
@@ -46,6 +54,25 @@ def exportSalePDF(request):
     }
 
     return report(request, 'sales', data)
+
+#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#PDF Inventario
+def exportInventoryPDF(request):
+    suppliers = Supplier_Status.objects.all()
+    
+    suppliers_list = []
+    for supplier in suppliers:
+        suppliers_list.append({
+            'status_s': supplier.status_s,
+        })
+    data = {
+        'suppliers': suppliers_list
+    }
+
+    return report(request, 'suppliers', data)
+
+#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 def exportUsersPDF(request):
     users = User.objects.all()

@@ -165,6 +165,7 @@ def signup(request):
 
 
 # INICIO PDF
+@login_required
 
 def PDF (request):
     return render(request, 'PDF.html')

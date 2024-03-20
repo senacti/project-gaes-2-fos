@@ -175,12 +175,12 @@
             </div>
             <div class="service">
                 <i class="fa-solid fa-calendar-days"></i>
-                <h2>Agendar, consultar envios</h2>
-                <p>Domicilios agendados o agendar estos.</p>
+                <h2>Consultar Domicilios</h2>
+                <p>Consulta los domicilios agendados.</p>
                 <br>
                 <br>
                 <a href="#" data-toggle="modal" data-target="#agendarModal">
-                    <button class="botonservi2">Consular | Agendar</button>
+                    <button class="botonservi2">Consular</button>
                 </a>
             </div>
         </div>
@@ -296,7 +296,7 @@
             <div class="modal-content"
                 style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Consultar | Agendar</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Consultar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -324,11 +324,7 @@
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Consultar <i
                                     class="fa-solid fa-magnifying-glass"></i></button>
-                            <a href="{% url 'agendar'%}">
-                                <button type="button" class="btn btn-success" data-toggle="modal">Agendar <i
-                                        class="fa-solid fa-plus"></i></button>
-                            </a>
-
+                            
                         </div>
 
                     </form>
