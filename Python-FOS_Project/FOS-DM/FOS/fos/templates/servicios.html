@@ -42,17 +42,16 @@
                             <a style="text-decoration: none;" href="{% url 'salir' %}" class="custom-menu-item">
                                 Salir <i class="fa-solid fa-right-from-bracket"
                                     style="position: absolute; font-size: 1.6rem; top: 19px; right: 8px;"></i></a>
-                            <a style="text-decoration: none;" href="#" class="custom-menu-item"
-                                data-toggle="modal" data-target="#configuracionModal">Configuración</a>
+                            <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                                data-target="#configuracionModal">Configuración</a>
 
                             {% if user.is_staff %}
-                            <a style="text-decoration: none;" href="{% url 'domicilios'%}"
-                                class="custom-menu-item">
+                            <a style="text-decoration: none;" href="{% url 'domicilios'%}" class="custom-menu-item">
                                 Domicilios </a>
                             <a style="text-decoration: none;" href="{% url 'admin:index' %}"
                                 class="custom-menu-item">Administrador </a>
-                            <a style="text-decoration: none;" href="#" class="custom-menu-item"
-                                data-toggle="modal" data-target="#pdfModal">PDF</a>
+                            <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                                data-target="#pdfModal">PDF</a>
                             {% else %}
                             {% for group in user.groups.all %}
                             {% if group.name == 'Empleados' %}
@@ -60,8 +59,8 @@
                                 class="custom-menu-item">Domicilios </a>
                             <a style="text-decoration: none;" href="{%url 'admin:index'%}"
                                 class="custom-menu-item">Administrador </a>
-                            <a style="text-decoration: none;" href="#" class="custom-menu-item"
-                                data-toggle="modal" data-target="#pdfModal">PDF</a>
+                            <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                                data-target="#pdfModal">PDF</a>
                             {% endif %}
                             {% endfor %}
                             {% endif %}
@@ -80,8 +79,8 @@
                                 style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="configuracionModalLabel"> Configuración</h5>
-                                    <button type="button" style="color: white;" class="close"
-                                        data-dismiss="modal" aria-label="Close">
+                                    <button type="button" style="color: white;" class="close" data-dismiss="modal"
+                                        aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -117,8 +116,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger"
-                                        data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -127,16 +125,16 @@
                 <div>
                     <ul>
                         <nav class="navbar">
-                            
-    
-    
+
+
+
                         </nav>
-    
-    
+
+
                     </ul>
                 </div>
             </nav>
-            
+
     </header>
 
     <div class="containerser">
@@ -151,7 +149,8 @@
                 <br>
                 <br>
                 <a style="text-decoration: none; background-color: #3da9fc; color: white; border-radius: 25px; font-size: 20px; border: 1px solid white;"
-                    href="#" class="custom-menu-item" data-toggle="modal" data-target="#ventasModal"><i class="fa-solid fa-circle-info" style="font-size: 20px;"></i> Saber más </a>
+                    href="#" class="custom-menu-item" data-toggle="modal" data-target="#ventasModal"><i
+                        class="fa-solid fa-circle-info" style="font-size: 20px;"></i> Saber más </a>
 
 
 
@@ -165,7 +164,8 @@
                 <br>
                 <br>
                 <a style="text-decoration: none; background-color: #3da9fc; color: white; border-radius: 25px; font-size: 20px; border: 1px solid white;"
-                    href="#" class="custom-menu-item" data-toggle="modal" data-target="#domiciliosModal"> <i class="fa-solid fa-circle-info" style="font-size: 20px;"></i> Saber más</a>
+                    href="#" class="custom-menu-item" data-toggle="modal" data-target="#domiciliosModal"> <i
+                        class="fa-solid fa-circle-info" style="font-size: 20px;"></i> Saber más</a>
             </div>
         </div>
     </div>
@@ -196,9 +196,10 @@
                         <img src="{% static 'img/instagram.png' %}" alt="">
                     </div>
                 </a>
-                <p class="copy" style="color: white; transform: translateY(1.5vh);"><strong>&copy; 2023 FOS. Todos los derechos reservados.</strong> 
+                <p class="copy" style="color: white; transform: translateY(1.5vh);"><strong>&copy; 2023 FOS. Todos los
+                        derechos reservados.</strong>
                 </p>
-                
+
             </div>
         </div>
     </footer>
@@ -210,8 +211,8 @@
 </html>
 
 <!--Modal PDF-->
-<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true" style="color: white;">
+<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    style="color: white;">
     <div class="modal-dialog" role="document"
         style="box-shadow: 0px 5px 10px 5px #3da9fc; border-radius: 20px; overflow: hidden;">
         <div class="modal-content"
@@ -228,24 +229,23 @@
                     <h6 style="text-align: center;">Genera tu PDF:</h6>
                     {% if user.is_authenticated %}
                     <p>Tu grupo actual es:
-                        
-                            {% for group in user.groups.all %}
-                                {{ group.name }}
-                            {% endfor %}
-                        
+
+                        {% for group in user.groups.all %}
+                        {{ group.name }}
+                        {% endfor %}
+
                     </p>
                     {% if user.is_staff %}
                     <a href="{% url 'export_domicile' %}" target="_blank"><button class="btn btn-success"
                             style="margin-right: 60px;">Domicilios</button></a>
-                    <a href="{% url 'admin:index' %}" target="_blank"><button class="btn btn-success"
-                            style="margin-right: 60px">Inventario</button></a>
-                    <a href="#" target="_blank"><button class="btn btn-success">Venta</button></a>
+
+                    <a href="{% url 'export_sale' %}" target="_blank"><button class="btn btn-success">Venta</button></a>
                     {% else %}
                     {% for group in user.groups.all %}
                     {% if group.name == 'Empleados' %}
                     <a href="{% url 'export_domicile' %}" target="_blank"><button
                             class="btn btn-success">Domicilios</button></a>
-                        
+
                     {% endif %}
                     {% endfor %}
                     {% endif %}
@@ -256,13 +256,13 @@
                 {% else %}
                 <li><a style="text-decoration: none;" href="{% url 'loading' %}">Iniciar sesión</a></li>
                 {% endif %}
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa-solid fa-xmark"></i>
-                    Cerrar</button>
             </div>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa-solid fa-xmark"></i>
+                Cerrar</button>
+        </div>
     </div>
+</div>
 </div>
 <!--Modal PDF-->

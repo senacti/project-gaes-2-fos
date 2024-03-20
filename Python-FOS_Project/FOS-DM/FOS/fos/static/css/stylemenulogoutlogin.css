@@ -32,9 +32,8 @@
     }
     @media (max-width: 990px) {
         .custom-dropdown-content {
-            transform: translateX(-10vh);
-            width: 60%;
-            
+            color: white;
+            transform: translateX(20vh);
         }
     }
 
