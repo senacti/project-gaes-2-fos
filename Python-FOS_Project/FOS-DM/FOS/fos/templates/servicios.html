@@ -144,13 +144,13 @@
                 <i class="fa-solid fa-store"></i>
                 <h2>Ventas</h2>
                 <p>Ofrecemos una amplia variedad de objetos festivos, tales como
-                    piñatas, globos, confeti, etc, ¡pero no solo eso!, tambien vendemos peluches, juguetes todo tipo de
+                    piñatas, globos, confeti, etc, ¡pero no solo eso!, tambien vendemos peluches, juguetes todo tipo 
                     para niños, además de objetos para el hogar tales como manteles, etc.</p>
                 <br>
                 <br><br>
                 <a style="text-decoration: none; background-color: #3da9fc; color: white; border-radius: 25px; font-size: 20px; border: 1px solid white;"
-                    href="#" class="custom-menu-item" data-toggle="modal" data-target="#ventasModal"><i
-                        class="fa-solid fa-circle-info" style="font-size: 20px;"></i> Saber más </a>
+                    href="{% url 'ventas' %}" class="custom-menu-item"><i class="fa-solid fa-circle-info"
+                        style="font-size: 20px;"></i> Ir a comprar </a>
 
 
 
@@ -164,9 +164,12 @@
                     inolvidable.</p>
                 <br>
                 <br>
+                    
                 <a style="text-decoration: none; background-color: #3da9fc; color: white; border-radius: 25px; font-size: 20px; border: 1px solid white;"
-                    href="#" class="custom-menu-item" data-toggle="modal" data-target="#domiciliosModal"> <i
+                    href="#" class="custom-menu-item" data-toggle="modal" data-target="#saberdomiModal"> <i
                         class="fa-solid fa-circle-info" style="font-size: 20px;"></i> Saber más</a>
+                    
+
             </div>
         </div>
     </div>
@@ -266,4 +269,6 @@
     </div>
 </div>
 </div>
+{% include 'politicapriv.html' %}
+
 <!--Modal PDF-->
