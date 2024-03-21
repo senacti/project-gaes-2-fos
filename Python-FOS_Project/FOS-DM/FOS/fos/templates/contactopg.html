@@ -18,7 +18,8 @@
 
     <header class="header">
         <div class="menu container">
-            <a href="{% url 'ventas' %}" class="logo"><img class="logo-1" src="{% static 'img/logo1.png' %}" alt=" "></a>
+            <a href="{% url 'ventas' %}" class="logo"><img class="logo-1" src="{% static 'img/logo1.png' %}"
+                    alt=" "></a>
             <input type="checkbox" id="menu" />
             <label for="menu">
                 <img src="{% static 'img/menu.png' %}" class="menu-icono" alt=" ">
@@ -41,17 +42,16 @@
                             <a style="text-decoration: none;" href="{% url 'salir' %}" class="custom-menu-item">
                                 Salir <i class="fa-solid fa-right-from-bracket"
                                     style="position: absolute; font-size: 1.6rem; top: 19px; right: 8px;"></i></a>
-                            <a style="text-decoration: none;" href="#" class="custom-menu-item"
-                                data-toggle="modal" data-target="#configuracionModal">Configuración</a>
+                            <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                                data-target="#configuracionModal">Configuración</a>
 
                             {% if user.is_staff %}
-                            <a style="text-decoration: none;" href="{% url 'domicilios'%}"
-                                class="custom-menu-item">
+                            <a style="text-decoration: none;" href="{% url 'domicilios'%}" class="custom-menu-item">
                                 Domicilios </a>
                             <a style="text-decoration: none;" href="{% url 'admin:index' %}"
                                 class="custom-menu-item">Administrador </a>
-                            <a style="text-decoration: none;" href="#" class="custom-menu-item"
-                                data-toggle="modal" data-target="#pdfModal">PDF</a>
+                            <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                                data-target="#pdfModal">PDF</a>
                             {% else %}
                             {% for group in user.groups.all %}
                             {% if group.name == 'Empleados' %}
@@ -59,8 +59,8 @@
                                 class="custom-menu-item">Domicilios </a>
                             <a style="text-decoration: none;" href="{%url 'admin:index'%}"
                                 class="custom-menu-item">Administrador </a>
-                            <a style="text-decoration: none;" href="#" class="custom-menu-item"
-                                data-toggle="modal" data-target="#pdfModal">PDF</a>
+                            <a style="text-decoration: none;" href="#" class="custom-menu-item" data-toggle="modal"
+                                data-target="#pdfModal">PDF</a>
                             {% endif %}
                             {% endfor %}
                             {% endif %}
@@ -79,8 +79,8 @@
                                 style="background-color: rgba(15, 14, 23, 0.8); backdrop-filter: blur(1px); border-radius: 20px;">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="configuracionModalLabel"> Configuración</h5>
-                                    <button type="button" style="color: white;" class="close"
-                                        data-dismiss="modal" aria-label="Close">
+                                    <button type="button" style="color: white;" class="close" data-dismiss="modal"
+                                        aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -116,8 +116,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger"
-                                        data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -126,16 +125,16 @@
                 <div>
                     <ul>
                         <nav class="navbar">
-                            
-    
-    
+
+
+
                         </nav>
-    
-    
+
+
                     </ul>
                 </div>
             </nav>
-            
+
     </header>
 
     <div class="container-form">
@@ -147,10 +146,11 @@
             <a href="#"><i class="fa fa-map-marked"></i> Bogota, Colombia</a>
             <section>
                 <iframe class="map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31815.35461736233!2d-74.11056320427828!3d4.608462430735198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f996fc1731b19%3A0x67d539e568f514ca!2zTG9zIE3DoXJ0aXJlcywgQm9nb3TDoQ!5e0!3m2!1ses!2sco!4v1697998005245!5m2!1ses!2sco"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.923921788819!2d-74.09413798547122!3d4.601563243575464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9968f8ed44c5%3A0xd010dc1af0b6f902!2sCl.%2011%20%2311-89%2C%20Bogot%C3%A1%2C%20Colombia!5e0!3m2!1sen!2sco!4v1647748465784!5m2!1sen!2sco"
                     width="40%" height="200px"
-                    style=" position: absolute; border:0; border-radius: 20px; transform: translate(-15vh,0vh); margin-left: 15vh;"
+                    style="position: absolute; border:0; border-radius: 20px; transform: translate(-15vh,0vh); margin-left: 15vh;"
                     allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
             </section>
         </div>
 
@@ -223,7 +223,8 @@
                         <img src="{% static 'img/instagram.png' %}" alt="">
                     </div>
                 </a>
-                <p class="copy" style="color: white; transform: translateY(1.5vh);">  &copy; 2023 FOS. Todos los derechos reservados.
+                <p class="copy" style="color: white; transform: translateY(1.5vh);"> &copy; 2023 FOS. Todos los derechos
+                    reservados.
                 </p>
             </div>
         </div>
@@ -253,23 +254,23 @@
                     <h6 style="text-align: center;">Genera tu PDF:</h6>
                     {% if user.is_authenticated %}
                     <p>Tu grupo actual es:
-                        
-                            {% for group in user.groups.all %}
-                                {{ group.name }}
-                            {% endfor %}
-                        
+
+                        {% for group in user.groups.all %}
+                        {{ group.name }}
+                        {% endfor %}
+
                     </p>
                     {% if user.is_staff %}
                     <a href="{% url 'export_domicile' %}" target="_blank"><button class="btn btn-success"
                             style="margin-right: 60px;">Domicilios</button></a>
-                    
+
                     <a href="{% url 'export_sale' %}" target="_blank"><button class="btn btn-success">Venta</button></a>
                     {% else %}
                     {% for group in user.groups.all %}
                     {% if group.name == 'Empleados' %}
                     <a href="{% url 'export_domicile' %}" target="_blank"><button
                             class="btn btn-success">Domicilios</button></a>
-                        
+
                     {% endif %}
                     {% endfor %}
                     {% endif %}
