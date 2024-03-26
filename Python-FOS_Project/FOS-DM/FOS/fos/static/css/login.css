@@ -193,7 +193,7 @@ form{
     }
 }
 
-@media screen and (min-width: 1317px) and (min-height: 958px) {
+@media screen and (min-width: 1365px) and (min-height: 945px) {
     .contenedor {
         width: 1000px; 
         transform: translateX(-30vh);

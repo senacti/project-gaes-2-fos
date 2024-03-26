@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from django.contrib.auth.decorators import login_required
 # Importaciones PDF
@@ -62,7 +62,7 @@ def login_view(request):
 def salir(request):
     logout(request)
     messages.success(request, 'Sesión finalizada')
-    return redirect('inicio')
+    return HttpResponseRedirect('/ventas/', status=303)
 # //
 # Contactanos
 

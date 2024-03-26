@@ -165,6 +165,19 @@ function actualizarCantidad(e) {
 }
 
 
+    document.addEventListener('DOMContentLoaded', function() {
+        var botonCambiarTema = document.getElementById('cambiar-tema');
+        botonCambiarTema.addEventListener('click', function() {
+            // Toggle entre las clases de tema claro y oscuro en el cuerpo del documento
+            document.body.classList.toggle('light-theme');
+            document.body.classList.toggle('dark-theme');
+        });
+    });
+
+
+
+
+
 
 
 

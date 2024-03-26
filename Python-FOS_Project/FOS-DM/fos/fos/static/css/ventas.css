@@ -6,9 +6,6 @@
     list-style: none;
 }
 
-body{
-    background-color: #0f0e17;
-}
 
 .container{
     max-width: 1200px;
@@ -575,3 +572,4 @@ hr{
         margin-left: 10px;
     }
 }
+
