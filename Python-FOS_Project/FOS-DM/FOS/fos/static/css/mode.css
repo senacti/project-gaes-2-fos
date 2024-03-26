@@ -6,7 +6,7 @@
 }
 
 :root[data-theme="light"] {
-    --bg-color: #f5f3f2;
+    --bg-color: #ffff;
     --show-sun: block;
     --show-moon: none;
     --text-color: #111;
@@ -166,14 +166,19 @@ Estilos para las paginas
 .link a{
     color: var(--text-color);
 }
-.menu{
+/*.menu{
     background-color: var(--bg-color2);
     border-radius: 20px;
     
-}
+}*/
 
 .custom-dropdown-content{
     background-color: var(--bg-colormenu);
+}
+
+.menu #logo{
+    background-color: var(--bg-color2);
+    border-radius: 10px;
 }
 
 /*Fin Estilos*/
