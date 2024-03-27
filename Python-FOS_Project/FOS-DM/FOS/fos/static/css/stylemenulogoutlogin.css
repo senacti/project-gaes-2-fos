@@ -1,3 +1,4 @@
+
     .custom-dropdown-content {
         display: none;
         position: absolute;
@@ -9,20 +10,22 @@
         border-left: 1px solid #3da9fc;
         border-right: 1px solid #3da9fc;
         border-bottom: 2px solid #3da9fc;
-        border-top: 0,5px solid #3da9fc; 
+        border-top: 0,5px solid #3da9fc;
     }
 
     .custom-menu-item {
-        color: black;
+        
         padding: 12px 16px;
         text-decoration: none;
         display: block;
+        color: white;
     }
 
     .custom-menu-item:hover {
         background-color: none;
         border-bottom: 1px solid #3da9fc;
         border-radius: 20px;
+        
     }
 
     .custom-dropdown:hover .custom-dropdown-content {
@@ -35,8 +38,5 @@
             transform: translateX(20vh);
         }
     }
-    .darkmode{
-        background-color: white;
-        color: black;
-    }
+    
 

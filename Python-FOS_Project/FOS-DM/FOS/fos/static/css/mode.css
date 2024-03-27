@@ -21,9 +21,23 @@
     /*
     Para estilos de las paginas
     */
-
-    --bg-color2: #0f0e17 ;
-    --bg-colormenu: #0f0e17;
+    /*Estilos principales*/
+    --bg-color2: #0f0e17 ;/*Para el logo*/
+    --bg-colormenu: #0f0e17;/*Para el color (Background) del menu desplegable*/
+    --text-colorm: white; /*Para el color del texto del menu desplegable*/
+    --text-color2: white;/*Para el color de el menu*/
+    --bg-colorbullet:black; /*Para el color de las pepitas del carrusel*/
+    --color-hr:black;/*Para el hr (linea en la pagina) */
+    --text-footer:black; /*Para el color de los textos del footer*/
+    --bg-service:#0f0e17;/*Para las cajas de servicios*/
+    --text-servi:white;/*Para el color del texto de las cajas de servicios*/
+    --bg-footer:#0f0e17;
+    --text-contactoh2: black;/*Para el color del h2 de contactanos*/
+    --text-canth2hov: #3B95FF ;
+    --text-contatoh22:black;
+    --text-formcont:black;/*Para color texto formulario contactanos*/
+    --bg-borbotfor:black;/*Para el borde del formulario contactanos*/
+    --text-forup:#3B95FF;/*Para cambiar el color cuando sube en el formulario contacto*/
 }
 
 :root[data-theme="dark"] {
@@ -44,7 +58,23 @@
     /*
     Para estilos de las paginas
     */
-    --bg-colormenu:none;
+    /* Pagina principal*/
+    --bg-colormenu:none;/*Para el color del menu del menu desplegable*/
+    --text-color2: #f9bc60;/*Para el color del menu */
+    --text-colorm:#f9bc60; /*Para el color del texto del menu desplegable*/
+    --bg-colorbullet:white; /*Para el color de las pepitas del carrusel*/
+    --color-hr:#f9bc60;/*Para el hr (linea en la pagina) */
+    --text-footer:white; /*Para el color de los textos del footer*/
+    --bg-service:none;/*Para las cajas de servicios*/
+    --text-servi:white;/*Para el color del texto de las cajas de servicios*/
+    --bg-footer:#123f60;
+    --text-contactoh2: #3B95FF;/*Para el color del h2 de contactanos*/
+    --text-canth2hov: #f9bc60  ;
+    --text-contatoh22:white;
+    --text-formcont:#3da9fc;/*Para color texto formulario contactanos*/
+    --bg-borbotfor:#3da9fc;/*Para el borde del formulario contactanos*/
+    --text-forup:#f9bc60;/*Para cambiar el color cuando sube en el formulario contacto*/
+
 }
 
 
@@ -163,22 +193,117 @@ body {
 Estilos para las paginas
 */
 
+/*Estilos principales*/
+
 .link a{
-    color: var(--text-color);
+    color: var(--text-footer);
 }
-/*.menu{
+.menu{
     background-color: var(--bg-color2);
-    border-radius: 20px;
-    
-}*/
+    border-radius: 20px;    
+}
 
 .custom-dropdown-content{
+    color: var(--text-colorm);
     background-color: var(--bg-colormenu);
 }
 
 .menu #logo{
     background-color: var(--bg-color2);
     border-radius: 10px;
+}
+
+.menu .navbar ul li a{
+    color: var(--text-color2);
+    
+}
+.submenu:hover #carrito{
+    background-color: var(--bg-colormenu);
+}
+.price-1{
+    color: var(--text-color);
+}
+.swiper-button-prev{
+    color: var(--text-color);
+}
+
+.swiper-button-next{
+    color: var(--text-color);
+}
+
+.swiper-pagination-bullet{
+    background-color: var(--bg-colorbullet);
+}
+.swiper-pagination-bullet-active{
+    background-color: #f9bc60;
+}
+.product-txt p{
+    color: var(--text-color);
+}
+.btn-3{
+    color: var(--text-color);
+}
+hr{
+    border: 1px solid var(--color-hr);
+}
+
+/*Estilos para servicios*/
+.containerser .h1pri{
+    color: var(--text-color);
+}
+.service{
+    background-color: var(--bg-service);
+    color: var(--text-servi) ;
+}
+
+.service:hover{
+    color: var(--text-color);
+}
+.service:hover h2 {
+    color: var(--text-color);
+}
+
+.footer-container{
+    background-color: var(--bg-footer);
+}
+
+/*Estilos para contacto*/
+
+.container-form h2{
+    color: var(--text-contactoh2) ;
+}
+
+.container-form h2:hover{
+    color: var(--text-canth2hov);
+}
+
+.container-form p{
+    color: var(--text-contactoh22);
+}
+
+.container-form p:hover{
+    color: var(--text-canth2hov);
+}
+
+.container-form a{
+    color: var(--text-contactoh22);
+}
+
+.container-form a:hover{
+    color: var(--text-canth2hov);
+}
+
+.input-contenedor label{
+    color: var(--text-formcont);
+}
+
+.input-contenedor{
+    border-bottom: 1px solid var(--bg-borbotfor);
+}
+
+input:focus ~ label,
+input:valid ~ label{
+    color: var(--text-forup);
 }
 
 /*Fin Estilos*/

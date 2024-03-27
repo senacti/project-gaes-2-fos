@@ -18,6 +18,7 @@
     display: flex;
     align-items: center;
     min-height: 70vh;
+    
 }
 
 .swiper-slide{
@@ -25,6 +26,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .swiper-button-prev::after{
@@ -35,16 +37,9 @@
     font-size: 25px;
 }
 
-.swiper-button-prev{
-    color: #3da9fc;
-}
 
-.swiper-button-next{
-    color: #3da9fc;
-}
 
 .swiper-pagination-bullet{
-    background-color: #3da9fc;
     opacity: 1;
 }
 
@@ -61,6 +56,7 @@
     align-items: center;
     justify-content: space-between;
     z-index: 1000;
+    
 }
 
 .menu #logo{
@@ -71,13 +67,15 @@
 .menu .navbar ul li{
     position: relative;
     float: left;
+    
+
 }
 
 .menu .navbar ul li a{
     font-size: 18px;
     padding: 20px;
-    color: #f9bc60;
     display: block;
+    
 }
 
 .menu .navbar ul li a:hover{
@@ -270,7 +268,6 @@ th, td{
 
 .price-1{
     font-size: 30px;
-    color: #ffff;
     text-decoration-line: line-through;
     margin-right: 25px;
 }
@@ -380,7 +377,6 @@ hr{
 }
 
 .product-txt p{
-    color: #ffff;
     font-size: 16px;
     margin-bottom: 15px;
 }
@@ -393,7 +389,6 @@ hr{
     display: inline-block;
     padding: 7px 10px;
     font-size: 14px;
-    color: white;
     border: 1px solid #3da9fc;
     border-radius: 25px;
     margin-top: 15px;
@@ -425,7 +420,7 @@ hr{
 }
 
 .link a {
-    color: #fff;
+    
     font-size: 16px;
     display: block;
     margin-bottom: 10px;

@@ -65,8 +65,8 @@
             <nav class="navbar" style=" transform: translateX(20vh);">
                 <ul>
                     {% if user.is_authenticated %}
-                    <li class="custom-dropdown" style="display: inline-block;">
-                        <a style="text-decoration: none;" class="custom-dropbtn"><i class="fa-solid fa-user"
+                    <li class="custom-dropdown" style="display: inline-block; ">
+                        <a style="text-decoration: none; " class="custom-dropbtn"><i class="fa-solid fa-user"
                                 style="transform: translateX(-2vh);"></i>{{ user.username|capfirst}}</a>
                         <div class="custom-dropdown-content">
                             <a style="text-decoration: none;" href="{% url 'salir' %}" class="custom-menu-item"> Salir
@@ -594,11 +594,11 @@
         </div>
         <div class="link">
             <h3>Informacion de la Empresa</h3>
-            <p>La piñatería Latinos es un lugar vibrante y lleno de color, donde la diversión y la creatividad se
+            <ul>La piñatería Latinos es un lugar vibrante y lleno de color, donde la diversión y la creatividad se
                 fusionan para ofrecer una amplia variedad de piñatas y accesorios para fiestas. Desde piñatas clásicas
                 hasta diseños personalizados, esta tienda es el destino perfecto para cualquier celebración. Con su
                 ambiente acogedor y su selección de productos festivos, una visita a la piñatería promete una
-                experiencia llena de risas y recuerdos duraderos.</p>
+                experiencia llena de risas y recuerdos duraderos.</ul>
         </div>
 
     </footer>
