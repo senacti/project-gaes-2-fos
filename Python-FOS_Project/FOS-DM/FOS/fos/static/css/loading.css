@@ -1,7 +1,6 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: #0f0e17; 
 
 }
 .center{
@@ -25,15 +24,15 @@ body{
 @keyframes ring{
     0%{
         transform: rotate(0deg);
-        box-shadow: 1px 5px 2px #3da9fc;
+        box-shadow: 4px 10px 5px #3da9fc;
     }
     50%{
         transform: rotate(180deg);
-        box-shadow: 1px 5px 2px #f9bc60;
+        box-shadow: 4px 10px 5px #f9bc60;
     }
     100%{
         transform: rotate(360deg);
-        box-shadow: 1px 5px 2px #e53170;
+        box-shadow: 4px 10px 5px #e53170;
     }
 }
 .ring :before{
@@ -48,7 +47,7 @@ body{
 
 }
 span{
-    color: white;
+    color: var(--text-span);
     font-size: 20px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -58,7 +57,7 @@ span{
 }
 @keyframes text{
     50%{
-        color: black;
+        color: var(--text-span);
         font-weight: bolder;
     }
 }
@@ -70,7 +69,7 @@ span{
     height:30px;
     background: transparent;
     font-size: 18px;
-    color: white;
+    
     cursor: pointer;
     text-align: center;
     transform: translate(-50, -50);
@@ -82,10 +81,9 @@ span{
 }
 .volver button a{
     text-decoration: none;
-    color: white;
+    color: var(--text-span);
 }
 .FOS{
-    color: white;
     text-align: center;
     font-size: 50px;
     padding-top: 90px;
@@ -96,5 +94,14 @@ span{
     margin-top: 1px;
     padding-bottom: 3px;
     
+
+}
+
+:root[data-theme="light"] {
+    --text-span:black;
+}
+
+:root[data-theme="dark"] {
+    --text-span:white;
 
 }

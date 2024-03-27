@@ -15,7 +15,7 @@ body {
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 10px 5px #3da9fc;
 }
 
 .section {
@@ -99,6 +99,12 @@ input[type="submit"]:hover {
     font-size: 20px;
     background-color: #fff;
     color: #333;
+}
+footer{
+    background-color: #123f60;
+    transform: translateY(-5vh);
+    border-radius: 20px;
+    
 }
 
 

@@ -38,6 +38,11 @@
     --text-formcont:black;/*Para color texto formulario contactanos*/
     --bg-borbotfor:black;/*Para el borde del formulario contactanos*/
     --text-forup:#3B95FF;/*Para cambiar el color cuando sube en el formulario contacto*/
+    --text-colorh1log:black;/*Para cambiar color del regresar login*/
+    --text-colorh1loghov:#3B95FF;
+    --text-colh2log:black;/*Para cambiar el h2 en login*/
+    --text-colh2loghov:#3B95FF;
+
 }
 
 :root[data-theme="dark"] {
@@ -74,6 +79,10 @@
     --text-formcont:#3da9fc;/*Para color texto formulario contactanos*/
     --bg-borbotfor:#3da9fc;/*Para el borde del formulario contactanos*/
     --text-forup:#f9bc60;/*Para cambiar el color cuando sube en el formulario contacto*/
+    --text-colorh1log:white;/*Para cambiar color del regresar login*/
+    --text-colorh1loghov:#f9bc60;
+    --text-colh2log:white;/*Para cambiar el h2 en login*/
+    --text-colh2loghov:#f9bc60;
 
 }
 
@@ -106,7 +115,7 @@ body {
 
 .main__light,
 .main__dark {
-    width: max-content;
+    width: min-content;
     margin: 0 auto;
 }
 
@@ -305,6 +314,55 @@ input:focus ~ label,
 input:valid ~ label{
     color: var(--text-forup);
 }
+
+/*Estilos para loading*/
+.volver button{
+    color: var(--text-color);
+}
+
+.volver button:hover{
+    color: var(--text-canth2hov);
+}
+
+.FOS{
+    color: var(--text-color);
+}
+
+
+/*Estilos login*/
+
+
+.contenedor h1 a{
+    color: var(--text-colorh1log);
+}
+
+.contenedor h1 a:hover{
+    color: var(--text-colorh1loghov);
+}
+
+.contenedor h2{
+    color: var(--text-colh2log);
+}
+
+.contenedor h2:hover{
+    color: var(--text-colh2loghov);
+}
+.validatable:focus ~ label,
+.validatable:valid ~ label {
+    color:var(--text-forup) ;
+}
+.input-contenedor input{
+    color: var(--text-color);
+}
+
+.olvidar a:hover{
+    color: var(--text-forup);
+}
+
+.registrar p a:hover{
+    color: var(--text-forup);
+}
+
 
 /*Fin Estilos*/
 

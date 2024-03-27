@@ -4,9 +4,7 @@
     
 
 }
-body{
-    background-color:  #201d36;
-}
+
 
 section{
     color: white;
@@ -15,7 +13,6 @@ section{
     align-items: center;
     width: 100%;
     min-height: 100vh;
-    background-color: #0f0e17;
     background-position: center;
     background-size: cover;
 }
@@ -23,7 +20,6 @@ section{
 .contenedor{
     position: relative;
     width: 800px;
-    backdrop-filter: blur(0px);
     border: 1px solid white;
     height: 450px;
     display: flex;
@@ -33,6 +29,7 @@ section{
     border-radius: 30px;
     box-shadow: 0px 5px 10px 5px #3da9fc;
 }
+
 
 .contenedor h2{
     font-size: 2.3rem;
@@ -100,7 +97,7 @@ section{
 }
 
 .olvidar a{
-    color: white;
+    color: var(--text-olvidar);
     text-decoration: none;
     transition: .3s;
     font-size: .9rem;
@@ -134,20 +131,22 @@ button:hover{
     text-align: center;
     margin: 20px 0 10px;
     transform: translateX(25vh);
+    color: var(--text-olvidar);
 }
 
 .registrar p a{
     text-decoration: none;
     font-weight: bold;
     transition: .3s;
-    color: white;
+    color: var(--text-olvidar);
 }
 
 .registrar p a:hover{
     text-decoration: underline;
     color: #f9bc60;
 }
-img .img-logo-login{
+
+.img-logo-login{
     position: relative;
     z-index: -1;
     transform: translateX(20px);
@@ -162,12 +161,22 @@ form{
 
 .contenedor h1 a{
     text-decoration: none;
-    color: white;
+    
 }
 
-.contenedor h1 a:hover{
-    color: #f9bc60;
+
+
+:root[data-theme="light"] {
+    --back-dropmedia: blur(0);
+    --text-olvidar:black;
+    --bg-form:#0f0e17;
 }
+:root[data-theme="dark"] {
+    --back-dropmedia: blur(10px);
+    --text-olvidar:white;
+    
+}
+
 
 @media screen and (max-width: 991px) {
     body{
@@ -176,7 +185,7 @@ form{
     .contenedor{
         width: 90%;
         transform: translateX(-23vh);
-        backdrop-filter: blur(10px);
+        backdrop-filter: var(--back-dropmedia);
     }
     
     .formulario {

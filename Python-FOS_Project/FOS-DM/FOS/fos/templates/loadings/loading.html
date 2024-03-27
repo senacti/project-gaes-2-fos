@@ -7,6 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/loading.css'%}">
     <title>FOS</title>
+    <link rel="stylesheet" href="{% static 'css/mode.css' %}">
+    <script>
+        const storageTheme = localStorage.getItem('theme');
+        const systemColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' :
+            'light';
+
+        const newTheme = storageTheme ?? systemColorScheme;
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+    </script>
 </head>
 <body>
     <header>
@@ -38,5 +48,6 @@
             window.location.href = "{% url 'login'%}";
         }, 1000);
     </script>
+    <script src="{% static 'js/mode.js' %}"></script>
 </body>
 </html>
