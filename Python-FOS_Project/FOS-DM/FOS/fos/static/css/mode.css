@@ -99,23 +99,25 @@ body {
 }
 
 .main {
-    min-height: 600px;
-    height: 100vh;
+    min-height: 200px;
+    height: 30vh;
     display: grid;
     align-content: center;
+    transform: translateY(5vh);
 }
 
 
 .main__theme::after {
     content: var(--message-mode);
     display: block;
-    font-size: 2.3rem;
+    font-size: 1.6rem;
     text-align: center;
+    transform: translateY(-15vh);
 }
 
 .main__light,
 .main__dark {
-    width: min-content;
+    width: max-content;
     margin: 0 auto;
 }
 
@@ -146,15 +148,13 @@ body {
 }
 
 .main__switcher {
-    width: 160px;
-    height: 80px;
+    width: 120px;
+    height: 60px;
     background-color: var(--color-switcher);
     margin: 0 auto;
     margin-top: 2rem;
     padding: 5px 10px;
     border-radius: 100px;
-    
-
     display: grid;
     grid-template-columns: 1fr 1fr;
     position: relative;
@@ -171,8 +171,8 @@ body {
 }
 
 .main__option {
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     background-color: var(--color-active);
     border: var(--border-option);
     border-radius: 50%;
@@ -363,6 +363,30 @@ input:valid ~ label{
     color: var(--text-forup);
 }
 
+/*Estilos para recuperacion de contrasena*/
+.p1m{
+    color: var(--text-color);
+}
+
+.p1m:hover{
+    color: var(--text-forup);
+}
+
+.p2m{
+    color: var(--text-color);
+}
+
+.p2m:hover{
+    color: var(--text-forup);
+}
+
+.mensaje1{
+    color: var(--text-color);
+}
+
+.form{
+    color: var(--text-color);
+}
 
 /*Fin Estilos*/
 

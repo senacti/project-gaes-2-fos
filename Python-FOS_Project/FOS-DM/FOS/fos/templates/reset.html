@@ -14,7 +14,17 @@
     <link rel="stylesheet" href="{% static 'css/stylemenulogoutlogin.css'%}">
     <link rel="stylesheet" href="{% static 'css/servicios.css' %}">
     <link rel="stylesheet" href="{% static 'css/reset_password.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mode.css' %}">
 
+    <script>
+        const storageTheme = localStorage.getItem('theme');
+        const systemColorScheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' :
+            'light';
+
+        const newTheme = storageTheme ?? systemColorScheme;
+
+        document.documentElement.setAttribute('data-theme', newTheme);
+    </script>
 </head>
 <body>
 
@@ -27,7 +37,7 @@
             </label>
             <nav class="navbar">
                 <ul>
-                    <h1 class="reset" style="color: white;"> <i class="fa-solid fa-hammer"></i> Recuperar contraseña
+                    <h1 class="reset"><i class="fa-solid fa-hammer"></i> Recuperar contraseña
                     </h1>
                 </ul>
 
@@ -36,9 +46,9 @@
     </header>
     <br>
     <br>
-    <h1 style="text-align: center; color: white;">Ingresa una nueva contraseña</h1>
+    <h1 class="mensaje1" style="text-align: center; ">Ingresa una nueva contraseña</h1>
     <br>
-    <form style="text-align: center; color: white;" class="form" method="post">
+    <form style="text-align: center;" class="form" method="post">
         {% csrf_token %}
         {{form.as_p}}
         <button class="btn btn-success" type="submit">Restablecer</button>
@@ -47,7 +57,7 @@
     <br>
     <br>
     <br>
-    <footer class="footer container" style="padding: 0; height: 25vh;">
+    <footer class="footer-container" style="padding: 0; height: 25vh; transform: translateY(10vh);">
         <img class="logo-2" src="{% static 'img/logo1.png' %}" alt="">
 
 
@@ -73,8 +83,10 @@
                         <img src="{% static 'img/instagram.png' %}" alt="">
                     </div>
                 </a>
-                <p style="color: white; transform: translateY(1.5vh);">&copy; 2023 FOS. Todos los derechos reservados.
+                <p class="copy" style="color: white; transform: translateY(1.5vh);"><strong>&copy; 2023 FOS. Todos los
+                        derechos reservados.</strong>
                 </p>
+
             </div>
         </div>
     </footer>
@@ -82,6 +94,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="{% static 'js/mode.js' %}"></script>
+
 </body>
 
 </html>

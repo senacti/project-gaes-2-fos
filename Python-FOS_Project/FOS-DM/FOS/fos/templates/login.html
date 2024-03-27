@@ -24,6 +24,26 @@
 </head>
 
 <body>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert" id="successMessage"
+        style="max-width: 50%;  transform: translate(60vh, 10vh); background-color: #d4edda; border-color: #c3e6cb; color: #155724; height: max-content;">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <script>
+
+
+        // Agregar un timeout de 2 segundos (2000 milisegundos)
+        setTimeout(function () {
+            var successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+        }, 2000);
+    </script>
+    {% endif %}
     <section>
         <img class="img-logo-login" style="transform: translateX(45%);" src="{% static 'img/logo1.png' %}" alt="">
         <div class="contenedor-color">
@@ -68,7 +88,10 @@
             window.history.back();
         }
     </script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
     <script src="{% static 'js/login.js' %}"></script>
     <script src="{% static 'js/mode.js' %}"></script>
