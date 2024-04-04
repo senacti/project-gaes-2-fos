@@ -43,6 +43,8 @@
     --text-colh2log:black;/*Para cambiar el h2 en login*/
     --text-colh2loghov:#3B95FF;
 
+    --bg-ventas:#96c4c4;
+
 }
 
 :root[data-theme="dark"] {
@@ -83,6 +85,9 @@
     --text-colorh1loghov:#f9bc60;
     --text-colh2log:white;/*Para cambiar el h2 en login*/
     --text-colh2loghov:#f9bc60;
+
+
+    --bg-ventas:#004643;
 
 }
 
@@ -256,6 +261,13 @@ hr{
     border: 1px solid var(--color-hr);
 }
 
+.seccion-1{
+    background-color: var(--bg-ventas);
+}
+.seccion-2{
+    background-color: var(--bg-ventas);
+}
+
 /*Estilos para servicios*/
 .containerser .h1pri{
     color: var(--text-color);
@@ -387,6 +399,7 @@ input:valid ~ label{
 .form{
     color: var(--text-color);
 }
+
 
 /*Fin Estilos*/
 

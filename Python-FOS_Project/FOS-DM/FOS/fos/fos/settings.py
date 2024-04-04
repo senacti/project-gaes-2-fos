@@ -169,12 +169,12 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 """
-"""ALLOWED_HOSTS = ['cdfb-191-108-56-230.ngrok-free.app']
+ALLOWED_HOSTS = ['d2a3-191-108-63-54.ngrok-free.app']
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://cdfb-191-108-56-230.ngrok-free.app',
+    'https://d2a3-191-108-63-54.ngrok-free.app',
     
-]"""
+]
 
 
 
